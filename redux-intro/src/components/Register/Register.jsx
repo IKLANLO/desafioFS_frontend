@@ -1,21 +1,34 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { register, reset } from '../../redux/alumnos/alumnosSlice'
 import Box from '@mui/material/Box'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
+import { notification } from 'antd'
 
 const Register = () => {
   const dispatch = useDispatch()
-  const [genre, setGenre] = React.useState('')
+  const navigate = useNavigate()
 
-  const { message } = useSelector((state) => state.alum)
+  const { isSuccess, isError, message } = useSelector((state) => state.alum)
 
   useEffect(() => {
+    if (isSuccess) {
+      notification.success({
+        description: message,
+      })
+      setTimeout(() => navigate('/login'), 2000)
+    } else if (isError) {
+      notification.error({
+        description: message,
+      })
+    }
+
     dispatch(reset())
-  }, [message])
+  }, [isSuccess, isError, message])
 
   const [formData, setFormData] = useState({
     Nombre: '',
@@ -23,10 +36,10 @@ const Register = () => {
     Password: '',
     Telefono: '',
     CP: '',
-    Genero: [],
+    Genero: '',
   })
 
-  const { nombre, email, password, telefono, cp, genero } = formData
+  const { Nombre, Email, Password, Telefono, CP, Genero } = formData
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -40,10 +53,6 @@ const Register = () => {
     dispatch(register(formData))
   }
 
-  const handleGenreChange = (event) => {
-    setGenre(event.target.value)
-  }
-
   return (
     <>
       <h1>
@@ -53,40 +62,40 @@ const Register = () => {
         <input
           className="container__input"
           type="text"
-          name="nombre"
-          value={nombre}
+          name="Nombre"
+          value={Nombre}
           placeholder="Nombre"
           onChange={onChange}
         />
         <input
           className="container__input"
           type="email"
-          name="email"
-          value={email}
+          name="Email"
+          value={Email}
           placeholder="Email"
           onChange={onChange}
         />
         <input
           className="container__input"
           type="password"
-          name="password"
-          value={password}
+          name="Password"
+          value={Password}
           placeholder="Contraseña"
           onChange={onChange}
         />
         <input
           className="container__input"
           type="tel"
-          name="telefono"
-          value={telefono}
+          name="Telefono"
+          value={Telefono}
           placeholder="Teléfono"
           onChange={onChange}
         />
         <input
           className="container__input"
           type="number"
-          name="cp"
-          value={cp}
+          name="CP"
+          value={CP}
           placeholder="Código Postal"
           onChange={onChange}
         />
@@ -96,10 +105,10 @@ const Register = () => {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={genre}
-              name="genero"
+              value={Genero}
+              name="Genero"
               label="genero"
-              onChange={handleGenreChange}>
+              onChange={onChange}>
               <MenuItem value={'Hombre'}>Hombre</MenuItem>
               <MenuItem value={'Mujer'}>Mujer</MenuItem>
               <MenuItem value={'Otro'}>Otro</MenuItem>

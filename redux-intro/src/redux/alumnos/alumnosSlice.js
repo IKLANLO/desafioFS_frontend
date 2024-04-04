@@ -7,7 +7,9 @@ const token = JSON.parse(localStorage.getItem('token'))
 const initialState = {
   alumno: alumno || null,
   token: token || null,
-  message: ''
+  message: '',
+  isError: false,
+  isSuccess: false,
 }
 
 export const register = createAsyncThunk('alum/register', async (alumno, thunkAPI) => {
@@ -26,14 +28,20 @@ export const alumnosSlice = createSlice({
   reducers: {
     reset: (state) => {
       state.message = ''
-    //   state.isError = false
-    //   state.isSuccess = false
+      state.isError = false
+      state.isSuccess = false
     }
   },
   extraReducers: (builder) => {
     builder
       .addCase(register.fulfilled, (state, action) => {
+        state.isSuccess = true
         state.message = action.payload.message
+        // state.alumno = action.payload.alumno
+      })
+      .addCase(register.rejected, (state, action) => {
+        state.isError = true
+        state.message = action.payload
       })
   }
 })
