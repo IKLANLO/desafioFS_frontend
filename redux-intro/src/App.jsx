@@ -1,6 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import TheHeader from './components/TheHeader/TheHeader'
-import 'bootstrap/dist/css/bootstrap.min.css'
+import Register from './components/Register/Register'
+import './App.scss'
+// import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
   return (
@@ -8,7 +10,7 @@ function App() {
       <TheHeader />
       <Routes>
         {/* <Route path="/home" element={<Home />} /> */}
-        {/* <Route path="/register" element={<Register />} /> */}
+        <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>
   )
