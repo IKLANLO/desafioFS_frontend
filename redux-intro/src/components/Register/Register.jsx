@@ -2,12 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { register, reset } from '../../redux/alumnos/alumnosSlice'
-import Box from '@mui/material/Box'
-import InputLabel from '@mui/material/InputLabel'
-import MenuItem from '@mui/material/MenuItem'
-import FormControl from '@mui/material/FormControl'
-import Select from '@mui/material/Select'
 import { notification } from 'antd'
+import './Register.style.scss'
 
 const Register = () => {
   const dispatch = useDispatch()
@@ -37,15 +33,70 @@ const Register = () => {
     Telefono: '',
     CP: '',
     Genero: '',
+    Educacion: '',
+    Sector: '',
+    Habilidades: [],
+    ExperienciaInput: '',
+    Experiencia: [],
+    Logros: [],
   })
 
-  const { Nombre, Email, Password, Telefono, CP, Genero } = formData
+  const {
+    Nombre,
+    Email,
+    Password,
+    Telefono,
+    CP,
+    Genero,
+    Educacion,
+    Sector,
+    Habilidades,
+    Experiencia,
+    ExperienciaInput,
+    Logros,
+  } = formData
+  const educacionData = [
+    'Educación obligatoria',
+    'Bachiller',
+    'Ciclo de grado medio',
+    'Ciclo de grado superior',
+    'Grado Universitario',
+    'Formación no reglada',
+    'Otros',
+  ]
+  const sectorData = [
+    'Informática',
+    'Marketing',
+    'Construcción',
+    'Hostelería',
+    'Finanzas',
+  ]
+  const habilidadesData = [
+    'Trabajo en equipo',
+    'desarrollo web',
+    'marketing',
+    'construcción de edificios',
+    'contabilidad',
+    'ciberseguridad',
+    'data science',
+  ]
+
+  const logrosData = ['Logro1', 'Logro2', 'Logro3', 'Logro4']
 
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }))
+  }
+
+  const handleAddInfo = () => {
+    const nuevaExperiencia = ExperienciaInput
+    setFormData({
+      ...formData,
+      ExperienciaInput: '',
+      Experiencia: [...Experiencia, nuevaExperiencia],
+    })
   }
 
   const onSubmit = (e) => {
@@ -60,7 +111,8 @@ const Register = () => {
       </h1>
       <form className="container" onSubmit={onSubmit}>
         <input
-          className="container__input"
+          style={{ color: '#191919' }}
+          className="container__input input"
           type="text"
           name="Nombre"
           value={Nombre}
@@ -68,7 +120,7 @@ const Register = () => {
           onChange={onChange}
         />
         <input
-          className="container__input"
+          className="container__input input"
           type="email"
           name="Email"
           value={Email}
@@ -76,7 +128,7 @@ const Register = () => {
           onChange={onChange}
         />
         <input
-          className="container__input"
+          className="container__input input"
           type="password"
           name="Password"
           value={Password}
@@ -84,7 +136,7 @@ const Register = () => {
           onChange={onChange}
         />
         <input
-          className="container__input"
+          className="container__input input"
           type="tel"
           name="Telefono"
           value={Telefono}
@@ -92,30 +144,121 @@ const Register = () => {
           onChange={onChange}
         />
         <input
-          className="container__input"
+          className="container__input input"
           type="number"
           name="CP"
           value={CP}
           placeholder="Código Postal"
           onChange={onChange}
         />
-        <Box sx={{ minWidth: 120 }}>
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Género</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={Genero}
-              name="Genero"
-              label="genero"
-              onChange={onChange}>
-              <MenuItem value={'Hombre'}>Hombre</MenuItem>
-              <MenuItem value={'Mujer'}>Mujer</MenuItem>
-              <MenuItem value={'Otro'}>Otro</MenuItem>
-            </Select>
-          </FormControl>
-        </Box>
-        <button type="submit">Guardar</button>
+        <div>
+          <select
+            style={{ width: '13.75rem', height: '1.75rem', color: 'grey' }}
+            className="listmenu"
+            name="Genero"
+            value={Genero}
+            onChange={onChange}>
+            <option value="">Género</option>
+            <option value="Mujer">Mujer</option>
+            <option value="Hombre">Hombre</option>
+            <option value="Otro">Otro</option>
+          </select>
+        </div>
+        <div>
+          <select
+            style={{ width: '13.75rem', height: '1.75rem', color: 'grey' }}
+            className="listmenu"
+            name="Educacion"
+            value={Educacion}
+            onChange={onChange}>
+            <option value="">Nivel educativo</option>
+            {educacionData.map((item, index) => (
+              <option key={index} value={item}>
+                {item}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <select
+            style={{ width: '13.75rem', height: '1.75rem', color: 'grey' }}
+            className="listmenu"
+            name="Sector"
+            value={Sector}
+            onChange={onChange}>
+            <option value="">Sector</option>
+            {sectorData.map((item, index) => (
+              <option key={index} value={item}>
+                {item}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <select
+            style={{ width: '13.75rem', height: '1.75rem', color: 'grey' }}
+            className="listmenu"
+            name="Habilidades"
+            value={Habilidades}
+            onChange={(e) => {
+              const nuevaHabilidad = e.target.value
+              setFormData({
+                ...formData,
+                Habilidades: [...Habilidades, nuevaHabilidad],
+              })
+            }}>
+            <option value="">Habilidades</option>
+            {habilidadesData.map((item, index) => (
+              <option key={index} value={item}>
+                {item}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="experiencia-container">
+          <input
+            className="experiencia-container__input "
+            type="text"
+            name="ExperienciaInput"
+            value={ExperienciaInput}
+            placeholder="Experiencia"
+            onChange={onChange}
+          />
+          <button type="button" onClick={handleAddInfo}>
+            Añadir
+          </button>
+        </div>
+        <div>
+          <select
+            style={{ width: '13.75rem', height: '1.75rem', color: 'grey' }}
+            className="listmenu"
+            name="Logros"
+            value={Logros}
+            onChange={(e) => {
+              const nuevoLogro = e.target.value
+              setFormData({
+                ...formData,
+                Logros: [...Logros, nuevoLogro],
+              })
+            }}>
+            <option value="">Logros</option>
+            {logrosData.map((item, index) => (
+              <option key={index} value={item}>
+                {item}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="button-container">
+          <button className="button-container__button" type="submit">
+            Guardar
+          </button>
+          <button
+            className="button-container__button"
+            style={{ backgroundColor: '#fbfbfb' }}>
+            Editar
+          </button>
+        </div>
       </form>
     </>
   )
