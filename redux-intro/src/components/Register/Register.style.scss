@@ -1,39 +1,46 @@
-.container {
+.main {
+  height: 70%;
+  width: 110%;
   display: flex;
-  flex-wrap: wrap;
-  flex: 1;
-}
+  justify-content: center;
+  align-items: center;
 
-.button-container {
-  margin-top: 1.25rem;
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50%;
 
-  &__button {
-    margin-right: 1.25rem;
-    width: 6.25rem;
+    &__button {
+      width: 90%;
+      height: 100%;
+      margin: 0.3125rem;
+    }
   }
 }
 
-.experiencia-container {
-  display: flex;
+@media only screen and (min-width: 768px) {
+  .main {
+    height: 70%;
+    width: 110%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  &__input {
-    max-width: 8.875rem;
-    height: 1.5625rem;
-    margin: 0.1875rem 0;
-    margin-right: 0.3125rem;
-    padding-left: 0.625rem;
-    padding-right: 0.625rem;
-    background-color: #ffffff;
-    color: #191919;
-    font-size: 0.8rem;
-    font-weight: 600;
-    border-style: none;
-    border-radius: 0.9375rem;
-  }
+    &__container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 50%;
 
-  &__button {
-    height: 1.7625rem;
-    margin: 0.1875rem 0;
-    line-height: 0.625rem;
+      &__button {
+        width: 50%;
+        height: 100%;
+      }
+    }
   }
 }
