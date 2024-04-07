@@ -58,8 +58,10 @@ h1 {
 }
 
 button {
-  border-style: none;
+  border-style: solid;
+  border-color: #767cf8;
   border-radius: 0.9375rem;
+
   padding: 0.6em;
   font-size: 0.8rem;
   font-weight: 600;
@@ -70,7 +72,8 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: rgba(96, 223, 230, 1);
+  color: #ffffff;
+  background-color: #767cf8;
 }
 button:focus,
 button:focus-visible {

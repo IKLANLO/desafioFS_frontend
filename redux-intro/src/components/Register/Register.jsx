@@ -158,7 +158,9 @@ const Register = () => {
             name="Genero"
             value={Genero}
             onChange={onChange}>
-            <option value="">Género</option>
+            <option value="" disabled>
+              Género
+            </option>
             <option value="Mujer">Mujer</option>
             <option value="Hombre">Hombre</option>
             <option value="Otro">Otro</option>
@@ -171,7 +173,9 @@ const Register = () => {
             name="Educacion"
             value={Educacion}
             onChange={onChange}>
-            <option value="">Nivel educativo</option>
+            <option value="" disabled>
+              Nivel educativo
+            </option>
             {educacionData.map((item, index) => (
               <option key={index} value={item}>
                 {item}
@@ -186,7 +190,9 @@ const Register = () => {
             name="Sector"
             value={Sector}
             onChange={onChange}>
-            <option value="">Sector</option>
+            <option value="" disabled>
+              Sector
+            </option>
             {sectorData.map((item, index) => (
               <option key={index} value={item}>
                 {item}
@@ -207,7 +213,9 @@ const Register = () => {
                 Habilidades: [...Habilidades, nuevaHabilidad],
               })
             }}>
-            <option value="">Habilidades</option>
+            <option value="" disabled>
+              Habilidades
+            </option>
             {habilidadesData.map((item, index) => (
               <option key={index} value={item}>
                 {item}
@@ -217,14 +225,17 @@ const Register = () => {
         </div>
         <div className="experiencia-container">
           <input
-            className="experiencia-container__input "
+            className="experiencia-container__input"
             type="text"
             name="ExperienciaInput"
             value={ExperienciaInput}
             placeholder="Experiencia"
             onChange={onChange}
           />
-          <button type="button" onClick={handleAddInfo}>
+          <button
+            className="experiencia-container__button"
+            type="button"
+            onClick={handleAddInfo}>
             Añadir
           </button>
         </div>
@@ -241,7 +252,9 @@ const Register = () => {
                 Logros: [...Logros, nuevoLogro],
               })
             }}>
-            <option value="">Logros</option>
+            <option value="" disabled>
+              Logros
+            </option>
             {logrosData.map((item, index) => (
               <option key={index} value={item}>
                 {item}
@@ -253,11 +266,7 @@ const Register = () => {
           <button className="button-container__button" type="submit">
             Guardar
           </button>
-          <button
-            className="button-container__button"
-            style={{ backgroundColor: '#fbfbfb' }}>
-            Editar
-          </button>
+          <button className="button-container__button">Editar</button>
         </div>
       </form>
     </>
