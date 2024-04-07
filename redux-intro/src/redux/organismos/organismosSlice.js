@@ -1,11 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import alumnosService from './alumnosService'
+import organismosService from './organismosService'
 
-const alumno = JSON.parse(localStorage.getItem('alumno'))
-const token = JSON.parse(localStorage.getItem('tokenAlumno'))
+const organismo = JSON.parse(localStorage.getItem('organismo'))
+const token = JSON.parse(localStorage.getItem('tokenOrganismo'))
 
 const initialState = {
-  alumno: alumno || null,
+  organismo: organismo || null,
   token: token || null,
   message: '',
   isError: false,
@@ -13,10 +13,10 @@ const initialState = {
 }
 
 export const register = createAsyncThunk(
-  'alum/register',
-  async (alumno, thunkAPI) => {
+  'organ/register',
+  async (organismo, thunkAPI) => {
     try {
-      return await alumnosService.register(alumno)
+      return await organismosService.register(organismo)
     } catch (error) {
       console.log(error)
       const message = error.response.data.message
@@ -25,8 +25,8 @@ export const register = createAsyncThunk(
   }
 )
 
-export const alumnosSlice = createSlice({
-  name: 'alum',
+export const organismosSlice = createSlice({
+  name: 'organ',
   initialState,
   reducers: {
     reset: (state) => {
@@ -48,6 +48,6 @@ export const alumnosSlice = createSlice({
   },
 })
 
-export const { reset } = alumnosSlice.actions
+export const { reset } = organismosSlice.actions
 
-export default alumnosSlice.reducer
+export default organismosSlice.reducer

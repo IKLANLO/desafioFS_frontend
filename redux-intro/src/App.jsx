@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import TheHeader from './components/TheHeader/TheHeader'
 import Register from './components/Register/Register'
 import RegisterAlum from './components/Register/RegisterAlum/RegisterAlum'
+import RegisterOrg from './components/Register/RegisterOrg/RegisterOrg'
 import './App.scss'
 // import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -12,7 +13,8 @@ function App() {
       <Routes>
         {/* <Route path="/home" element={<Home />} /> */}
         <Route path="/register" element={<Register />} />
-        <Route path="/register/alum" element={<RegisterAlum />} />
+        <Route path="/register/alumnos" element={<RegisterAlum />} />
+        <Route path="/register/organismos" element={<RegisterOrg />} />
       </Routes>
     </BrowserRouter>
   )

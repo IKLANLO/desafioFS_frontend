@@ -12,9 +12,9 @@ const Register = () => {
 
   useEffect(() => {
     if (selectedOption === 'Alumnos') {
-      setTimeout(() => navigate('/register/alum'), 200)
+      setTimeout(() => navigate('/register/alumnos'), 200)
     } else if (selectedOption === 'Organismos') {
-      setTimeout(() => navigate('/register/org'), 200)
+      setTimeout(() => navigate('/register/organismos'), 200)
     }
   }, [selectedOption])
 

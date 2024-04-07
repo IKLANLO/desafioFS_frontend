@@ -16,7 +16,7 @@ const RegisterAlum = () => {
       notification.success({
         description: message,
       })
-      setTimeout(() => navigate('/login'), 2000)
+      setTimeout(() => navigate('/login'), 1000)
     } else if (isError) {
       notification.error({
         description: message,
@@ -53,8 +53,8 @@ const RegisterAlum = () => {
     Habilidades,
     Experiencia,
     ExperienciaInput,
-    Logros,
   } = formData
+
   const educacionData = [
     'Educación obligatoria',
     'Bachiller',
@@ -80,8 +80,6 @@ const RegisterAlum = () => {
     'ciberseguridad',
     'data science',
   ]
-
-  const logrosData = ['Logro1', 'Logro2', 'Logro3', 'Logro4']
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -238,29 +236,6 @@ const RegisterAlum = () => {
             onClick={handleAddInfo}>
             Añadir
           </button>
-        </div>
-        <div>
-          <select
-            style={{ width: '13.75rem', height: '1.75rem', color: 'grey' }}
-            className="listmenu"
-            name="Logros"
-            value={Logros}
-            onChange={(e) => {
-              const nuevoLogro = e.target.value
-              setFormData({
-                ...formData,
-                Logros: [...Logros, nuevoLogro],
-              })
-            }}>
-            <option value="" disabled>
-              Logros
-            </option>
-            {logrosData.map((item, index) => (
-              <option key={index} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
         </div>
         <div className="button-container">
           <button className="button-container__button" type="submit">
