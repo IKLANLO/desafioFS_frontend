@@ -25,6 +25,17 @@ export const register = createAsyncThunk(
   }
 )
 
+
+export const login = createAsyncThunk("alum/login", async (alu) => {
+try {
+    return await alumnosService.login(alu);
+  
+  } catch (error) {
+      console.error(error);
+  }
+  
+});
+
 export const alumnosSlice = createSlice({
   name: 'alum',
   initialState,
@@ -44,6 +55,10 @@ export const alumnosSlice = createSlice({
       .addCase(register.rejected, (state, action) => {
         state.isError = true
         state.message = action.payload
+      })
+      .addCase(login.fulfilled, (state, action) => {
+      state.alumno = action.payload.alu
+      state.token = action.payload.token
       })
   },
 })
