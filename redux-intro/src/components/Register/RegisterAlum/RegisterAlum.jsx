@@ -35,7 +35,7 @@ const RegisterAlum = () => {
     Genero: '',
     Educacion: '',
     Sector: '',
-    Habilidades: [],
+    Habilidades: '',
     ExperienciaInput: '',
     Experiencia: [],
     Logros: [],
@@ -72,15 +72,15 @@ const RegisterAlum = () => {
     'Hostelería',
     'Finanzas',
   ]
-  const habilidadesData = [
-    'Trabajo en equipo',
-    'desarrollo web',
-    'marketing',
-    'construcción de edificios',
-    'contabilidad',
-    'ciberseguridad',
-    'data science',
-  ]
+  // const habilidadesData = [
+  //   'Trabajo en equipo',
+  //   'desarrollo web',
+  //   'marketing',
+  //   'construcción de edificios',
+  //   'contabilidad',
+  //   'ciberseguridad',
+  //   'data science',
+  // ]
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -100,11 +100,22 @@ const RegisterAlum = () => {
 
   const handleAddHab = () => {
     const nuevaHabilidad = HabilidadInput
-    setFormData({
-      ...formData,
-      HabilidadInput: '',
-      Habilidades: [...Habilidades, nuevaHabilidad],
-    })
+
+    let habilidadesLength
+    if (Habilidades?.length === 0) {
+      habilidadesLength = {
+        ...formData,
+        HabilidadInput: '',
+        Habilidades: nuevaHabilidad,
+      }
+    } else {
+      habilidadesLength = {
+        ...formData,
+        HabilidadInput: '',
+        Habilidades: `${Habilidades}, ${nuevaHabilidad}`,
+      }
+    }
+    setFormData(habilidadesLength)
   }
 
   const onSubmit = (e) => {

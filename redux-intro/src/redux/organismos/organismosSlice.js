@@ -10,6 +10,7 @@ const initialState = {
   message: '',
   isError: false,
   isSuccess: false,
+  proyectos: [],
 }
 
 export const register = createAsyncThunk(
@@ -17,6 +18,19 @@ export const register = createAsyncThunk(
   async (organismo, thunkAPI) => {
     try {
       return await organismosService.register(organismo)
+    } catch (error) {
+      console.log(error)
+      const message = error.response.data.message
+      return thunkAPI.rejectWithValue(message)
+    }
+  }
+)
+
+export const getProyects = createAsyncThunk(
+  'organ/getProyects',
+  async (proyectos, thunkAPI) => {
+    try {
+      return await organismosService.getProyects(proyectos)
     } catch (error) {
       console.log(error)
       const message = error.response.data.message
@@ -42,6 +56,14 @@ export const organismosSlice = createSlice({
         state.message = action.payload.message
       })
       .addCase(register.rejected, (state, action) => {
+        state.isError = true
+        state.message = action.payload
+      })
+      .addCase(getProyects.fulfilled, (state, action) => {
+        state.isSuccess = true
+        state.message = action.payload.message
+      })
+      .addCase(getProyects.rejected, (state, action) => {
         state.isError = true
         state.message = action.payload
       })

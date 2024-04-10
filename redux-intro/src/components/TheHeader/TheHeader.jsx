@@ -52,9 +52,16 @@ const TheHeader = () => {
         <MenuItem
           onClick={() => {
             handleClose()
-            navigate('login')
+            navigate('/login')
           }}>
           Login
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            handleClose()
+            navigate('/proyects/organismos')
+          }}>
+          Proyectos empresas
         </MenuItem>
       </Menu>
     </div>
