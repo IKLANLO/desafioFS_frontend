@@ -50,6 +50,7 @@ const RegisterAlum = () => {
     Genero,
     Educacion,
     Sector,
+    HabilidadInput,
     Habilidades,
     Experiencia,
     ExperienciaInput,
@@ -88,12 +89,21 @@ const RegisterAlum = () => {
     }))
   }
 
-  const handleAddInfo = () => {
+  const handleAddExp = () => {
     const nuevaExperiencia = ExperienciaInput
     setFormData({
       ...formData,
       ExperienciaInput: '',
       Experiencia: [...Experiencia, nuevaExperiencia],
+    })
+  }
+
+  const handleAddHab = () => {
+    const nuevaHabilidad = HabilidadInput
+    setFormData({
+      ...formData,
+      HabilidadInput: '',
+      Habilidades: [...Habilidades, nuevaHabilidad],
     })
   }
 
@@ -198,7 +208,7 @@ const RegisterAlum = () => {
             ))}
           </select>
         </div>
-        <div>
+        {/* <div>
           <select
             style={{ width: '13.75rem', height: '1.75rem', color: 'grey' }}
             className="listmenu"
@@ -220,10 +230,26 @@ const RegisterAlum = () => {
               </option>
             ))}
           </select>
-        </div>
-        <div className="experiencia-container">
+        </div> */}
+        <div className="input-container">
           <input
-            className="experiencia-container__input"
+            className="input-container__input"
+            type="text"
+            name="HabilidadInput"
+            value={HabilidadInput}
+            placeholder="Habilidades"
+            onChange={onChange}
+          />
+          <button
+            className="input-container__button"
+            type="button"
+            onClick={handleAddHab}>
+            Añadir
+          </button>
+        </div>
+        <div className="input-container">
+          <input
+            className="input-container__input"
             type="text"
             name="ExperienciaInput"
             value={ExperienciaInput}
@@ -231,9 +257,9 @@ const RegisterAlum = () => {
             onChange={onChange}
           />
           <button
-            className="experiencia-container__button"
+            className="input-container__button"
             type="button"
-            onClick={handleAddInfo}>
+            onClick={handleAddExp}>
             Añadir
           </button>
         </div>
