@@ -62,6 +62,7 @@ export const organismosSlice = createSlice({
       .addCase(getProyects.fulfilled, (state, action) => {
         state.isSuccess = true
         state.message = action.payload.message
+        state.proyectos = action.payload.proyectos
       })
       .addCase(getProyects.rejected, (state, action) => {
         state.isError = true
