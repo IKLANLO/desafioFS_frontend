@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 // import { useNavigate } from 'react-router-dom'
 import { getProyects, reset } from '../../redux/organismos/organismosSlice'
+import ProyectDetailOrg from './ProyectDetailOrg/ProyectDetailOrg'
 import { notification } from 'antd'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
@@ -37,38 +38,44 @@ const ProyectListOrganismos = () => {
     }
   }, [dispatch])
 
+  const handleProyectDetail = (proyecto) => {
+    return <ProyectDetailOrg />
+  }
+
   return (
     <>
       {proyectos.map((proyecto) => (
-        <List
-          className="list"
-          sx={{
-            width: '100%',
-            maxWidth: 360,
-            bgcolor: '#efe8e8',
-          }}>
-          <ListItem>
-            <ListItemAvatar>
-              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-            </ListItemAvatar>
-            <ListItemText
-              primary={proyecto.Titulo}
-              secondary={
-                <React.Fragment>
-                  <Typography
-                    sx={{ display: 'block' }}
-                    component="span"
-                    variant="body2"
-                    color="text.primary">
-                    {proyecto.Descripcion}
-                  </Typography>
-                  {proyecto.Estado}
-                </React.Fragment>
-              }
-            />
-          </ListItem>
-          <Divider variant="inset" component="li" />
-        </List>
+        <div key={proyecto._id}>
+          <List
+            className="list"
+            sx={{
+              width: '100%',
+              maxWidth: 360,
+              bgcolor: '#efe8e8',
+            }}>
+            <ListItem onClick={() => handleProyectDetail(proyecto)}>
+              <ListItemAvatar>
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+              </ListItemAvatar>
+              <ListItemText
+                primary={proyecto.Titulo}
+                secondary={
+                  <React.Fragment>
+                    <Typography
+                      sx={{ display: 'block' }}
+                      component="span"
+                      variant="body2"
+                      color="text.primary">
+                      {proyecto.Descripcion}
+                    </Typography>
+                    {proyecto.Estado}
+                  </React.Fragment>
+                }
+              />
+            </ListItem>
+            <Divider variant="inset" component="li" />
+          </List>
+        </div>
       ))}
     </>
   )

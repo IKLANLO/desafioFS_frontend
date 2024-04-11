@@ -11,6 +11,7 @@ const initialState = {
   isError: false,
   isSuccess: false,
   proyectos: [],
+  proyecto: {},
 }
 
 export const register = createAsyncThunk(
