@@ -28,9 +28,9 @@ export const register = createAsyncThunk(
 
 export const getProyects = createAsyncThunk(
   'organ/getProyects',
-  async (proyectos, thunkAPI) => {
+  async (id, thunkAPI) => {
     try {
-      return await organismosService.getProyects(proyectos)
+      return await organismosService.getProyects(id)
     } catch (error) {
       console.log(error)
       const message = error.response.data.message
@@ -60,9 +60,9 @@ export const organismosSlice = createSlice({
         state.message = action.payload
       })
       .addCase(getProyects.fulfilled, (state, action) => {
-        state.isSuccess = true
-        state.message = action.payload.message
-        state.proyectos = action.payload.proyectos
+        // state.isSuccess = true
+        // state.message = action.payload.message
+        state.proyectos = action.payload
       })
       .addCase(getProyects.rejected, (state, action) => {
         state.isError = true

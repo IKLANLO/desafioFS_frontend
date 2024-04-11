@@ -12,9 +12,9 @@ const register = async (userData) => {
   return res.data
 }
 
-const getProyects = async (proyectId) => {
+const getProyects = async (idEmpresa) => {
   const res = await axios.get(
-    `${API_URL}/proyectos/getByIdEmpresa/${proyectId}`
+    `${API_URL}/proyectos/getByIdEmpresa/${idEmpresa}`
   )
   return res.data
 }
