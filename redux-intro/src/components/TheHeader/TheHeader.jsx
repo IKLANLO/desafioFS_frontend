@@ -16,7 +16,7 @@ const TheHeader = () => {
   const handleClose = () => {
     setAnchorEl(null)
   }
-
+//TODO: TERNARIA PARA QUE, EN CASO DE ESTAR LOGUEADO, CAMBIE EL MENU.
   return (
     <div>
       <IconButton
