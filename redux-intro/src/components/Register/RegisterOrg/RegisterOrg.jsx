@@ -30,12 +30,12 @@ const RegisterOrg = () => {
     Nombre: '',
     Email: '',
     Password: '',
-    Dirección: '',
-    Tamaño: '',
+    Direccion: '',
+    Tamano: '',
     Sector: '',
   })
 
-  const { Nombre, Email, Password, Dirección, Tamaño, Sector } = formData
+  const { Nombre, Email, Password, Direccion, Tamano, Sector } = formData
 
   const sectorData = [
     'Informática',
@@ -91,8 +91,8 @@ const RegisterOrg = () => {
         <input
           className="container__input input"
           type="number"
-          name="Tamaño"
-          value={Tamaño}
+          name="Tamano"
+          value={Tamano}
           placeholder="Tamaño"
           onChange={onChange}
         />
@@ -100,8 +100,8 @@ const RegisterOrg = () => {
           style={{ color: '#191919' }}
           className="container__input input"
           type="text"
-          name="Dirección"
-          value={Dirección}
+          name="Direccion"
+          value={Direccion}
           placeholder="Dirección"
           onChange={onChange}
         />

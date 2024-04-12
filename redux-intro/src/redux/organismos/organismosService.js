@@ -21,8 +21,8 @@ const getProyects = async (idEmpresa) => {
 const login = async (userData) => {
   const res = await axios.put(`${API_URL}/empresas/login`, userData)
   if (res.data) {
-    localStorage.setItem('organ', JSON.stringify(res.data.org))
-    localStorage.setItem('tokenOrg', JSON.stringify(res.data.token)) //REVISAR NOMBRE TOKEN
+    localStorage.setItem('organismo', JSON.stringify(res.data.empresa))
+    localStorage.setItem('tokenOrg', JSON.stringify(res.data.empresa.Token)) //REVISAR NOMBRE TOKEN
   }
   return res.data
 }
