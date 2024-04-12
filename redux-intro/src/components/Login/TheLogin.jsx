@@ -7,16 +7,15 @@ import ToggleSwitch from '../ToggleSwitch/ToggleSwitch.jsx';
 import { login as loginOrganismo, reset as resetOrganismos } from '../../redux/organismos/organismosSlice.js'
 
 const TheLogin = () => {
-    
-    const { isSuccess, isError, message } = useSelector((state) => state.alum)
-
+  const dispatch = useDispatch()
+  const { isSuccess: isSuccessAlumno, isError: isErrorAlumno, message: messageAlumno, isLoading: isLoadingAlumno } = useSelector((state) => state.alum)
+  const { isSuccess: isSuccessOrganismo, isError: isErrorOrganismo, message: messageOrganismo, isLoading: isLoadingOrganismo } = useSelector((state) => state.organ)
     const [userType, setUserType] = useState('alumno');
 
     const handleUserTypeChange = (checked) => {
       setUserType(checked ? 'organizacion' : 'alumno');
+      console.log(userType)
     };
-
-
 //USEEFFECT PARA AMBOS
 useEffect(() => {
     if (isSuccessAlumno) {
@@ -37,22 +36,6 @@ useEffect(() => {
 
   }, [isSuccessAlumno, isErrorAlumno, messageAlumno, isSuccessOrganismo, isErrorOrganismo, messageOrganismo])
 
-
-    // useEffect(() => {
-    //     if (isSuccess) {
-    //       notification.success({
-    //         description: message,
-    //       })
-    //       setTimeout(() => navigate('/'), 1000)
-    //     } else if (isError) {
-    //       notification.error({
-    //         description: message,
-    //       })
-    //     }
-    
-    //     dispatch(reset())
-    // }, [isSuccess, isError, message])
-
     const [formData, setFormData] = useState({
         email:'',
         password:''
@@ -65,17 +48,17 @@ useEffect(() => {
             [e.target.name]:e.target.value,
         }))
     }
-    const dispatch = useDispatch()
+  
    
     const onSubmit = (e) => {
       e.preventDefault()
       if (userType === 'alumno') {
+        console.log(formData)
         dispatch(loginAlumno(formData));
       } else if (userType === 'organizacion') {
+        console.log(formData)
         dispatch(loginOrganismo(formData));
-      }
-
-        
+      } 
     }
     
   return (
@@ -85,11 +68,10 @@ useEffect(() => {
         <input type="password" name="password" value={password} onChange={onChange}/>
 
         <ToggleSwitch
-        label="Tipo de usuario:"
+        label="Organ"
         onChange={handleUserTypeChange}
         checked={userType === 'organizacion'}
       />
-
         <button type="submit">Login</button>
     </form>
   )

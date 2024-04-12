@@ -56,7 +56,7 @@ export const organismosSlice = createSlice({
         state.message = action.payload
       })
       .addCase(login.fulfilled, (state, action) => {
-        state.organismo = action.payload.org //NO SE SI ES ORGAN
+        state.organismo = action.payload.org 
         state.token = action.payload.token
         })
   },

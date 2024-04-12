@@ -15,7 +15,7 @@ const register = async (userData) => {
 }
 const login = async (userData) => {
 
-  const res = await axios.post(`${API_URL}/login`, userData)
+  const res = await axios.put(`${API_URL}/login`, userData)
   if (res.data) {
     localStorage.setItem('organ', JSON.stringify(res.data.org))
     localStorage.setItem('tokenOrg', JSON.stringify(res.data.token)) //REVISAR NOMBRE TOKEN
