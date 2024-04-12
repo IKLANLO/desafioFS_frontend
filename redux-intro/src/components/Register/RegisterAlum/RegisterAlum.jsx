@@ -112,7 +112,7 @@ const RegisterAlum = () => {
       habilidadesLength = {
         ...formData,
         HabilidadInput: '',
-        Habilidades: `${Habilidades}, ${nuevaHabilidad}`,
+        Habilidades: `${Habilidades}, ${nuevaHabilidad} `,
       }
     }
     setFormData(habilidadesLength)
@@ -219,28 +219,28 @@ const RegisterAlum = () => {
             ))}
           </select>
         </div>
-        {/* <div>
-          <select
-            style={{ width: '13.75rem', height: '1.75rem', color: 'grey' }}
-            className="listmenu"
-            name="Habilidades"
-            value={Habilidades}
-            onChange={(e) => {
-              const nuevaHabilidad = e.target.value
-              setFormData({
-                ...formData,
-                Habilidades: [...Habilidades, nuevaHabilidad],
-              })
-            }}>
-            <option value="" disabled>
-              Habilidades
-            </option>
-            {habilidadesData.map((item, index) => (
-              <option key={index} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
+        {/* <div> 
+          <select 
+            style={{ width: '13.75rem', height: '1.75rem', color: 'grey' }} 
+            className="listmenu" 
+            name="Habilidades" 
+            value={Habilidades} 
+            onChange={(e) => { 
+              const nuevaHabilidad = e.target.value 
+              setFormData({ 
+                ...formData, 
+                Habilidades: [...Habilidades, nuevaHabilidad], 
+              }) 
+            }}> 
+            <option value="" disabled> 
+              Habilidades 
+            </option> 
+            {habilidadesData.map((item, index) => ( 
+              <option key={index} value={item}> 
+                {item} 
+              </option> 
+            ))} 
+          </select> 
         </div> */}
         <div className="input-container">
           <input

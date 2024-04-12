@@ -26,6 +26,13 @@ export const register = createAsyncThunk(
     }
   }
 )
+export const login = createAsyncThunk('organ/login', async (org) => {
+  try {
+    return await organismosService.login(org)
+  } catch (error) {
+    console.error(error)
+  }
+})
 
 export const getProyects = createAsyncThunk(
   'organ/getProyects',
@@ -68,6 +75,10 @@ export const organismosSlice = createSlice({
       .addCase(getProyects.rejected, (state, action) => {
         state.isError = true
         state.message = action.payload
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        state.organismo = action.payload.organismo
+        state.token = action.payload.token
       })
   },
 })

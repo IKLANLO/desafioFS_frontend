@@ -1,0 +1,10 @@
+.toggle-switch {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .toggle-switch label {
+    margin-right: 10px;
+    color:black;
+  }

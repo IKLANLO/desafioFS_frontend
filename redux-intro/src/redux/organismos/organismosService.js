@@ -18,10 +18,23 @@ const getProyects = async (idEmpresa) => {
   )
   return res.data
 }
+const login = async (userData) => {
+
+  const res = await axios.put(`${API_URL}/login`, userData)
+  if (res.data) {
+    localStorage.setItem('organ', JSON.stringify(res.data.org))
+    localStorage.setItem('tokenOrg', JSON.stringify(res.data.token)) //REVISAR NOMBRE TOKEN
+  }
+  return res.data
+  }
 
 const organismosService = {
+<<<<<<< HEAD
   register,
   getProyects,
+=======
+  register, login
+>>>>>>> develop
 }
 
 export default organismosService

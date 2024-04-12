@@ -4,7 +4,9 @@ import Register from './components/Register/Register'
 import RegisterAlum from './components/Register/RegisterAlum/RegisterAlum'
 import RegisterOrg from './components/Register/RegisterOrg/RegisterOrg'
 import ProyectListOrganismos from './components/ProyectList/ProyectListOrganismos'
+import Profile from './components/Profile/Profile'
 import './App.scss'
+import TheLogin from './components/Login/TheLogin'
 // import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
@@ -14,12 +16,14 @@ function App() {
       <Routes>
         {/* <Route path="/" element={<Home />} /> */}
         <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<TheLogin />} />
         <Route path="/register/alumnos" element={<RegisterAlum />} />
         <Route path="/register/organismos" element={<RegisterOrg />} />
         <Route
           path="/proyects/organismos"
           element={<ProyectListOrganismos />}
         />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   )
