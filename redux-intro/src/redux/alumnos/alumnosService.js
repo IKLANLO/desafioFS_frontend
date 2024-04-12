@@ -7,11 +7,10 @@ const register = async (userData) => {
   return res.data
 }
 const login = async (userData) => {
-  console.log(userData)
   const res = await axios.put(`${API_URL}/login`, userData)
-  console.log(res.data)
   if (res.data) {
-    localStorage.setItem('alumno', JSON.stringify(res.data.alu))
+    res.data
+    localStorage.setItem('alumno', JSON.stringify(res.data.alumno))
     localStorage.setItem('tokenAlumno', JSON.stringify(res.data.token))
   }
   return res.data

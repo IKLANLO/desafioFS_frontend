@@ -16,7 +16,9 @@ const TheLogin = () => {
       setUserType(checked ? 'organizacion' : 'alumno');
       console.log(userType)
     };
-//USEEFFECT PARA AMBOS
+
+    
+    //TODO: limpiar localStorage al cargar el login
 useEffect(() => {
     if (isSuccessAlumno) {
       notification.success({ description: messageAlumno })
