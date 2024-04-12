@@ -31,8 +31,8 @@ const ProyectListOrganismos = () => {
   useEffect(() => {
     try {
       console.log('organismo', organismo)
-      // dispatch(getProyects(organismo._id))
-      dispatch(getProyects('65ff1dcdaf39de81e04a49c4'))
+      dispatch(getProyects(organismo._id))
+      // dispatch(getProyects('65ff1dcdaf39de81e04a49c4'))
     } catch (error) {
       console.log(error)
     }
