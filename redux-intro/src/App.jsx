@@ -3,6 +3,7 @@ import TheHeader from './components/TheHeader/TheHeader'
 import Register from './components/Register/Register'
 import RegisterAlum from './components/Register/RegisterAlum/RegisterAlum'
 import RegisterOrg from './components/Register/RegisterOrg/RegisterOrg'
+import Profile from './components/Profile/Profile'
 import './App.scss'
 import TheLogin from './components/Login/TheLogin'
 // import 'bootstrap/dist/css/bootstrap.min.css'
@@ -17,6 +18,7 @@ function App() {
         <Route path="/login" element={<TheLogin />} />
         <Route path="/register/alumnos" element={<RegisterAlum />} />
         <Route path="/register/organismos" element={<RegisterOrg />} />
+        <Route path="/profile" element={<Profile/>}/>
       </Routes>
     </BrowserRouter>
   )
