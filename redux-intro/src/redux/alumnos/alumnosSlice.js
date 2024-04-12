@@ -28,14 +28,13 @@ export const register = createAsyncThunk(
 
 export const login = createAsyncThunk("alum/login", async (alu, thunkAPI) => {
 try {
+  console.log(alu)
     return await alumnosService.login(alu);
   
   } catch (error) {
       console.error(error);
       return thunkAPI.rejectWithValue(message)
-
   }
-  
 });
 
 export const alumnosSlice = createSlice({
@@ -60,7 +59,7 @@ export const alumnosSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, action) => {
         console.log(action.payload)
-      // state.alumno = action.payload
+       state.alumno = action.payload
       // // state.token = action.payload.token
       })
   },

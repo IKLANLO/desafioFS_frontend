@@ -37,11 +37,12 @@ useEffect(() => {
   }, [isSuccessAlumno, isErrorAlumno, messageAlumno, isSuccessOrganismo, isErrorOrganismo, messageOrganismo])
 
     const [formData, setFormData] = useState({
-        email:'',
-        password:''
+      Email:'',
+      Password:''
     })
 
-    const {email,password} = formData
+    const {Email,Password} = formData
+    
     const onChange = (e)=>{
         setFormData((prevState)=> ({
             ...prevState,
@@ -64,8 +65,8 @@ useEffect(() => {
   return (
     
     <form onSubmit={onSubmit}>
-        <input type="email" name="email" value={email} onChange={onChange}/>
-        <input type="password" name="password" value={password} onChange={onChange}/>
+        <input type="email" name="Email" value={Email} onChange={onChange}/>
+        <input type="password" name="Password" value={Password} onChange={onChange}/>
 
         <ToggleSwitch
         label="Organ"
@@ -76,6 +77,4 @@ useEffect(() => {
     </form>
   )
 }
-
-
 export default TheLogin
