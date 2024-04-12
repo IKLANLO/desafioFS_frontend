@@ -3,17 +3,37 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 // import { useNavigate } from 'react-router-dom'
 import { getProyects, reset } from '../../redux/organismos/organismosSlice'
-import ProyectDetailOrg from './ProyectDetailOrg/ProyectDetailOrg'
 import { notification } from 'antd'
-import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
-import Divider from '@mui/material/Divider'
-import ListItemText from '@mui/material/ListItemText'
-import ListItemAvatar from '@mui/material/ListItemAvatar'
+import { styled } from '@mui/material/styles'
+import Card from '@mui/material/Card'
+import CardHeader from '@mui/material/CardHeader'
+import CardContent from '@mui/material/CardContent'
+import CardActions from '@mui/material/CardActions'
+import Collapse from '@mui/material/Collapse'
 import Avatar from '@mui/material/Avatar'
+import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
+import { red } from '@mui/material/colors'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+
+const ExpandMore = styled((props) => {
+  const { expand, ...other } = props
+  return <IconButton {...other} />
+})(({ theme, expand }) => ({
+  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
+  marginLeft: 'auto',
+  transition: theme.transitions.create('transform', {
+    duration: theme.transitions.duration.shortest,
+  }),
+}))
 
 const ProyectListOrganismos = () => {
+  const [expanded, setExpanded] = React.useState(false)
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded)
+  }
+
   const dispatch = useDispatch()
   const { isSuccess, isError, message, organismo, proyectos } = useSelector(
     (state) => state.organ
@@ -30,51 +50,77 @@ const ProyectListOrganismos = () => {
 
   useEffect(() => {
     try {
-      console.log('organismo', organismo)
       dispatch(getProyects(organismo._id))
-      // dispatch(getProyects('65ff1dcdaf39de81e04a49c4'))
     } catch (error) {
       console.log(error)
     }
   }, [dispatch])
 
-  const handleProyectDetail = (proyecto) => {
-    return <ProyectDetailOrg />
+  const handleDate = (fecha) => {
+    const fechaProyecto = new Date(fecha)
+    const dia = fechaProyecto.getDate()
+    const mes = fechaProyecto.getMonth() + 1
+    const año = fechaProyecto.getFullYear()
+    const fechaNumerica = `${dia}/${mes}/${año}`
+    return fechaNumerica
   }
 
   return (
     <>
       {proyectos.map((proyecto) => (
         <div key={proyecto._id}>
-          <List
-            className="list"
-            sx={{
-              width: '100%',
-              maxWidth: 360,
-              bgcolor: '#efe8e8',
-            }}>
-            <ListItem onClick={() => handleProyectDetail(proyecto)}>
-              <ListItemAvatar>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-              </ListItemAvatar>
-              <ListItemText
-                primary={proyecto.Titulo}
-                secondary={
-                  <React.Fragment>
-                    <Typography
-                      sx={{ display: 'block' }}
-                      component="span"
-                      variant="body2"
-                      color="text.primary">
-                      {proyecto.Descripcion}
-                    </Typography>
-                    {proyecto.Estado}
-                  </React.Fragment>
-                }
-              />
-            </ListItem>
-            <Divider variant="inset" component="li" />
-          </List>
+          <Card sx={{ maxWidth: 345 }}>
+            <CardHeader
+              avatar={
+                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                  R
+                </Avatar>
+              }
+              title={proyecto.Titulo}
+              subheader={proyecto.Estado}
+            />
+            <CardContent>
+              <Typography variant="body2" color="text.secondary">
+                {proyecto.Descripcion}
+              </Typography>
+            </CardContent>
+            <CardActions disableSpacing>
+              <button>Editar</button>
+              <button>Eliminar</button>
+              <ExpandMore
+                expand={expanded}
+                onClick={handleExpandClick}
+                aria-expanded={expanded}
+                aria-label="show more">
+                <ExpandMoreIcon />
+              </ExpandMore>
+            </CardActions>
+            <Collapse in={expanded} timeout="auto" unmountOnExit>
+              <CardContent>
+                <Typography paragraph>
+                  {`Inicio: ${handleDate(proyecto.Fecha_presentacion)}`}
+                </Typography>
+                <Typography paragraph>
+                  {`Duración: ${proyecto.Meses_estimados} meses`}
+                </Typography>
+                <Typography paragraph>
+                  {`Sector: ${proyecto.Sector}`}
+                </Typography>
+                <Typography paragraph>
+                  {`Contrato: ${proyecto.Tipo_contrato}`}
+                </Typography>
+                <Typography paragraph>
+                  {`Tutor: ${proyecto.IdTutor}`}
+                </Typography>
+                <Typography paragraph>
+                  {`Solicitudes: ${proyecto.Solicitudes}`}
+                </Typography>
+                <Typography paragraph>
+                  {`Aceptados: ${proyecto.IdAlumno}`}
+                </Typography>
+              </CardContent>
+            </Collapse>
+          </Card>
         </div>
       ))}
     </>
