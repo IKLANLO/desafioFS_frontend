@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import organismosService from './organismosService'
 
 const organismo = JSON.parse(localStorage.getItem('organismo'))
-const token = JSON.parse(localStorage.getItem('tokenOrganismo'))
+const token = JSON.parse(localStorage.getItem('tokenOrg'))
 
 const initialState = {
   organismo: organismo || null,
