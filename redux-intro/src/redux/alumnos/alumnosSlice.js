@@ -59,8 +59,9 @@ export const alumnosSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, action) => {
         console.log(action.payload)
-       state.alumno = action.payload.alumno
-       state.token = action.payload.token
+        state.alumno = action.payload.alumno
+        state.token = action.payload.alumno.Token
+        console.log(action.payload.alumno.Token)
       })
   },
 })

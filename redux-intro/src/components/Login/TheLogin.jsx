@@ -8,9 +8,10 @@ import { login as loginOrganismo, reset as resetOrganismos } from '../../redux/o
 
 const TheLogin = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate();
   const { isSuccess: isSuccessAlumno, isError: isErrorAlumno, message: messageAlumno, isLoading: isLoadingAlumno } = useSelector((state) => state.alum)
   const { isSuccess: isSuccessOrganismo, isError: isErrorOrganismo, message: messageOrganismo, isLoading: isLoadingOrganismo } = useSelector((state) => state.organ)
-    const [userType, setUserType] = useState('alumno');
+  const [userType, setUserType] = useState('alumno');
 
     const handleUserTypeChange = (checked) => {
       setUserType(checked ? 'organizacion' : 'alumno');
@@ -20,6 +21,7 @@ const TheLogin = () => {
     
     //TODO: limpiar localStorage al cargar el login
 useEffect(() => {
+  console.log(isSuccessAlumno, isSuccessOrganismo)
     if (isSuccessAlumno) {
       notification.success({ description: messageAlumno })
       setTimeout(() => navigate('/InicioAlu'), 1000)
