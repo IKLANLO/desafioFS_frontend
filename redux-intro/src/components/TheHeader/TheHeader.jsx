@@ -12,7 +12,7 @@ const TheHeader = () => {
   const open = Boolean(anchorEl)
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const user = useSelector((state) => state.auth.user)
+  // const user = useSelector((state) => state.auth.user)
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
@@ -62,12 +62,20 @@ const TheHeader = () => {
         <MenuItem
           onClick={() => {
             handleClose()
+            navigate('/login')
+          }}
+        >
+          Login
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            handleClose()
             navigate('/register')
           }}
         >
           Registro
         </MenuItem>
-        {user && (
+        {/* {user && (
           <MenuItem
             onClick={() => {
               handleClose()
@@ -79,7 +87,7 @@ const TheHeader = () => {
         )}
         {user && (
           <MenuItem onClick={onLogout}>Cerrar sesión</MenuItem>
-        )}
+        )} */}
       </Menu>
     </div>
   )
