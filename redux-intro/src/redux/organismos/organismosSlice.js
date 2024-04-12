@@ -24,7 +24,16 @@ export const register = createAsyncThunk(
     }
   }
 )
-
+export const login = createAsyncThunk("organ/login", async (org) => {
+  try {
+      return await organismosService.login(org);
+    
+    } catch (error) {
+        console.error(error);
+    }
+    
+  });
+  
 
 export const organismosSlice = createSlice({
   name: 'organ',
@@ -46,6 +55,10 @@ export const organismosSlice = createSlice({
         state.isError = true
         state.message = action.payload
       })
+      .addCase(login.fulfilled, (state, action) => {
+        state.organismo = action.payload.org //NO SE SI ES ORGAN
+        state.token = action.payload.token
+        })
   },
 })
 
