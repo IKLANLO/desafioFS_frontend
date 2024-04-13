@@ -1,0 +1,9 @@
+.container {
+  width: 110%;
+  display: flex;
+  justify-content: center;
+
+  &__card {
+    width: 90%;
+  }
+}

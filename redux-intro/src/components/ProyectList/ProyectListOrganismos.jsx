@@ -15,6 +15,7 @@ import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import { red } from '@mui/material/colors'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import './ProyectListOrganismos.style.scss'
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props
@@ -72,8 +73,10 @@ const ProyectListOrganismos = () => {
   return (
     <>
       {proyectos.map((proyecto) => (
-        <div key={proyecto._id}>
-          <Card sx={{ maxWidth: 345, marginBottom: '0.3125rem' }}>
+        <div key={proyecto._id} className="container">
+          <Card
+            className="container__card"
+            sx={{ minWidth: '16.5rem', marginBottom: '0.3125rem' }}>
             <CardHeader
               avatar={
                 <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
