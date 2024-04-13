@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 // import { useNavigate } from 'react-router-dom'
 import { getProyects, reset } from '../../redux/organismos/organismosSlice'
@@ -28,10 +28,14 @@ const ExpandMore = styled((props) => {
 }))
 
 const ProyectListOrganismos = () => {
-  const [expanded, setExpanded] = React.useState(false)
+  const [expandedIds, setExpandedIds] = useState([])
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded)
+  const handleExpandClick = (projectId) => {
+    setExpandedIds((prevExpandedIds) =>
+      prevExpandedIds.includes(projectId)
+        ? prevExpandedIds.filter((id) => id !== projectId)
+        : [...prevExpandedIds, projectId]
+    )
   }
 
   const dispatch = useDispatch()
@@ -69,7 +73,7 @@ const ProyectListOrganismos = () => {
     <>
       {proyectos.map((proyecto) => (
         <div key={proyecto._id}>
-          <Card sx={{ maxWidth: 345 }}>
+          <Card sx={{ maxWidth: 345, marginBottom: '0.3125rem' }}>
             <CardHeader
               avatar={
                 <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -81,22 +85,27 @@ const ProyectListOrganismos = () => {
             />
             <CardContent>
               <Typography variant="body2" color="text.secondary">
-                {proyecto.Descripcion}
+                {/* {proyecto.Descripcion} */}
+                {proyecto.Tipo_contrato}
               </Typography>
             </CardContent>
             <CardActions disableSpacing>
               <button>Editar</button>
               <button>Eliminar</button>
               <ExpandMore
-                expand={expanded}
-                onClick={handleExpandClick}
-                aria-expanded={expanded}
+                expand={expandedIds.includes(proyecto._id)}
+                onClick={() => handleExpandClick(proyecto._id)}
+                aria-expanded={expandedIds.includes(proyecto._id)}
                 aria-label="show more">
                 <ExpandMoreIcon />
               </ExpandMore>
             </CardActions>
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
+            <Collapse
+              in={expandedIds.includes(proyecto._id)}
+              timeout="auto"
+              unmountOnExit>
               <CardContent>
+                <Typography paragraph>{proyecto.Descripcion}</Typography>
                 <Typography paragraph>
                   {`Inicio: ${handleDate(proyecto.Fecha_presentacion)}`}
                 </Typography>
@@ -105,9 +114,6 @@ const ProyectListOrganismos = () => {
                 </Typography>
                 <Typography paragraph>
                   {`Sector: ${proyecto.Sector}`}
-                </Typography>
-                <Typography paragraph>
-                  {`Contrato: ${proyecto.Tipo_contrato}`}
                 </Typography>
                 <Typography paragraph>
                   {`Tutor: ${proyecto.IdTutor}`}
