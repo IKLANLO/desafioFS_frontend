@@ -1,9 +1,13 @@
-import * as React from 'react'
-import { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-// import { useNavigate } from 'react-router-dom'
-import { getProyects, reset } from '../../redux/organismos/organismosSlice'
-import { notification } from 'antd'
+import {
+  getProyects,
+  reset,
+  updateProyect,
+  getTutores,
+  addTutor,
+} from '../../redux/organismos/organismosSlice'
+import { notification, Modal, List } from 'antd'
 import { styled } from '@mui/material/styles'
 import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
@@ -15,7 +19,6 @@ import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import { red } from '@mui/material/colors'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import './ProyectListOrganismos.style.scss'
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props
@@ -30,6 +33,9 @@ const ExpandMore = styled((props) => {
 
 const ProyectListOrganismos = () => {
   const [expandedIds, setExpandedIds] = useState([])
+  const [selectedProyecto, setSelectedProyecto] = useState(null)
+  const [modalVisible, setModalVisible] = useState(false)
+  const [selectedTutor, setSelectedTutor] = useState(null)
 
   const handleExpandClick = (projectId) => {
     setExpandedIds((prevExpandedIds) =>
@@ -40,9 +46,8 @@ const ProyectListOrganismos = () => {
   }
 
   const dispatch = useDispatch()
-  const { isSuccess, isError, message, organismo, proyectos } = useSelector(
-    (state) => state.organ
-  )
+  const { isSuccess, isError, message, organismo, proyectos, tutores } =
+    useSelector((state) => state.organ)
 
   useEffect(() => {
     if (isError) {
@@ -56,6 +61,7 @@ const ProyectListOrganismos = () => {
   useEffect(() => {
     try {
       dispatch(getProyects(organismo._id))
+      dispatch(getTutores(organismo._id))
     } catch (error) {
       console.log(error)
     }
@@ -70,13 +76,38 @@ const ProyectListOrganismos = () => {
     return fechaNumerica
   }
 
+  const handleAddTutorClick = async (proyecto) => {
+    // await dispatch(getTutores(organismo._id))
+    setSelectedProyecto(proyecto)
+    setModalVisible(true)
+  }
+
+  const handleTutorSelect = (IdProyecto, tutorId) => {
+    setSelectedTutor(tutorId)
+    setModalVisible(false)
+    if (selectedProyecto) {
+      dispatch(
+        updateProyect({
+          IdProyecto,
+          IdTutor: tutorId,
+        })
+      )
+      dispatch(addTutor({ IdProyecto, IdTutor: tutorId }))
+    }
+  }
+
+  const getTutorName = (tutorId) => {
+    const tutorData = tutores.find((tutor) => {
+      return tutor._id === tutorId
+    })
+    return tutorData ? tutorData.Nombre : 'No hay tutores asignados'
+  }
+
   return (
     <>
       {proyectos.map((proyecto) => (
-        <div key={proyecto._id} className="container">
-          <Card
-            className="container__card"
-            sx={{ minWidth: '16.5rem', marginBottom: '0.3125rem' }}>
+        <div key={proyecto._id}>
+          <Card sx={{ maxWidth: 345 }}>
             <CardHeader
               avatar={
                 <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -88,12 +119,16 @@ const ProyectListOrganismos = () => {
             />
             <CardContent>
               <Typography variant="body2" color="text.secondary">
-                {/* {proyecto.Descripcion} */}
-                {proyecto.Tipo_contrato}
+                {proyecto.Descripcion}
               </Typography>
             </CardContent>
             <CardActions disableSpacing>
-              <button>Editar</button>
+              <button
+                onClick={() => {
+                  handleAddTutorClick(proyecto)
+                }}>
+                Añadir tutor
+              </button>
               <button>Eliminar</button>
               <ExpandMore
                 expand={expandedIds.includes(proyecto._id)}
@@ -108,30 +143,47 @@ const ProyectListOrganismos = () => {
               timeout="auto"
               unmountOnExit>
               <CardContent>
-                <Typography paragraph>{proyecto.Descripcion}</Typography>
                 <Typography paragraph>
                   {`Inicio: ${handleDate(proyecto.Fecha_presentacion)}`}
                 </Typography>
                 <Typography paragraph>
                   {`Duración: ${proyecto.Meses_estimados} meses`}
                 </Typography>
+                <Typography
+                  paragraph>{`Sector: ${proyecto.Sector}`}</Typography>
                 <Typography paragraph>
-                  {`Sector: ${proyecto.Sector}`}
+                  {`Contrato: ${proyecto.Tipo_contrato}`}
                 </Typography>
                 <Typography paragraph>
-                  {`Tutor: ${proyecto.IdTutor}`}
+                  {`Tutor: ${getTutorName(proyecto?.IdTutor)}`}
                 </Typography>
                 <Typography paragraph>
                   {`Solicitudes: ${proyecto.Solicitudes}`}
                 </Typography>
-                <Typography paragraph>
-                  {`Aceptados: ${proyecto.IdAlumno}`}
-                </Typography>
+                <Typography
+                  paragraph>{`Aceptados: ${proyecto.IdAlumno}`}</Typography>
               </CardContent>
             </Collapse>
           </Card>
         </div>
       ))}
+      <Modal
+        title="Selecciona un tutor"
+        visible={modalVisible}
+        onCancel={() => setModalVisible(false)}
+        footer={null}>
+        <List
+          dataSource={tutores}
+          renderItem={(tutor) => (
+            <List.Item
+              key={tutor._id}
+              onClick={() => handleTutorSelect(selectedProyecto._id, tutor._id)}
+              style={{ cursor: 'pointer' }}>
+              {tutor.Nombre}
+            </List.Item>
+          )}
+        />
+      </Modal>
     </>
   )
 }
