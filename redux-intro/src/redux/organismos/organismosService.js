@@ -19,11 +19,27 @@ const getProyects = async (idEmpresa) => {
   return res.data
 }
 const login = async (userData) => {
-  const res = await axios.put(`${API_URL}/login`, userData)
+  const res = await axios.put(`${API_URL}/empresas/login`, userData)
   if (res.data) {
-    localStorage.setItem('organ', JSON.stringify(res.data.org))
-    localStorage.setItem('tokenOrg', JSON.stringify(res.data.token)) //REVISAR NOMBRE TOKEN
+    localStorage.setItem('organismo', JSON.stringify(res.data.empresa))
+    localStorage.setItem('tokenOrg', JSON.stringify(res.data.empresa.Token))
   }
+  return res.data
+}
+
+const getTutores = async (IdEmpresa) => {
+  const res = await axios.get(`${API_URL}/tutores/getByIdEmpresa/${IdEmpresa}`)
+  if (res.data) {
+    localStorage.setItem('tutoresEmp', JSON.stringify(res.data.tutores))
+  }
+  return res.data
+}
+
+const addTutor = async (data) => {
+  const res = await axios.put(
+    `${API_URL}/proyectos/addTutor/${data.IdProyecto}`,
+    { IdTutor: data.IdTutor }
+  )
   return res.data
 }
 
@@ -31,6 +47,8 @@ const organismosService = {
   register,
   getProyects,
   login,
+  getTutores,
+  addTutor,
 }
 
 export default organismosService
