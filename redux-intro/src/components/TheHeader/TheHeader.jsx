@@ -6,14 +6,16 @@ import IconButton from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import MenuIcon from '@mui/icons-material/Menu'
-
+import {logout as LogoutAlumno} from '../../redux/alumnos/alumnosSlice'
 const TheHeader = () => {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  // const user = useSelector((state) => state.auth.user)
-
+  const alumno = useSelector((state) => state.alum.alumno)
+  const org = useSelector((state) => state.organ.organismo)
+console.log(alumno)
+console.log(org)
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
   }
@@ -21,15 +23,21 @@ const TheHeader = () => {
   const handleClose = () => {
     setAnchorEl(null)
   }
-  //TODO: TERNARIA PARA QUE, EN CASO DE ESTAR LOGUEADO, CAMBIE EL MENU.
 
   // const profileRoute = '/profile'
 
-  const onLogout = (e) => {
+  const onLogoutAlumno = (e) => {
     e.preventDefault()
-    dispatch(logout())
-    navigate('/')
+    dispatch(LogoutAlumno())
+    navigate('/login')
   }
+
+  const onLogoutOrg = (e) => {
+    e.preventDefault()
+    dispatch(LogoutOrg())
+    navigate('/login')
+  }
+
 
   return (
     <div>
@@ -77,19 +85,13 @@ const TheHeader = () => {
           }}>
           Proyectos empresas
         </MenuItem>
-        {/* {user && (
-          <MenuItem
-            onClick={() => {
-              handleClose()
-              navigate(profileRoute)
-            }}
-          >
-            <Link to="/profile">{user.name}</Link> 
-          </MenuItem>
-        )}
-        {user && (
-          <MenuItem onClick={onLogout}>Cerrar sesión</MenuItem>
-        )} */}
+        
+        {alumno ? (
+          <MenuItem onClick={onLogoutAlumno}>Cerrar sesión</MenuItem>
+        ): null}
+        {org ? (
+          <MenuItem onClick={onLogoutOrg}>Cerrar sesión</MenuItem>
+        ): null}
       </Menu>
     </div>
   )

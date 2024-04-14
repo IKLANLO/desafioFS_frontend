@@ -76,6 +76,8 @@ export const organismosSlice = createSlice({
   initialState,
   reducers: {
     reset: (state) => {
+      state.organismo = null
+      state.token = null
       state.message = ''
       state.isError = false
       state.isSuccess = false
@@ -98,7 +100,7 @@ export const organismosSlice = createSlice({
       })
       .addCase(register.rejected, (state, action) => {
         state.isError = true
-        state.message = action.payload
+        state.message = action.payload.message
       })
       .addCase(getProyects.fulfilled, (state, action) => {
         // state.isSuccess = true
@@ -108,11 +110,17 @@ export const organismosSlice = createSlice({
       })
       .addCase(getProyects.rejected, (state, action) => {
         state.isError = true
-        state.message = action.payload
+        state.message = action.payload.message
       })
       .addCase(login.fulfilled, (state, action) => {
         state.organismo = action.payload.organismo
         state.token = action.payload.token
+        state.isSuccess = true
+        state.message = action.payload.message
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.isError = true
+        state.message = action.payload.message
       })
       .addCase(getTutores.fulfilled, (state, action) => {
         // state.isSuccess = true

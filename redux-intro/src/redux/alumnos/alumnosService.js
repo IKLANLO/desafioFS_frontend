@@ -8,18 +8,32 @@ const register = async (userData) => {
 }
 const login = async (userData) => {
   const res = await axios.put(`${API_URL}/login`, userData)
-  console.log('res.data', res.data)
   if (res.data) {
-    res.data
     localStorage.setItem('alumno', JSON.stringify(res.data.alumno))
     localStorage.setItem('tokenAlumno', JSON.stringify(res.data.alumno.Token))
   }
   return res.data
 }
+const logout = async () => {
+
+  const token = JSON.parse(localStorage.getItem("tokenAlumno"));
+  const res = await axios.delete(`${API_URL}/logout`, {
+  headers: {
+    authorization: token,
+  },
+  });
+
+  if (res.data) {
+    console.log(res.data)
+    localStorage.clear();
+  }
+  return res.data;
+  };
 
 const alumnosService = {
   register,
   login,
+  logout
 }
 
 export default alumnosService
