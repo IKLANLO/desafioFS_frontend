@@ -48,6 +48,15 @@ const cancelProyecto = async (id) => {
   return res.data
 }
 
+const addProyecto = async (data) => {
+  const res = await axios.post(
+    `${API_URL}/proyectos/create/${data.IdEmpresa}`,
+    data.proyecto,
+    { headers: { Authorization: data.Token } }
+  )
+  return res.data
+}
+
 const organismosService = {
   register,
   getProyects,
@@ -55,6 +64,7 @@ const organismosService = {
   getTutores,
   addTutor,
   cancelProyecto,
+  addProyecto,
 }
 
 export default organismosService

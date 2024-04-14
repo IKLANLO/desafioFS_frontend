@@ -7,8 +7,18 @@ import {
   getTutores,
   addTutor,
   cancelProyecto,
+  addProyecto,
 } from '../../redux/organismos/organismosSlice'
-import { notification, Modal, List } from 'antd'
+import { sectorData } from '../Register/RegisterOrg/RegisterOrg'
+import {
+  notification,
+  Modal,
+  Form,
+  Input,
+  List,
+  DatePicker,
+  Select,
+} from 'antd'
 import { styled } from '@mui/material/styles'
 import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
@@ -20,6 +30,8 @@ import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import { red } from '@mui/material/colors'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+
+const { Option } = Select
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props
@@ -37,7 +49,15 @@ const ProyectListOrganismos = () => {
   const [selectedProyecto, setSelectedProyecto] = useState(null)
   const [modalVisible, setModalVisible] = useState(false)
   const [selectedTutor, setSelectedTutor] = useState(null)
-  // const [isButtonsDisabled, setIsButtonsDisabled] = useState(false)
+  const [modalAddProyectoVisible, setModalAddProyectoVisible] = useState(false)
+  const [nuevoProyecto, setNuevoProyecto] = useState({
+    Titulo: '',
+    Descripcion: '',
+    Fecha_presentacion: '',
+    Meses_estimados: '',
+    Sector: '',
+    Tipo_contrato: '',
+  })
   const disabledButtonsStyle = {
     backgroundColor: 'lightgray',
     color: 'gray',
@@ -119,8 +139,110 @@ const ProyectListOrganismos = () => {
     return estado === 'Cancelado'
   }
 
+  const handleAddProyecto = (data) => {
+    dispatch(addProyecto(data))
+    setModalAddProyectoVisible(false)
+    setNuevoProyecto({
+      Titulo: '',
+      Descripcion: '',
+      Fecha_presentacion: '',
+      Meses_estimados: '',
+      Sector: '',
+      Tipo_contrato: '',
+    })
+    dispatch(getProyects(organismo._id))
+  }
+
   return (
     <>
+      <div style={{ marginBottom: '0.3125rem' }}>
+        <button onClick={() => setModalAddProyectoVisible(true)}>
+          Nuevo proyecto
+        </button>
+      </div>
+      <Modal
+        style={{ maxWidth: '80%' }}
+        title="Nuevo proyecto"
+        visible={modalAddProyectoVisible}
+        onCancel={() => setModalAddProyectoVisible(false)}
+        onOk={() => {
+          handleAddProyecto({
+            IdEmpresa: organismo._id,
+            Token: organismo.Token,
+            proyecto: nuevoProyecto,
+          })
+        }}>
+        <Form>
+          <Form.Item label="Título">
+            <Input
+              value={nuevoProyecto.Titulo}
+              onChange={(e) =>
+                setNuevoProyecto({ ...nuevoProyecto, Titulo: e.target.value })
+              }
+            />
+          </Form.Item>
+          <Form.Item label="Descripcion">
+            <Input
+              value={nuevoProyecto.Descripcion}
+              onChange={(e) =>
+                setNuevoProyecto({
+                  ...nuevoProyecto,
+                  Descripcion: e.target.value,
+                })
+              }
+            />
+          </Form.Item>
+          <Form.Item label="Tipo de contrato">
+            <Input
+              value={nuevoProyecto.Tipo_contrato}
+              onChange={(e) =>
+                setNuevoProyecto({
+                  ...nuevoProyecto,
+                  Tipo_contrato: e.target.value,
+                })
+              }
+            />
+          </Form.Item>
+          <Form.Item label="Duración (meses)">
+            <Input
+              value={nuevoProyecto.Meses_estimados}
+              onChange={(e) =>
+                setNuevoProyecto({
+                  ...nuevoProyecto,
+                  Meses_estimados: e.target.value,
+                })
+              }
+            />
+          </Form.Item>
+          <Form.Item label="Fecha de inicio">
+            <DatePicker
+              style={{ width: '100%' }}
+              value={nuevoProyecto.Fecha}
+              onChange={(fecha) =>
+                setNuevoProyecto({
+                  ...nuevoProyecto,
+                  Fecha_presentacion: fecha.toISOString(),
+                })
+              }
+            />
+          </Form.Item>
+          <Form.Item label="Sector">
+            <Select
+              style={{ width: '100%' }}
+              placeholder="Sector"
+              value={nuevoProyecto.Sector}
+              onChange={(sector) =>
+                setNuevoProyecto({ ...nuevoProyecto, Sector: sector })
+              }>
+              {sectorData.map((sector) => (
+                <Option key={sector} value={sector}>
+                  {sector}
+                </Option>
+              ))}
+            </Select>
+          </Form.Item>
+        </Form>
+      </Modal>
       {proyectos.map((proyecto) => (
         <div key={proyecto._id}>
           <Card sx={{ maxWidth: 345 }}>

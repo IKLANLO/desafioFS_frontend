@@ -3,7 +3,6 @@ import organismosService from './organismosService'
 
 const organismo = JSON.parse(localStorage.getItem('organismo'))
 const token = JSON.parse(localStorage.getItem('tokenOrg'))
-// const tutoresEmp = JSON.parse(localStorage.getItem('tutoresEmp'))
 
 const initialState = {
   organismo: organismo || null,
@@ -82,6 +81,17 @@ export const cancelProyecto = createAsyncThunk(
   }
 )
 
+export const addProyecto = createAsyncThunk(
+  'organ/addProyecto',
+  async (data) => {
+    try {
+      return await organismosService.addProyecto(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+)
+
 export const organismosSlice = createSlice({
   name: 'organ',
   initialState,
@@ -130,6 +140,10 @@ export const organismosSlice = createSlice({
         // state.isSuccess = true
         // state.message = action.payload.message
         state.tutores = action.payload
+      })
+      .addCase(addProyecto.fulfilled, (state, action) => {
+        console.log('action.payload', action.payload)
+        state.proyectos.push(action.payload)
       })
   },
 })
