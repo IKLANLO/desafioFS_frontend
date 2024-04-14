@@ -37,7 +37,13 @@ const ProyectListOrganismos = () => {
   const [selectedProyecto, setSelectedProyecto] = useState(null)
   const [modalVisible, setModalVisible] = useState(false)
   const [selectedTutor, setSelectedTutor] = useState(null)
-  const [isButtonsDisabled, setIsButtonsDisabled] = useState(false)
+  // const [isButtonsDisabled, setIsButtonsDisabled] = useState(false)
+  const disabledButtonsStyle = {
+    backgroundColor: 'lightgray',
+    color: 'gray',
+    borderStyle: 'none',
+    cursor: 'not-allowed',
+  }
 
   const handleExpandClick = (projectId) => {
     setExpandedIds((prevExpandedIds) =>
@@ -137,12 +143,18 @@ const ProyectListOrganismos = () => {
                 onClick={() => {
                   handleAddTutorClick(proyecto)
                 }}
-                disabled={handleDisabledButtons(proyecto.Estado)}>
+                disabled={handleDisabledButtons(proyecto.Estado)}
+                style={
+                  proyecto.Estado === 'Cancelado' ? disabledButtonsStyle : null
+                }>
                 Añadir tutor
               </button>
               <button
                 disabled={handleDisabledButtons(proyecto.Estado)}
-                onClick={() => handleCancel(proyecto._id)}>
+                onClick={() => handleCancel(proyecto._id)}
+                style={
+                  proyecto.Estado === 'Cancelado' ? disabledButtonsStyle : null
+                }>
                 Cancelar
               </button>
               <ExpandMore
