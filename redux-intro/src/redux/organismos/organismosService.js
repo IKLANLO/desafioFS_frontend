@@ -16,6 +16,7 @@ const getProyects = async (idEmpresa) => {
   const res = await axios.get(
     `${API_URL}/proyectos/getByIdEmpresa/${idEmpresa}`
   )
+  console.log('res.data', res.data)
   return res.data
 }
 const login = async (userData) => {

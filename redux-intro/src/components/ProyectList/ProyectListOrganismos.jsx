@@ -33,6 +33,43 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
 const { Option } = Select
 
+const solicitudes = [
+  {
+    _id: '661968652cc6c30bfe77800f',
+    Nombre: 'alumno 1',
+    Email: 'alumno1@alumno1.com',
+    Genero: 'Hombre',
+    Password: 'pass1',
+    Telefono: 666666666,
+    CP: 48901,
+    Educacion: ['básica'],
+    Sector: ['informática'],
+    Habilidades: 'habilidad 1, habilidad 2',
+    Experiencia: ['experiencia 1', 'experiencia 2'],
+    Logros: ['logro 1'],
+    Token: 'token 1',
+    Confirmado: 'true',
+    IdProyecto: ['66199f470865c215fd36665c'],
+  },
+  {
+    _id: '6619asd42cc6c30bfe77r4d7',
+    Nombre: 'alumno 2',
+    Email: 'alumno2@alumno2.com',
+    Genero: 'Otros',
+    Password: 'pass2',
+    Telefono: 777777777,
+    CP: 55555,
+    Educacion: ['universitaria'],
+    Sector: ['marketing'],
+    Habilidades: 'habilidad 1',
+    Experiencia: ['experiencia 1'],
+    Logros: ['logro 1', 'logro 2'],
+    Token: 'token 1',
+    Confirmado: 'false',
+    IdProyecto: ['66199f470865c215fd36665c'],
+  },
+]
+
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props
   return <IconButton {...other} />
@@ -306,9 +343,12 @@ const ProyectListOrganismos = () => {
                 <Typography paragraph>
                   {`Tutor: ${getTutorName(proyecto?.IdTutor)}`}
                 </Typography>
-                <Typography paragraph>
-                  {`Solicitudes: ${proyecto.Solicitudes}`}
-                </Typography>
+                <Typography paragraph>Solicitudes:</Typography>
+                {proyecto?.Solicitudes.map((solicitud, index) => (
+                  <ul>
+                    <li key={index}>{solicitud?.Nombre}</li>
+                  </ul>
+                ))}
                 <Typography
                   paragraph>{`Aceptados: ${proyecto.IdAlumno}`}</Typography>
               </CardContent>
