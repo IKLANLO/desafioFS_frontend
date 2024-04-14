@@ -6,6 +6,7 @@ import {
   updateProyect,
   getTutores,
   addTutor,
+  cancelProyecto,
 } from '../../redux/organismos/organismosSlice'
 import { notification, Modal, List } from 'antd'
 import { styled } from '@mui/material/styles'
@@ -36,6 +37,7 @@ const ProyectListOrganismos = () => {
   const [selectedProyecto, setSelectedProyecto] = useState(null)
   const [modalVisible, setModalVisible] = useState(false)
   const [selectedTutor, setSelectedTutor] = useState(null)
+  const [isButtonsDisabled, setIsButtonsDisabled] = useState(false)
 
   const handleExpandClick = (projectId) => {
     setExpandedIds((prevExpandedIds) =>
@@ -76,8 +78,12 @@ const ProyectListOrganismos = () => {
     return fechaNumerica
   }
 
+  const handleCancel = async (IdProyecto) => {
+    dispatch(cancelProyecto(IdProyecto))
+    dispatch(getProyects(organismo._id))
+  }
+
   const handleAddTutorClick = async (proyecto) => {
-    // await dispatch(getTutores(organismo._id))
     setSelectedProyecto(proyecto)
     setModalVisible(true)
   }
@@ -103,6 +109,10 @@ const ProyectListOrganismos = () => {
     return tutorData ? tutorData.Nombre : 'No hay tutores asignados'
   }
 
+  const handleDisabledButtons = (estado) => {
+    return estado === 'Cancelado'
+  }
+
   return (
     <>
       {proyectos.map((proyecto) => (
@@ -126,10 +136,15 @@ const ProyectListOrganismos = () => {
               <button
                 onClick={() => {
                   handleAddTutorClick(proyecto)
-                }}>
+                }}
+                disabled={handleDisabledButtons(proyecto.Estado)}>
                 Añadir tutor
               </button>
-              <button>Eliminar</button>
+              <button
+                disabled={handleDisabledButtons(proyecto.Estado)}
+                onClick={() => handleCancel(proyecto._id)}>
+                Cancelar
+              </button>
               <ExpandMore
                 expand={expandedIds.includes(proyecto._id)}
                 onClick={() => handleExpandClick(proyecto._id)}
