@@ -16,7 +16,6 @@ const getProyects = async (idEmpresa) => {
   const res = await axios.get(
     `${API_URL}/proyectos/getByIdEmpresa/${idEmpresa}`
   )
-  console.log('res.data', res.data)
   return res.data
 }
 const login = async (userData) => {
@@ -58,6 +57,14 @@ const addProyecto = async (data) => {
   return res.data
 }
 
+const confirmAlumno = async (data) => {
+  const res = await axios.put(
+    `${API_URL}/proyectos/confirm/${data.IdProyecto}`,
+    data
+  )
+  return res.data
+}
+
 const organismosService = {
   register,
   getProyects,
@@ -66,6 +73,7 @@ const organismosService = {
   addTutor,
   cancelProyecto,
   addProyecto,
+  confirmAlumno,
 }
 
 export default organismosService
