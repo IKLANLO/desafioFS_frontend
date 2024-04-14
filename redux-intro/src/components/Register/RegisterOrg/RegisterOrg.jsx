@@ -5,6 +5,14 @@ import { register, reset } from '../../../redux/organismos/organismosSlice'
 import { notification } from 'antd'
 // import './RegisterAlum.style.scss'
 
+export const sectorData = [
+  'Informática',
+  'Marketing',
+  'Construcción',
+  'Hostelería',
+  'Finanzas',
+]
+
 const RegisterOrg = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -36,14 +44,6 @@ const RegisterOrg = () => {
   })
 
   const { Nombre, Email, Password, Direccion, Tamano, Sector } = formData
-
-  const sectorData = [
-    'Informática',
-    'Marketing',
-    'Construcción',
-    'Hostelería',
-    'Finanzas',
-  ]
 
   const onChange = (e) => {
     setFormData((prevState) => ({

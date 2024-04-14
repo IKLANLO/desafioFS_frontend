@@ -43,12 +43,28 @@ const addTutor = async (data) => {
   return res.data
 }
 
+const cancelProyecto = async (id) => {
+  const res = await axios.put(`${API_URL}/proyectos/cancelById/${id}`)
+  return res.data
+}
+
+const addProyecto = async (data) => {
+  const res = await axios.post(
+    `${API_URL}/proyectos/create/${data.IdEmpresa}`,
+    data.proyecto,
+    { headers: { Authorization: data.Token } }
+  )
+  return res.data
+}
+
 const organismosService = {
   register,
   getProyects,
   login,
   getTutores,
   addTutor,
+  cancelProyecto,
+  addProyecto,
 }
 
 export default organismosService

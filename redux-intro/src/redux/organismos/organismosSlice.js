@@ -3,7 +3,6 @@ import organismosService from './organismosService'
 
 const organismo = JSON.parse(localStorage.getItem('organismo'))
 const token = JSON.parse(localStorage.getItem('tokenOrg'))
-// const tutoresEmp = JSON.parse(localStorage.getItem('tutoresEmp'))
 
 const initialState = {
   organismo: organismo || null,
@@ -71,6 +70,28 @@ export const addTutor = createAsyncThunk('organ/addTutor', async (data) => {
   }
 })
 
+export const cancelProyecto = createAsyncThunk(
+  'organ/cancelProyecto',
+  async (id) => {
+    try {
+      return await organismosService.cancelProyecto(id)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+)
+
+export const addProyecto = createAsyncThunk(
+  'organ/addProyecto',
+  async (data) => {
+    try {
+      return await organismosService.addProyecto(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+)
+
 export const organismosSlice = createSlice({
   name: 'organ',
   initialState,
@@ -92,6 +113,7 @@ export const organismosSlice = createSlice({
       }
     },
   },
+
   extraReducers: (builder) => {
     builder
       .addCase(register.fulfilled, (state, action) => {
@@ -127,7 +149,10 @@ export const organismosSlice = createSlice({
         // state.message = action.payload.message
         state.tutores = action.payload
       })
-      .addCase(addTutor.fulfilled, (state, action) => {})
+      .addCase(addProyecto.fulfilled, (state, action) => {
+        console.log('action.payload', action.payload)
+        state.proyectos.push(action.payload)
+      })
   },
 })
 
