@@ -138,11 +138,11 @@ export const organismosSlice = createSlice({
         state.organismo = action.payload.organismo
         state.token = action.payload.token
         state.isSuccess = true
-        state.message = action.payload.message
+        state.message = "login correcto"
       })
       .addCase(login.rejected, (state, action) => {
         state.isError = true
-        state.message = action.payload.message
+        state.message = "error al logearte"
       })
       .addCase(getTutores.fulfilled, (state, action) => {
         // state.isSuccess = true
