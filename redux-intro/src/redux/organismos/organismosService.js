@@ -57,6 +57,14 @@ const addProyecto = async (data) => {
   return res.data
 }
 
+const confirmAlumno = async (data) => {
+  const res = await axios.put(
+    `${API_URL}/proyectos/confirm/${data.IdProyecto}`,
+    data
+  )
+  return res.data
+}
+
 const organismosService = {
   register,
   getProyects,
@@ -65,6 +73,7 @@ const organismosService = {
   addTutor,
   cancelProyecto,
   addProyecto,
+  confirmAlumno,
 }
 
 export default organismosService
