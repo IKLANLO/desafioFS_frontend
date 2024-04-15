@@ -96,7 +96,10 @@ export const confirmAlumno = createAsyncThunk(
   'organ/confirmAlumno',
   async (data) => {
     try {
-      return await organismosService.confirmAlumno(data)
+      return await organismosService.confirmAlumno(
+        data.IdProyecto,
+        data.IdAlumno
+      )
     } catch (error) {
       console.log(error)
     }
@@ -156,9 +159,8 @@ export const organismosSlice = createSlice({
         state.proyectos.push(action.payload)
       })
       .addCase(confirmAlumno.fulfilled, (state, action) => {
-        console.log('proyecto', state.proyectos)
         state.proyectos.map((proy, index) => {
-          if (proyecto._id === action.payload.proyecto.IdProyecto) {
+          if (proy._id === action.payload.proyecto.IdProyecto) {
             state.proyectos[index].IdAlumno.push(action.payload.proyecto)
           }
         })

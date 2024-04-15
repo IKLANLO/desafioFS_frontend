@@ -162,20 +162,24 @@ const ProyectListOrganismos = () => {
     setModalSolicitud(true)
   }
 
-  const handleConfirm = () => {
-    dispatch(
-      confirmAlumno({
-        IdAlumno: selectedSolicitud._id,
-        IdProyecto: selectedProyecto._id,
+  const handleConfirm = async () => {
+    await new Promise((resolve) => {
+      dispatch(
+        confirmAlumno({
+          IdAlumno: selectedSolicitud._id,
+          IdProyecto: selectedProyecto._id,
+        })
+      ).then(() => {
+        resolve()
       })
-    )
+    })
     dispatch(getProyects(organismo._id))
     setModalSolicitud(false)
   }
 
-  const handleReject = () => {
-    setModalSolicitud(false)
-  }
+  // const handleReject = () => {
+  //   setModalSolicitud(false)
+  // }
 
   const handleAtras = () => {
     setModalSolicitud(false)
@@ -196,9 +200,9 @@ const ProyectListOrganismos = () => {
           <button key="back" onClick={handleAtras}>
             Atrás
           </button>,
-          <button key="reject" onClick={handleReject}>
-            Rechazar
-          </button>,
+          // <button key="reject" onClick={handleReject}>
+          //   Rechazar
+          // </button>,
           <button key="confirm" type="primary" onClick={handleConfirm}>
             Aceptar
           </button>,
@@ -215,28 +219,28 @@ const ProyectListOrganismos = () => {
           />
           <CardContent>
             <Typography variant="body2" color="text.secondary">
-              {selectedSolicitud?.Email}
+              Email: {selectedSolicitud?.Email}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {selectedSolicitud?.Genero}
+              Género: {selectedSolicitud?.Genero}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {selectedSolicitud?.Telefono}
+              Teléfono: {selectedSolicitud?.Telefono}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {selectedSolicitud?.CP}
+              Código postal: {selectedSolicitud?.CP}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {selectedSolicitud?.Sector}
+              Sector: {selectedSolicitud?.Sector}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {selectedSolicitud?.Habilidades}
+              Habilidades: {selectedSolicitud?.Habilidades}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {selectedSolicitud?.Experiencia}
+              Experiencia: {selectedSolicitud?.Experiencia}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {selectedSolicitud?.Logros}
+              Logros {selectedSolicitud?.Logros}
             </Typography>
           </CardContent>
         </Card>
@@ -393,14 +397,13 @@ const ProyectListOrganismos = () => {
                   Solicitudes:
                 </Typography>
                 {proyecto?.Solicitudes.map((solicitud, index) => (
-                  <ul>
+                  <ul key={index}>
                     <Typography variant="body2" color="text.secondary">
                       <li
                         style={{ cursor: 'pointer' }}
                         onClick={() =>
                           handleSelectedSolicitud(solicitud, proyecto)
-                        }
-                        key={index}>
+                        }>
                         {solicitud?.Nombre}
                       </li>
                     </Typography>
@@ -410,9 +413,9 @@ const ProyectListOrganismos = () => {
                   Admitidos:
                 </Typography>
                 {proyecto?.IdAlumno.map((alumno, index) => (
-                  <ul>
+                  <ul key={index}>
                     <Typography variant="body2" color="text.secondary">
-                      <li key={index}>{alumno?.Nombre}</li>
+                      <li>{alumno?.Nombre}</li>
                     </Typography>
                   </ul>
                 ))}
