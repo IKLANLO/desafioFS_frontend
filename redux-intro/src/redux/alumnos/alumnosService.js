@@ -14,6 +14,8 @@ const login = async (userData) => {
   }
   return res.data
 }
+
+//REPASAR ESTO
 const logout = async () => {
 
   const token = JSON.parse(localStorage.getItem("tokenAlumno"));
@@ -30,10 +32,21 @@ const logout = async () => {
   return res.data;
   };
 
+
+  const getProyects = async (Sector) => {
+    const res = await axios.get(
+      `http://localhost:8080/proyectos/getAllBySector/${Sector}`
+    );
+    return res.data;
+  };
+  
+  
+
 const alumnosService = {
   register,
   login,
-  logout
+  logout,
+  getProyects
 }
 
 export default alumnosService

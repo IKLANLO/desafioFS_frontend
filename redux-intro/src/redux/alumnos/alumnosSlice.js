@@ -36,6 +36,18 @@ export const login = createAsyncThunk(
   }
 }
 )
+export const getProyects = createAsyncThunk(
+  'alum/getProyects',
+  async (Sector, thunkAPI) => {
+    try {
+      return await alumnosService.getProyects(Sector)
+    } catch (error) {
+      console.log(error)
+      const message = error.response.data.message
+      return thunkAPI.rejectWithValue(message)
+    }
+  }
+)
 
 export const logout = createAsyncThunk("alum/logout", async () => {
   try {
@@ -77,6 +89,16 @@ export const alumnosSlice = createSlice({
       .addCase(logout.fulfilled, (state) => {
         state.alumno = null
         state.token = null
+      })
+      .addCase(getProyects.fulfilled, (state, action) => {
+        // state.isSuccess = true
+        // state.message = action.payload.message
+        state.proyectos = action.payload
+        state.alumno.Sector = action.payload.Sector
+      })
+      .addCase(getProyects.rejected, (state, action) => {
+        state.isError = true
+        state.message = action.payload.message
       })
   },
 })

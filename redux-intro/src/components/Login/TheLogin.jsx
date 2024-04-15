@@ -39,7 +39,7 @@ useEffect(() => {
       console.log(isSuccessAlumno)
 
       notification.success({ description: messageAlumno })
-      setTimeout(() => navigate('/InicioAlu'), 1000)
+      setTimeout(() => navigate('/Inicio'), 1000)
     } else if (isErrorAlumno) {
       notification.error({ description: messageAlumno })
       // dispatch(resetAlumnos())
