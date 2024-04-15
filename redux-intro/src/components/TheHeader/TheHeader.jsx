@@ -77,6 +77,13 @@ const TheHeader = () => {
           }}>
           Proyectos empresas
         </MenuItem>
+        {/* <MenuItem
+          onClick={() => {
+            handleClose()
+            navigate('/profile')
+          }}>
+          Perfil
+        </MenuItem> */}
         {/* {user && (
           <MenuItem
             onClick={() => {

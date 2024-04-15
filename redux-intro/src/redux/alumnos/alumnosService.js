@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'http://localhost:8080/alumnos'
+const API_URL = 'http://localhost:8081/alumnos'
 
 const register = async (userData) => {
   const res = await axios.post(`${API_URL}/create`, userData)
