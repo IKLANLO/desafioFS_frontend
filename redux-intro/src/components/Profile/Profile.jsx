@@ -6,6 +6,7 @@ import { updateUser } from '../../redux/alumnos/alumnosSlice';
 const Profile = () => {
     const dispatch = useDispatch();
     const { alumno: user, isSuccess, isError, message: updateMessage } = useSelector((state) => state.alum);
+    // console.log(user)
     const [isEditing, setIsEditing] = useState(false);
     const [editedUser, setEditedUser] = useState(null);
 
@@ -31,9 +32,9 @@ const Profile = () => {
     };
 
     const onFinish = (values) => {
-        console.log(updateUser(values))
+        // console.log(updateUser(values))
         console.log(values);
-        dispatch(updateUser(values));
+        updateUser(values);
         setIsEditing(false);
     };
 
@@ -47,7 +48,7 @@ const Profile = () => {
             <p>Genero: {user.Genero}</p>
             <p>Email: {user.Email}</p>
             <p>Teléfono: {user.Telefono}</p>
-            <p>Cp: {user.Cp}</p>
+            <p>Cp: {user.CP}</p>
             <p>Área de Estudios: {user.AreaEstudios}</p>
             <p>Educacion: {user.Educacion}</p>
             <p>Experiencia: {user.Experiencia}</p>

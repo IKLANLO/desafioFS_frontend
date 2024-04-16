@@ -19,6 +19,7 @@ export const updateUser = createAsyncThunk(
     try {
 
       const response = await alumnosService.updateUser(alumno);
+      console.log(response.data)
       return response.data; 
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -80,6 +81,8 @@ export const alumnosSlice = createSlice({
       .addCase(updateUser.fulfilled, (state, action) => {
         
         state.alumno = action.payload;
+        console.log(state.alumno)
+        console.log(actio.payload)
         state.isSuccess = true;
         localStorage.setItem('alumno', JSON.stringify(action.payload));
       })
