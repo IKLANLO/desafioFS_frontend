@@ -119,8 +119,8 @@ export const organismosSlice = createSlice({
   initialState,
   reducers: {
     reset: (state) => {
-      state.organismo = null
-      state.token = null
+      // state.organismo = null
+      // state.token = null
       state.message = ''
       state.isError = false
       state.isSuccess = false
