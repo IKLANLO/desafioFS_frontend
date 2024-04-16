@@ -36,6 +36,14 @@ export const login = createAsyncThunk('organ/login', async (org) => {
   }
 })
 
+export const logout = createAsyncThunk('organ/logout', async (token) => {
+  try {
+    return await organismosService.logout(token)
+  } catch (error) {
+    console.error(error)
+  }
+})
+
 export const getProyects = createAsyncThunk(
   'organ/getProyects',
   async (id, thunkAPI) => {
@@ -152,11 +160,11 @@ export const organismosSlice = createSlice({
         state.organismo = action.payload.organismo
         state.token = action.payload.token
         state.isSuccess = true
-        state.message = "login correcto"
+        state.message = 'login correcto'
       })
       .addCase(login.rejected, (state, action) => {
         state.isError = true
-        state.message = "error al logearte"
+        state.message = 'error al logearte'
       })
       .addCase(getTutores.fulfilled, (state, action) => {
         // state.isSuccess = true
@@ -172,6 +180,10 @@ export const organismosSlice = createSlice({
             state.proyectos[index].IdAlumno.push(action.payload.proyecto)
           }
         })
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.organismo = null
+        state.token = null
       })
   },
 })

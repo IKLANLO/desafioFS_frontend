@@ -27,6 +27,24 @@ const login = async (userData) => {
   return res.data
 }
 
+const logout = async (token) => {
+  const res = await axios.put(
+    `${API_URL}/empresas/logout`,
+    { Token: '' },
+    {
+      headers: {
+        authorization: token,
+      },
+    }
+  )
+
+  if (res.data) {
+    console.log(res.data)
+    localStorage.clear()
+  }
+  return res.data
+}
+
 const getTutores = async (IdEmpresa) => {
   const res = await axios.get(`${API_URL}/tutores/getByIdEmpresa/${IdEmpresa}`)
   if (res.data) {
@@ -73,6 +91,7 @@ const organismosService = {
   cancelProyecto,
   addProyecto,
   confirmAlumno,
+  logout,
 }
 
 export default organismosService

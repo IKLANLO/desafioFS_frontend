@@ -16,49 +16,53 @@ const login = async (userData) => {
 }
 
 //REPASAR ESTO
-const logout = async () => {
-
-  const token = JSON.parse(localStorage.getItem("tokenAlumno"));
-  const res = await axios.delete(`${API_URL}/logout`, {
-  headers: {
-    authorization: token,
-  },
-  });
+const logout = async (token) => {
+  // const token = JSON.parse(localStorage.getItem("tokenAlumno"));
+  const res = await axios.put(
+    `${API_URL}/logout`,
+    { Token: '' },
+    {
+      headers: {
+        authorization: token,
+      },
+    }
+  )
 
   if (res.data) {
     console.log(res.data)
-    localStorage.clear();
+    localStorage.clear()
   }
-  return res.data;
-  };
+  return res.data
+}
 
-
-  const getProyects = async (Sector) => {
-    const res = await axios.get(
-      `http://localhost:8080/proyectos/getAllBySector/${Sector}`
-    );
-    return res.data;
-  };
-  const addSolicitud = async (data) => {
-    try {
-      const res = await axios.put(`http://localhost:8080/proyectos/addSolicitud/${data.IdProyecto}`, {
-        _id: data._id // Ajustamos el formato de los datos enviados
-      });
-      console.log(res.data)
-      return res.data;
-    } catch (error) {
-      console.error('Error en la solicitud:', error);
-      throw error; // Propagamos el error para manejarlo en el lugar donde se llama a esta función
-    }
-  };
-  
+const getProyects = async (Sector) => {
+  const res = await axios.get(
+    `http://localhost:8080/proyectos/getAllBySector/${Sector}`
+  )
+  return res.data
+}
+const addSolicitud = async (data) => {
+  try {
+    const res = await axios.put(
+      `http://localhost:8080/proyectos/addSolicitud/${data.IdProyecto}`,
+      {
+        _id: data._id, // Ajustamos el formato de los datos enviados
+      }
+    )
+    console.log(res.data)
+    return res.data
+  } catch (error) {
+    console.error('Error en la solicitud:', error)
+    throw error // Propagamos el error para manejarlo en el lugar donde se llama a esta función
+  }
+}
 
 const alumnosService = {
   register,
   login,
   logout,
   getProyects,
-  addSolicitud
+  addSolicitud,
 }
 
 export default alumnosService
