@@ -16,10 +16,16 @@ const login = async (userData) => {
   }
   return res.data
 }
+const updateProfile = async (userData) => {
+  const res = await axios.put(`${API_URL}/update/${userData.id}`, userData)
+  console.log(res.data)
+  return res.data
+}
 
 const alumnosService = {
   register,
   login,
+  updateProfile,
 }
 
 export default alumnosService
