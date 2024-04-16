@@ -8,6 +8,8 @@ import Profile from './components/Profile/Profile'
 import './App.scss'
 import TheLogin from './components/Login/TheLogin'
 import Inicio from './components/Inicio/Inicio'
+import LandingPage from './components/LandingPage/LandingPage'
+
 // import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
@@ -15,6 +17,7 @@ function App() {
     <BrowserRouter>
       <TheHeader />
       <Routes>
+        <Route path='/' element={<LandingPage/>} />
         <Route path="/Inicio" element={<Inicio />} /> 
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<TheLogin />} />
