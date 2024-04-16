@@ -10,6 +10,7 @@ const initialState = {
   message: '',
   isError: false,
   isSuccess: false,
+  proyectos: [], // Agrega el estado para almacenar los proyectos
 }
 
 export const register = createAsyncThunk(
@@ -49,13 +50,24 @@ export const getProyects = createAsyncThunk(
   }
 )
 
+export const addSolicitud = createAsyncThunk('alum/addSolicitud', async (data) => {
+  try {
+    return await alumnosService.addSolicitud(data)
+  } catch (error) {
+    console.log(error)
+    throw error; // Re-throw the error so that it can be handled in the extraReducers
+  }
+})
+
 export const logout = createAsyncThunk("alum/logout", async () => {
   try {
     return await alumnosService.logout();
   } catch (error) {
     console.error(error);
   }
-  });
+});
+
+
 export const alumnosSlice = createSlice({
   name: 'alum',
   initialState,
@@ -64,6 +76,9 @@ export const alumnosSlice = createSlice({
       state.message = ''
       state.isError = false
       state.isSuccess = false
+    },
+    updateProyectos: (state, action) => {
+      state.proyectos = action.payload; // Actualiza la lista de proyectos en el estado global
     },
   },
   extraReducers: (builder) => {
@@ -91,18 +106,29 @@ export const alumnosSlice = createSlice({
         state.token = null
       })
       .addCase(getProyects.fulfilled, (state, action) => {
-        // state.isSuccess = true
-        // state.message = action.payload.message
-        state.proyectos = action.payload
-        state.alumno.Sector = action.payload.Sector
+        state.proyectos = action.payload;
+        const firstProject = action.payload[0]; // Obtén el primer proyecto del array
+        if (firstProject) {
+          state.alumno.Sector = firstProject.Sector; // Accede al campo Sector del primer proyecto
+        }
       })
       .addCase(getProyects.rejected, (state, action) => {
         state.isError = true
         state.message = action.payload.message
       })
+      .addCase(addSolicitud.fulfilled, (state, action) => {
+        state.isSuccess = true
+        state.message = 'Solicitud enviada correctamente'
+        // Actualiza la lista de proyectos después de enviar la solicitud
+        state.proyectos = action.payload.proyectos;
+      })
+      .addCase(addSolicitud.rejected, (state, action) => {
+        state.isError = true
+        state.message = 'Error al enviar la solicitud'
+      })
   },
 })
 
-export const { reset } = alumnosSlice.actions
+export const { reset, updateProyectos } = alumnosSlice.actions
 
 export default alumnosSlice.reducer
