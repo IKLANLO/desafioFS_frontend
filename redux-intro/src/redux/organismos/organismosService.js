@@ -57,11 +57,10 @@ const addProyecto = async (data) => {
   return res.data
 }
 
-const confirmAlumno = async (data) => {
-  const res = await axios.put(
-    `${API_URL}/proyectos/confirm/${data.IdProyecto}`,
-    data
-  )
+const confirmAlumno = async (IdProyecto, IdAlumno) => {
+  const res = await axios.put(`${API_URL}/proyectos/confirm/${IdProyecto}`, {
+    _id: IdAlumno,
+  })
   return res.data
 }
 
