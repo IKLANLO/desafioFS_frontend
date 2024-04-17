@@ -64,8 +64,6 @@ export const getTutores = createAsyncThunk(
       return await organismosService.getTutores(IdEmpresa)
     } catch (error) {
       console.log(error)
-      // const message = error.response.data.message
-      // return thunkAPI.rejectWithValue(message)
     }
   }
 )
@@ -110,6 +108,19 @@ export const confirmAlumno = createAsyncThunk(
       )
     } catch (error) {
       console.log(error)
+    }
+  }
+)
+
+export const createTutor = createAsyncThunk(
+  'organ/createTutor',
+  async (data, thunkAPI) => {
+    try {
+      return await organismosService.createTutor(data)
+    } catch (error) {
+      console.log(error, thunkAPI)
+      // return thunkAPI.rejectWithValue(message)
+      return thunkAPI.rejectWithValue(message)
     }
   }
 )
@@ -184,6 +195,15 @@ export const organismosSlice = createSlice({
       .addCase(logout.fulfilled, (state) => {
         state.organismo = null
         state.token = null
+      })
+      .addCase(createTutor.fulfilled, (state, action) => {
+        state.tutores.push(action.payload.tutor)
+        state.isSuccess = true
+        state.message = 'Tutor creado correctamente'
+      })
+      .addCase(createTutor.rejected, (state, action) => {
+        state.isError = true
+        state.message = 'Error en los datos'
       })
   },
 })

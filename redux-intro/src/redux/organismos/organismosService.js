@@ -39,7 +39,6 @@ const logout = async (token) => {
   )
 
   if (res.data) {
-    console.log(res.data)
     localStorage.clear()
   }
   return res.data
@@ -82,6 +81,11 @@ const confirmAlumno = async (IdProyecto, IdAlumno) => {
   return res.data
 }
 
+const createTutor = async (data) => {
+  const res = await axios.post(`${API_URL}/tutores/create`, data)
+  return res.data
+}
+
 const organismosService = {
   register,
   getProyects,
@@ -92,6 +96,7 @@ const organismosService = {
   addProyecto,
   confirmAlumno,
   logout,
+  createTutor,
 }
 
 export default organismosService

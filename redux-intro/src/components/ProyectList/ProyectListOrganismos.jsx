@@ -9,6 +9,7 @@ import {
   cancelProyecto,
   addProyecto,
   confirmAlumno,
+  createTutor,
 } from '../../redux/organismos/organismosSlice'
 import { sectorData } from '../Register/RegisterOrg/RegisterOrg'
 import {
@@ -45,6 +46,8 @@ const ExpandMore = styled((props) => {
   }),
 }))
 
+const tutorData = ['Público', 'Concertado', 'Privado']
+
 const ProyectListOrganismos = () => {
   const [expandedIds, setExpandedIds] = useState([])
   const [selectedProyecto, setSelectedProyecto] = useState(null)
@@ -53,6 +56,16 @@ const ProyectListOrganismos = () => {
   const [modalAddProyectoVisible, setModalAddProyectoVisible] = useState(false)
   const [modalSolicitud, setModalSolicitud] = useState(false)
   const [selectedSolicitud, setSelectedSolicitud] = useState(null)
+  const [modalNuevoTutor, setModalNuevoTutor] = useState(false)
+  const [nuevoTutor, setNuevoTutor] = useState({
+    Nombre: '',
+    Telefono: '',
+    Email: '',
+    Area_Estudios: '',
+    Centro_estudios: '',
+    Tipo_centro: '',
+    IdEmpresa: '',
+  })
   const [nuevoProyecto, setNuevoProyecto] = useState({
     Titulo: '',
     Descripcion: '',
@@ -185,13 +198,88 @@ const ProyectListOrganismos = () => {
     setModalSolicitud(false)
   }
 
+  const handleNuevoTutor = (data) => {
+    dispatch(createTutor(data))
+    setModalNuevoTutor(false)
+  }
+
   return (
     <>
       <div style={{ marginBottom: '0.3125rem' }}>
         <button onClick={() => setModalAddProyectoVisible(true)}>
           Nuevo proyecto
         </button>
+        <button onClick={() => setModalNuevoTutor(true)}>Nuevo tutor</button>
       </div>
+      <Modal
+        style={{ maxWidth: '80%' }}
+        title="Nuevo tutor"
+        visible={modalNuevoTutor}
+        onCancel={() => setModalNuevoTutor(false)}
+        onOk={() => {
+          handleNuevoTutor({ ...nuevoTutor, IdEmpresa: organismo._id })
+        }}>
+        <Form>
+          <Form.Item label="Nombre">
+            <Input
+              value={nuevoTutor.Nombre}
+              onChange={(e) =>
+                setNuevoTutor({ ...nuevoTutor, Nombre: e.target.value })
+              }
+            />
+          </Form.Item>
+          <Form.Item label="Teléfono">
+            <Input
+              value={nuevoTutor.Telefono}
+              onChange={(e) =>
+                setNuevoTutor({ ...nuevoTutor, Telefono: e.target.value })
+              }
+            />
+          </Form.Item>
+          <Form.Item label="Email">
+            <Input
+              value={nuevoTutor.Email}
+              onChange={(e) =>
+                setNuevoTutor({ ...nuevoTutor, Email: e.target.value })
+              }
+            />
+          </Form.Item>
+          <Form.Item label="Área de estudios">
+            <Input
+              value={nuevoTutor.Area_Estudios}
+              onChange={(e) =>
+                setNuevoTutor({ ...nuevoTutor, Area_Estudios: e.target.value })
+              }
+            />
+          </Form.Item>
+          <Form.Item label="Centro de estudios">
+            <Input
+              value={nuevoTutor.Centro_estudios}
+              onChange={(e) =>
+                setNuevoTutor({
+                  ...nuevoTutor,
+                  Centro_estudios: e.target.value,
+                })
+              }
+            />
+          </Form.Item>
+          <Form.Item label="Tipo de centro">
+            <Select
+              style={{ width: '100%' }}
+              placeholder="Tipo de centro"
+              value={nuevoTutor.Tipo_centro}
+              onChange={(tutor) =>
+                setNuevoTutor({ ...nuevoTutor, Tipo_centro: tutor })
+              }>
+              {tutorData.map((tutor, index) => (
+                <Option key={index} value={tutor}>
+                  {tutor}
+                </Option>
+              ))}
+            </Select>
+          </Form.Item>
+        </Form>
+      </Modal>
       <Modal
         style={{ maxWidth: '80%' }}
         visible={modalSolicitud}
