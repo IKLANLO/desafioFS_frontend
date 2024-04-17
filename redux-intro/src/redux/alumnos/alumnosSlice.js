@@ -10,7 +10,8 @@ const initialState = {
   message: '',
   isError: false,
   isSuccess: false,
-  proyectos: [], // Agrega el estado para almacenar los proyectos
+  proyectos: [],
+  empresas: [],
 }
 
 export const register = createAsyncThunk(
@@ -26,17 +27,13 @@ export const register = createAsyncThunk(
   }
 )
 
-
-export const login = createAsyncThunk(
-  "alum/login", 
-  async (alu, thunkAPI) => {
-    try {
-      return await alumnosService.login(alu);
+export const login = createAsyncThunk('alum/login', async (alu, thunkAPI) => {
+  try {
+    return await alumnosService.login(alu)
   } catch (error) {
-      return thunkAPI.rejectWithValue(message)
+    return thunkAPI.rejectWithValue(message)
   }
-}
-)
+})
 export const getProyects = createAsyncThunk(
   'alum/getProyects',
   async (Sector, thunkAPI) => {
@@ -50,35 +47,47 @@ export const getProyects = createAsyncThunk(
   }
 )
 
-export const addSolicitud = createAsyncThunk('alum/addSolicitud', async (data) => {
+export const addSolicitud = createAsyncThunk(
+  'alum/addSolicitud',
+  async (data) => {
+    try {
+      return await alumnosService.addSolicitud(data)
+    } catch (error) {
+      console.log(error)
+      throw error
+    }
+  }
+)
+
+export const logout = createAsyncThunk('alum/logout', async (token) => {
   try {
-    return await alumnosService.addSolicitud(data)
+    return await alumnosService.logout(token)
   } catch (error) {
-    console.log(error)
-    throw error; 
+    console.error(error)
   }
 })
-
-export const logout = createAsyncThunk("alum/logout", async () => {
-  try {
-    return await alumnosService.logout();
-  } catch (error) {
-    console.error(error);
-  }
-});
 export const updateUser = createAsyncThunk(
   'alum/updateUser',
   async ({ userId, userData }, thunkAPI) => {
-    console.log(userId, userData);
+    console.log(userId, userData)
     try {
-      const response = await alumnosService.updateUser(userId, userData);
-      console.log(response);
-      return response;
+      const response = await alumnosService.updateUser(userId, userData)
+      console.log(response)
+      return response
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data);
+      return thunkAPI.rejectWithValue(error.response.data)
     }
   }
-);
+)
+
+export const getEmpresas = createAsyncThunk('alum/getEmpresas', async () => {
+  try {
+    return await alumnosService.getEmpresas()
+  } catch (error) {
+    console.error(error)
+  }
+})
+
 export const alumnosSlice = createSlice({
   name: 'alum',
   initialState,
@@ -89,7 +98,7 @@ export const alumnosSlice = createSlice({
       state.isSuccess = false
     },
     updateProyectos: (state, action) => {
-      state.proyectos = action.payload; // Actualiza la lista de proyectos en el estado global
+      state.proyectos = action.payload // Actualiza la lista de proyectos en el estado global
     },
   },
   extraReducers: (builder) => {
@@ -100,7 +109,7 @@ export const alumnosSlice = createSlice({
       })
       .addCase(register.rejected, (state, action) => {
         state.isError = true
-        state.message = "Error en el registro"
+        state.message = 'Error en el registro'
       })
       .addCase(login.fulfilled, (state, action) => {
         state.alumno = action.payload.alumno
@@ -110,17 +119,17 @@ export const alumnosSlice = createSlice({
       })
       .addCase(login.rejected, (state, action) => {
         state.isError = true
-        state.message = "error al logearte"
+        state.message = 'error al logearte'
       })
       .addCase(logout.fulfilled, (state) => {
         state.alumno = null
         state.token = null
       })
       .addCase(getProyects.fulfilled, (state, action) => {
-        state.proyectos = action.payload;
-        const firstProject = action.payload[0]; // Obtén el primer proyecto del array
+        state.proyectos = action.payload
+        const firstProject = action.payload[0] // Obtén el primer proyecto del array
         if (firstProject) {
-          state.alumno.Sector = firstProject.Sector; // Accede al campo Sector del primer proyecto
+          state.alumno.Sector = firstProject.Sector // Accede al campo Sector del primer proyecto
         }
       })
       .addCase(getProyects.rejected, (state, action) => {
@@ -131,25 +140,28 @@ export const alumnosSlice = createSlice({
         state.isSuccess = true
         state.message = 'Solicitud enviada correctamente'
         // Actualiza la lista de proyectos después de enviar la solicitud
-        state.proyectos = action.payload.proyectos;
+        state.proyectos = action.payload.proyectos
       })
       .addCase(addSolicitud.rejected, (state, action) => {
         state.isError = true
         state.message = 'Error al enviar la solicitud'
       })
       .addCase(updateUser.fulfilled, (state, action) => {
-        state.alumno = action.payload.alumno; 
-        state.isSuccess = true; 
-        state.message = action.payload.message; 
-      
-        localStorage.setItem('alumno', JSON.stringify(action.payload.alumno));
+        state.alumno = action.payload.alumno
+        state.isSuccess = true
+        state.message = action.payload.message
+
+        localStorage.setItem('alumno', JSON.stringify(action.payload.alumno))
       })
       .addCase(updateUser.rejected, (state, action) => {
-        state.isError = true;
-        state.isSuccess = false;
-        state.message = 'Error al actualizar el perfil del alumno';
-      });
-
+        state.isError = true
+        state.isSuccess = false
+        state.message = 'Error al actualizar el perfil del alumno'
+      })
+      .addCase(getEmpresas.fulfilled, (state, action) => {
+        state.empresas = action.payload
+        console.log('state', state.empresas)
+      })
   },
 })
 

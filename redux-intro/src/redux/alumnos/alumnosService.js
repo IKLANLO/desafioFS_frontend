@@ -46,34 +46,40 @@ const addSolicitud = async (data) => {
     const res = await axios.put(
       `http://localhost:8080/proyectos/addSolicitud/${data.IdProyecto}`,
       {
-        _id: data._id, 
+        _id: data._id,
       }
     )
     console.log(res.data)
     return res.data
   } catch (error) {
     console.error('Error en la solicitud:', error)
-    throw error 
+    throw error
   }
 }
 const updateUser = async (userId, userData) => {
   try {
-
-    const res = await axios.put(`${API_URL}/update/${userId}`, userData);
+    const res = await axios.put(`${API_URL}/update/${userId}`, userData)
     console.log(res.data)
-    return res.data;
+    return res.data
   } catch (error) {
-    console.error('Error al actualizar usuario:', error);
-    throw error; 
+    console.error('Error al actualizar usuario:', error)
+    throw error
   }
-};
+}
+
+const getEmpresas = async () => {
+  const res = await axios.get(`http://localhost:8080/empresas`)
+  return res.data
+}
+
 const alumnosService = {
   register,
   login,
   logout,
   getProyects,
   addSolicitud,
-  updateUser
+  updateUser,
+  getEmpresas,
 }
 
 export default alumnosService

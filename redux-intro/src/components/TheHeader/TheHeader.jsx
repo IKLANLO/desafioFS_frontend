@@ -6,7 +6,10 @@ import IconButton from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import MenuIcon from '@mui/icons-material/Menu'
-import { logout as LogoutAlumno } from '../../redux/alumnos/alumnosSlice'
+import {
+  logout as LogoutAlumno,
+  reset as resetAlumno,
+} from '../../redux/alumnos/alumnosSlice'
 import { logout as LogoutOrg } from '../../redux/organismos/organismosSlice'
 const TheHeader = () => {
   const [anchorEl, setAnchorEl] = React.useState(null)
@@ -28,13 +31,14 @@ const TheHeader = () => {
   const onLogoutAlumno = (e) => {
     e.preventDefault()
     dispatch(LogoutAlumno(alumno.Token))
-    navigate('/login')
+    dispatch(resetAlumno())
+    navigate('/')
   }
 
   const onLogoutOrg = (e) => {
     e.preventDefault()
     dispatch(LogoutOrg(org.Token))
-    navigate('/login')
+    navigate('/')
   }
 
   return (
