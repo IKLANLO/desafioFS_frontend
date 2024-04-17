@@ -66,7 +66,19 @@ export const logout = createAsyncThunk("alum/logout", async () => {
     console.error(error);
   }
 });
+export const updateUser = createAsyncThunk(
+  'alum/updateUser',
+  async (alumno, thunkAPI) => {
+    try {
 
+      const response = await alumnosService.updateUser(alumno);
+      console.log(response.data)
+      return response.data; 
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
 
 export const alumnosSlice = createSlice({
   name: 'alum',
@@ -126,6 +138,20 @@ export const alumnosSlice = createSlice({
         state.isError = true
         state.message = 'Error al enviar la solicitud'
       })
+      .addCase(updateUser.fulfilled, (state, action) => {
+        
+        state.alumno = action.payload;
+        console.log(state.alumno)
+        console.log(actio.payload)
+        state.isSuccess = true;
+        localStorage.setItem('alumno', JSON.stringify(action.payload));
+      })
+      .addCase(updateUser.rejected, (state, action) => {
+        
+        state.isError = true;
+        state.message = action.payload;
+      });
+
   },
 })
 
