@@ -55,7 +55,7 @@ export const addSolicitud = createAsyncThunk('alum/addSolicitud', async (data) =
     return await alumnosService.addSolicitud(data)
   } catch (error) {
     console.log(error)
-    throw error; // Re-throw the error so that it can be handled in the extraReducers
+    throw error; 
   }
 })
 
@@ -138,11 +138,10 @@ export const alumnosSlice = createSlice({
         state.message = 'Error al enviar la solicitud'
       })
       .addCase(updateUser.fulfilled, (state, action) => {
-        state.alumno = action.payload.alumno; // Actualiza el estado con los nuevos datos del alumno
-        state.isSuccess = true; // Marca la acción como exitosa
-        state.message = action.payload.message; // Actualiza el mensaje con el mensaje del servidor
+        state.alumno = action.payload.alumno; 
+        state.isSuccess = true; 
+        state.message = action.payload.message; 
       
-        // Actualiza los datos del alumno en el almacenamiento local
         localStorage.setItem('alumno', JSON.stringify(action.payload.alumno));
       })
       .addCase(updateUser.rejected, (state, action) => {

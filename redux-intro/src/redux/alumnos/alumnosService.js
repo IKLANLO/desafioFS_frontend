@@ -46,14 +46,14 @@ const addSolicitud = async (data) => {
     const res = await axios.put(
       `http://localhost:8080/proyectos/addSolicitud/${data.IdProyecto}`,
       {
-        _id: data._id, // Ajustamos el formato de los datos enviados
+        _id: data._id, 
       }
     )
     console.log(res.data)
     return res.data
   } catch (error) {
     console.error('Error en la solicitud:', error)
-    throw error // Propagamos el error para manejarlo en el lugar donde se llama a esta función
+    throw error 
   }
 }
 const updateUser = async (userId, userData) => {

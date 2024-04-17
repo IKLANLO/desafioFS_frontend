@@ -33,13 +33,10 @@ const Profile = () => {
     };
 
     const onFinish = (values) => {
-        // Verificar si el ID del usuario es válido
         if (!user || !user._id || typeof user._id !== 'string') {
           console.error('ID de usuario no válido');
           return;
         }
-      
-        // Crear el objeto de datos actualizados
         const updatedData = {
           Nombre: values.Nombre,
           Genero: values.Genero,
@@ -47,10 +44,8 @@ const Profile = () => {
           CP: values.CP,
           Telefono: values.Telefono,
           Experiencia: values.Experiencia,
-          // Agregar otros campos que deseas actualizar
         };
       console.log(updatedData);
-        // Enviar la solicitud para actualizar el usuario
         dispatch(updateUser({ userId: user._id, userData: updatedData }));
         setIsEditing(false);
       };
