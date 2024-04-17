@@ -86,6 +86,13 @@ const TheHeader = () => {
         <MenuItem
           onClick={() => {
             handleClose()
+            navigate('/profileOrg')
+          }}>
+          Perfil
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            handleClose()
             navigate('/proyects/organismos')
           }}>
           Proyectos empresas

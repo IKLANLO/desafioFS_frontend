@@ -124,7 +124,19 @@ export const createTutor = createAsyncThunk(
     }
   }
 )
-
+export const updateOrgan = createAsyncThunk(
+  'organ/updateOrgan',
+  async ({ orgId, orgData }, thunkAPI) => {
+    console.log(orgId, orgData);
+    try {
+      const response = await organismosService.updateOrgan(orgId, orgData);
+      console.log(response);
+      return response;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
 export const organismosSlice = createSlice({
   name: 'organ',
   initialState,
@@ -205,6 +217,19 @@ export const organismosSlice = createSlice({
         state.isError = true
         state.message = 'Error en los datos'
       })
+      .addCase(updateOrgan.fulfilled, (state, action) => {
+        state.organismo = action.payload.organismo; 
+        state.isSuccess = true; 
+        state.message = action.payload.message; 
+      
+        localStorage.setItem('organismo', JSON.stringify(action.payload.organismo));
+      })
+      .addCase(updateOrgan.rejected, (state, action) => {
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = 'Error al actualizar el perfil del alumno';
+      });
+
   },
 })
 
