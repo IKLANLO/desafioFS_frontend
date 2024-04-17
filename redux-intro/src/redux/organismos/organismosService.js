@@ -85,7 +85,17 @@ const createTutor = async (data) => {
   const res = await axios.post(`${API_URL}/tutores/create`, data)
   return res.data
 }
+const updateOrgan = async (orgId, orgData) => {
+  try {
 
+    const res = await axios.put(`${API_URL}/empresas/update/${orgId}`, orgData);
+    console.log(res.data)
+    return res.data;
+  } catch (error) {
+    console.error('Error al actualizar usuario:', error);
+    throw error; 
+  }
+};
 const organismosService = {
   register,
   getProyects,
@@ -97,6 +107,7 @@ const organismosService = {
   confirmAlumno,
   logout,
   createTutor,
+  updateOrgan,
 }
 
 export default organismosService
