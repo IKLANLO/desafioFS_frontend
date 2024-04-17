@@ -56,13 +56,19 @@ const addSolicitud = async (data) => {
     throw error // Propagamos el error para manejarlo en el lugar donde se llama a esta función
   }
 }
-
+const updateUser = async (userData) => {
+  console.log(userData)
+  const res = await axios.put(`${API_URL}/alumnos/${userData._id}`, userData)
+  console.log(res.data)
+  return res.data
+}
 const alumnosService = {
   register,
   login,
   logout,
   getProyects,
   addSolicitud,
+  updateUser
 }
 
 export default alumnosService
