@@ -56,12 +56,17 @@ const addSolicitud = async (data) => {
     throw error // Propagamos el error para manejarlo en el lugar donde se llama a esta función
   }
 }
-const updateUser = async (userData) => {
-  console.log(userData)
-  const res = await axios.put(`${API_URL}/alumnos/${userData._id}`, userData)
-  console.log(res.data)
-  return res.data
-}
+const updateUser = async (userId, userData) => {
+  try {
+
+    const res = await axios.put(`${API_URL}/update/${userId}`, userData);
+    console.log(res.data)
+    return res.data;
+  } catch (error) {
+    console.error('Error al actualizar usuario:', error);
+    throw error; 
+  }
+};
 const alumnosService = {
   register,
   login,

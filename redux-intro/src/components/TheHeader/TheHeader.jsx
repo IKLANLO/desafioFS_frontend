@@ -15,8 +15,6 @@ const TheHeader = () => {
   const dispatch = useDispatch()
   const alumno = useSelector((state) => state.alum.alumno)
   const org = useSelector((state) => state.organ.organismo)
-  console.log(alumno)
-  console.log(org)
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
   }
@@ -77,6 +75,13 @@ const TheHeader = () => {
             navigate('/register')
           }}>
           Registro
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            handleClose()
+            navigate('/profile')
+          }}>
+          Perfil
         </MenuItem>
         <MenuItem
           onClick={() => {

@@ -6,12 +6,13 @@ import { updateUser } from '../../redux/alumnos/alumnosSlice';
 const Profile = () => {
     const dispatch = useDispatch();
     const { alumno: user, isSuccess, isError, message: updateMessage } = useSelector((state) => state.alum);
-    // console.log(user)
     const [isEditing, setIsEditing] = useState(false);
     const [editedUser, setEditedUser] = useState(null);
 
     useEffect(() => {
-        setEditedUser(user);
+        if (user) {
+            setEditedUser(user);
+        }
     }, [user]);
 
     useEffect(() => {
@@ -32,29 +33,47 @@ const Profile = () => {
     };
 
     const onFinish = (values) => {
-        // console.log(updateUser(values))
-        console.log(values);
-        updateUser(values);
+        // Verificar si el ID del usuario es válido
+        if (!user || !user._id || typeof user._id !== 'string') {
+          console.error('ID de usuario no válido');
+          return;
+        }
+      
+        // Crear el objeto de datos actualizados
+        const updatedData = {
+          Nombre: values.Nombre,
+          Genero: values.Genero,
+          Email: values.Email,
+          CP: values.CP,
+          Telefono: values.Telefono,
+          Experiencia: values.Experiencia,
+          // Agregar otros campos que deseas actualizar
+        };
+      console.log(updatedData);
+        // Enviar la solicitud para actualizar el usuario
+        dispatch(updateUser({ userId: user._id, userData: updatedData }));
         setIsEditing(false);
-    };
+      };
+      
+      
 
     const onValuesChange = (changedValues) => {
         setEditedUser({ ...editedUser, ...changedValues });
     };
-
+console.log(user)
     return (
         <>
-            <h1>Perfil de {user.Nombre}</h1>
-            <p>Genero: {user.Genero}</p>
-            <p>Email: {user.Email}</p>
-            <p>Teléfono: {user.Telefono}</p>
-            <p>Cp: {user.CP}</p>
-            <p>Área de Estudios: {user.AreaEstudios}</p>
-            <p>Educacion: {user.Educacion}</p>
-            <p>Experiencia: {user.Experiencia}</p>
-            <p>Habilidades: {user.Habilidades}</p>
-            <p>Logros: {user.Logros}</p>
-            <p>Sector: {user.Sector}</p>
+            <h1>Perfil de {user && user.Nombre}</h1>
+            <p>Genero: {user && user.Genero}</p>
+            <p>Email: {user && user.Email}</p>
+            <p>Teléfono: {user && user.Telefono}</p>
+            <p>Cp: {user && user.CP}</p>
+            <p>Área de Estudios: {user && user.AreaEstudios}</p>
+            <p>Educacion: {user && user.Educacion}</p>
+            <p>Experiencia: {user && user.Experiencia}</p>
+            <p>Habilidades: {user && user.Habilidades}</p>
+            <p>Logros: {user && user.Logros}</p>
+            <p>Sector: {user && user.Sector}</p>
 
             <Button onClick={() => setIsEditing(true)}>Editar Perfil</Button>
 
