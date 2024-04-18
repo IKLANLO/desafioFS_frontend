@@ -56,3 +56,6 @@
     max-width: 100%;
   }
 }
+.login-input::placeholder {
+  color: #fff; /* Color blanco para el placeholder */
+}
