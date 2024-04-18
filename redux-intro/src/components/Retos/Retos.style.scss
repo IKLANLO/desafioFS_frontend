@@ -1,0 +1,17 @@
+.container {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+
+  &__res {
+    font-weight: 500;
+    font-size: 1.1em;
+    border: 0.1rem solid;
+    border-radius: 0.625rem;
+    padding: 0.3125rem 0.625rem;
+  }
+
+  &__res:hover {
+    cursor: pointer;
+  }
+}

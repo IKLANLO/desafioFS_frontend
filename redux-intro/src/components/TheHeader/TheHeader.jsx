@@ -12,7 +12,7 @@ import {
 } from '../../redux/alumnos/alumnosSlice'
 import { logout as LogoutOrg } from '../../redux/organismos/organismosSlice'
 
-import Logo from "../../assets/Logo/LOGO_LANLAB.svg"
+import Logo from '../../assets/Logo/LOGO_LANLAB.svg'
 import './TheHeader.css'
 
 const TheHeader = () => {
@@ -51,76 +51,159 @@ const TheHeader = () => {
         <img src={Logo} alt="Logo" className="logo" />
       </div>
       <div className="menu-container">
+        <IconButton
+          id="basic-button"
+          aria-controls={open ? 'basic-menu' : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? 'true' : undefined}
+          className="menu-container"
+          onClick={handleClick}>
+          <MenuIcon />
+        </IconButton>
+        <Menu
+          id="basic-menu"
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          MenuListProps={{
+            'aria-labelledby': 'basic-button',
+          }}>
+          <MenuItem
+            style={{
+              marginBottom: '8px',
+              padding: '8px 16px',
+              fontSize: '16px',
+              color: '#333',
+              backgroundColor: '#f4f4f4',
+              borderRadius: '4px',
+            }}
+            onClick={() => {
+              handleClose()
+              navigate('/')
+            }}>
+            Inicio
+          </MenuItem>
+          <MenuItem
+            style={{
+              marginBottom: '8px',
+              padding: '8px 16px',
+              fontSize: '16px',
+              color: '#333',
+              backgroundColor: '#f4f4f4',
+              borderRadius: '4px',
+            }}
+            onClick={() => {
+              handleClose()
+              navigate('/login')
+            }}>
+            Login
+          </MenuItem>
+          <MenuItem
+            style={{
+              marginBottom: '8px',
+              padding: '8px 16px',
+              fontSize: '16px',
+              color: '#333',
+              backgroundColor: '#f4f4f4',
+              borderRadius: '4px',
+            }}
+            onClick={() => {
+              handleClose()
+              navigate('/register')
+            }}>
+            Registro
+          </MenuItem>
+          <MenuItem
+            style={{
+              marginBottom: '8px',
+              padding: '8px 16px',
+              fontSize: '16px',
+              color: '#333',
+              backgroundColor: '#f4f4f4',
+              borderRadius: '4px',
+            }}
+            onClick={() => {
+              handleClose()
+              navigate('/profile')
+            }}>
+            Perfil
+          </MenuItem>
+          <MenuItem
+            style={{
+              marginBottom: '8px',
+              padding: '8px 16px',
+              fontSize: '16px',
+              color: '#333',
+              backgroundColor: '#f4f4f4',
+              borderRadius: '4px',
+            }}
+            onClick={() => {
+              handleClose()
+              navigate('/profileOrg')
+            }}>
+            Perfil
+          </MenuItem>
+          <MenuItem
+            style={{
+              marginBottom: '8px',
+              padding: '8px 16px',
+              fontSize: '16px',
+              color: '#333',
+              backgroundColor: '#f4f4f4',
+              borderRadius: '4px',
+            }}
+            onClick={() => {
+              handleClose()
+              navigate('/proyects/organismos')
+            }}>
+            Proyectos empresas
+          </MenuItem>
+          <MenuItem
+            style={{
+              marginBottom: '8px',
+              padding: '8px 16px',
+              fontSize: '16px',
+              color: '#333',
+              backgroundColor: '#f4f4f4',
+              borderRadius: '4px',
+            }}
+            onClick={() => {
+              handleClose()
+              navigate('/retos')
+            }}>
+            Retos
+          </MenuItem>
 
-      <IconButton
-        id="basic-button"
-        aria-controls={open ? 'basic-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        className='menu-container'
-        onClick={handleClick}>
-        <MenuIcon />
-      </IconButton>
-      <Menu
-        id="basic-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        MenuListProps={{
-          'aria-labelledby': 'basic-button',
-        }}>
-        <MenuItem style={{ marginBottom: '8px', padding: '8px 16px', fontSize: '16px', color: '#333', backgroundColor: '#f4f4f4', borderRadius: '4px' }}
-          onClick={() => {
-            handleClose()
-            navigate('/')
-          }}>
-          Inicio
-        </MenuItem>
-        <MenuItem style={{ marginBottom: '8px', padding: '8px 16px', fontSize: '16px', color: '#333', backgroundColor: '#f4f4f4', borderRadius: '4px' }}
-          onClick={() => {
-            handleClose()
-            navigate('/login')
-          }}>
-          Login
-        </MenuItem>
-        <MenuItem style={{ marginBottom: '8px', padding: '8px 16px', fontSize: '16px', color: '#333', backgroundColor: '#f4f4f4', borderRadius: '4px' }}
-          onClick={() => {
-            handleClose()
-            navigate('/register')
-          }}>
-          Registro
-        </MenuItem>
-        <MenuItem style={{ marginBottom: '8px', padding: '8px 16px', fontSize: '16px', color: '#333', backgroundColor: '#f4f4f4', borderRadius: '4px' }}
-          onClick={() => {
-            handleClose()
-            navigate('/profile')
-          }}>
-          Perfil
-        </MenuItem>
-        <MenuItem style={{ marginBottom: '8px', padding: '8px 16px', fontSize: '16px', color: '#333', backgroundColor: '#f4f4f4', borderRadius: '4px' }}
-          onClick={() => {
-            handleClose()
-            navigate('/profileOrg')
-          }}>
-          Perfil
-        </MenuItem>
-        <MenuItem style={{ marginBottom: '8px', padding: '8px 16px', fontSize: '16px', color: '#333', backgroundColor: '#f4f4f4', borderRadius: '4px' }}
-          onClick={() => {
-            handleClose()
-            navigate('/proyects/organismos')
-          }}>
-          Proyectos empresas
-        </MenuItem>
-
-        {alumno ? (
-          <MenuItem style={{ marginBottom: '8px', padding: '8px 16px', fontSize: '16px', color: '#333', backgroundColor: '#f4f4f4', borderRadius: '4px' }}
-          onClick={onLogoutAlumno}>Cerrar sesión</MenuItem>
-        ) : null}
-        {org ? <MenuItem style={{ marginBottom: '8px', padding: '8px 16px', fontSize: '16px', color: '#333', backgroundColor: '#f4f4f4', borderRadius: '4px' }}
-        onClick={onLogoutOrg}>Cerrar sesión</MenuItem> : null}
-      </Menu>
+          {alumno ? (
+            <MenuItem
+              style={{
+                marginBottom: '8px',
+                padding: '8px 16px',
+                fontSize: '16px',
+                color: '#333',
+                backgroundColor: '#f4f4f4',
+                borderRadius: '4px',
+              }}
+              onClick={onLogoutAlumno}>
+              Cerrar sesión
+            </MenuItem>
+          ) : null}
+          {org ? (
+            <MenuItem
+              style={{
+                marginBottom: '8px',
+                padding: '8px 16px',
+                fontSize: '16px',
+                color: '#333',
+                backgroundColor: '#f4f4f4',
+                borderRadius: '4px',
+              }}
+              onClick={onLogoutOrg}>
+              Cerrar sesión
+            </MenuItem>
+          ) : null}
+        </Menu>
       </div>
-
     </header>
   )
 }
