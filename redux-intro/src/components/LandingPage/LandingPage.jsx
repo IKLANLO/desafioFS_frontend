@@ -70,22 +70,22 @@ const LandingPage = () => {
         </h2>
         <Slider {...settings}>
           <div>
-            <img src={ImageC1} alt="Logo" className="logo" />
+            <img src={ImageC1} alt="Logo" className="slider" />
           </div>
           <div>
-            <img src={ImageC2} alt="Logo" className="logo" />
+            <img src={ImageC2} alt="Logo" className="slider" />
           </div>
           <div>
-            <img src={ImageC1} alt="Logo" className="logo" />
+            <img src={ImageC1} alt="Logo" className="slider" />
           </div>
           <div>
-            <img src={ImageC2} alt="Logo" className="logo" />
+            <img src={ImageC2} alt="Logo" className="slider" />
           </div>
           <div>
-            <img src={ImageC1} alt="Logo" className="logo" />
+            <img src={ImageC1} alt="Logo" className="slider" />
           </div>
           <div>
-            <img src={ImageC2} alt="Logo" className="logo" />
+            <img src={ImageC2} alt="Logo" className="slider" />
           </div>
         </Slider>
       </div>
