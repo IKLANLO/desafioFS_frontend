@@ -1,92 +1,90 @@
 /* Estilos base */
 .content-container {
-    text-align: left; /* Alinear el texto del contenido */
-    padding: 0 20px; /* Añade espacio alrededor del contenido */
-  }
-  
-  .slider-title {
-    display: block;
-    margin: 20px auto; /* Centrar la imagen */
-    max-width: 100%; /* Asegurar que la imagen no exceda el ancho del contenedor */
-  }
-  
-  .text-center {
-    text-align: left; /* Ajustar el texto a la izquierda */
-  }
-  
+  text-align: left; /* Alinear el texto del contenido */
+  /* padding: 0 20px;  */
+  /* Añade espacio alrededor del contenido */
+}
+
+.slider-title {
+  display: block;
+  margin: 20px auto; /* Centrar la imagen */
+  max-width: 100%; /* Asegurar que la imagen no exceda el ancho del contenedor */
+}
+
+.text-center {
+  text-align: left; /* Ajustar el texto a la izquierda */
+}
+
+.tres {
+  display: flex;
+  justify-content: space-between; /* Distribuir los contenedores de manera uniforme */
+  margin-bottom: 20px; /* Espacio entre el contenido y los botones */
+}
+
+.image-container {
+  display: flex;
+  align-items: center; /* Centrar verticalmente los elementos */
+}
+
+.icono {
+  width: 30px; /* Ajusta el tamaño de las imágenes según tus necesidades */
+  height: 30px; /* Ajusta el tamaño de las imágenes según tus necesidades */
+  margin-right: 10px; /* Espacio entre el icono y el texto */
+}
+
+.text {
+  text-align: left; /* Alinear el texto a la izquierda */
+  font-size: smaller;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-start; /* Alinear los botones a la izquierda */
+  margin-bottom: 20px; /* Espacio entre los botones y el slider */
+}
+
+.registrarme {
+  background-color: #e99c5d; /* Color de fondo del primer botón */
+}
+
+.mas-info {
+  background-color: #75a5c5; /* Color de fondo del segundo botón */
+  margin-left: 15px;
+}
+.registrarme,
+.mas-info {
+  color: #ffffff; /* Color del texto del segundo botón */
+  border: none; /* Elimina el borde del botón */
+  padding: 10px 20px; /* Ajusta el espaciado dentro del botón */
+  margin-right: 15px; /* Espacio entre los botones */
+}
+
+.image-slider-container {
+  text-align: center; /* Alinear el texto del contenido */
+
+  width: 80%; /* Ancho del slider */
+  max-width: 800px; /* Ancho máximo del slider */
+  margin-top: 100px !important;
+  margin: 0 auto; /* Centrar horizontalmente */
+}
+
+/* Media query para tamaños de pantalla pequeños */
+@media screen and (max-width: 768px) {
   .tres {
-    display: flex;
-    justify-content: space-between; /* Distribuir los contenedores de manera uniforme */
-    margin-bottom: 20px; /* Espacio entre el contenido y los botones */
+    flex-wrap: wrap; /* Envuelve los elementos en la fila */
   }
-  
+
   .image-container {
-    display: flex;
-    align-items: center; /* Centrar verticalmente los elementos */
+    width: 33%; /* Tamaño para mostrar los elementos en una fila */
+    margin-bottom: 10px; /* Espacio entre las filas */
   }
-  
+
   .icono {
-    width: 30px; /* Ajusta el tamaño de las imágenes según tus necesidades */
-    height: 30px; /* Ajusta el tamaño de las imágenes según tus necesidades */
-    margin-right: 10px; /* Espacio entre el icono y el texto */
+    width: 25px; /* Tamaño reducido de los iconos */
+    height: 25px; /* Tamaño reducido de los iconos */
   }
-  
-  .text {
-    text-align: left; /* Alinear el texto a la izquierda */
-    font-size: smaller;
-  }
-  
+
   .button-container {
-    display: flex;
-    justify-content: flex-start; /* Alinear los botones a la izquierda */
-    margin-bottom: 20px; /* Espacio entre los botones y el slider */
+    justify-content: left; /* Centrar los botones en dispositivos móviles */
   }
-  
-  .registrarme {
-    background-color: #E99C5D; /* Color de fondo del primer botón */
-  }
-  
-  .mas-info {
-    background-color: #75A5C5; /* Color de fondo del segundo botón */
-    margin-left: 15px;
-
-  }
-  .registrarme, .mas-info {
-    color: #FFFFFF; /* Color del texto del segundo botón */
-    border: none; /* Elimina el borde del botón */
-    padding: 10px 20px; /* Ajusta el espaciado dentro del botón */
-    margin-right: 15px; /* Espacio entre los botones */
-  }
-  
-  .image-slider-container {
-    text-align: center; /* Alinear el texto del contenido */
-
-    width: 80%; /* Ancho del slider */
-    max-width: 800px; /* Ancho máximo del slider */
-    margin-top: 100px!important;
-    margin: 0 auto; /* Centrar horizontalmente */
-  }
-  
-  /* Media query para tamaños de pantalla pequeños */
-  @media screen and (max-width: 768px) {
-    .tres {
-      flex-wrap: wrap; /* Envuelve los elementos en la fila */
-    }
-  
-    .image-container {
-      width: 33%; /* Tamaño para mostrar los elementos en una fila */
-      margin-bottom: 10px; /* Espacio entre las filas */
-    }
-  
-    .icono {
-      width: 25px; /* Tamaño reducido de los iconos */
-      height: 25px; /* Tamaño reducido de los iconos */
-    }
-  
-    .button-container {
-      justify-content: left; /* Centrar los botones en dispositivos móviles */
-    }
-  
-    
-  }
-  
+}
