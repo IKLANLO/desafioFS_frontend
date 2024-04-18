@@ -1,0 +1,63 @@
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  h2 {
+    color: #e99c5d; /* Color naranja */
+    font-size: 32px; /* Tamaño de fuente */
+    font-weight: bold; /* Negrita */
+    text-align: center; /* Alineación centrada */
+    text-transform: uppercase; /* Convertir texto a mayúsculas */
+    margin-bottom: 30px; /* Margen inferior */
+    margin-top: 10px;
+  }
+
+  form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    animation: fadeIn 0.5s ease; /* Animación de fadeIn */
+  }
+  
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #75a5c5; /* Azul */
+    color: #fff; /* Texto blanco */
+  }
+  
+  button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #e99c5d; /* Naranja */
+    color: #fff;
+    border: none;
+    border-radius: 25px; /* Redondeado */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #d78a4a; /* Naranja más oscuro al pasar el ratón */
+  }
+  
+  /* Media query para hacer responsive el formulario */
+  @media screen and (max-width: 600px) {
+    form {
+      max-width: 100%;
+    }
+  }
+  
