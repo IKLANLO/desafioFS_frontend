@@ -118,14 +118,6 @@ const TheLogin = () => {
         </button>
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
       </form>
-      <Slider {...settings}>
-        <div>
-          <img src={Image1} alt="Image1" className="logo" />
-        </div>
-        <div>
-          <img src={Image2} alt="Image2" className="logo" />
-        </div>
-      </Slider>
     </>
   )
 }
