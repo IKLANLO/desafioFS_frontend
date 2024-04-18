@@ -1,5 +1,6 @@
 // import Nav from 'react-bootstrap/Nav'
 import React from 'react'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import IconButton from '@mui/material/IconButton'
@@ -12,7 +13,7 @@ import {
 } from '../../redux/alumnos/alumnosSlice'
 import { logout as LogoutOrg } from '../../redux/organismos/organismosSlice'
 
-import Logo from '../../assets/Logo/LOGO_LANLAB.svg'
+import Logo from '../../assets/Logo/LOGO_LANLAB_ng (1).svg'
 import './TheHeader.css'
 
 const TheHeader = () => {
@@ -22,6 +23,7 @@ const TheHeader = () => {
   const dispatch = useDispatch()
   const alumno = useSelector((state) => state.alum.alumno)
   const org = useSelector((state) => state.organ.organismo)
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
   }
@@ -44,6 +46,9 @@ const TheHeader = () => {
     dispatch(LogoutOrg(org.Token))
     navigate('/')
   }
+
+  const alumToken = JSON.parse(localStorage.getItem('tokenAlumno'))
+  const orgToken = JSON.parse(localStorage.getItem('tokenOrg'))
 
   return (
     <header className="header">
@@ -84,127 +89,139 @@ const TheHeader = () => {
             }}>
             Inicio
           </MenuItem>
-          <MenuItem
-            style={{
-              marginBottom: '8px',
-              padding: '8px 16px',
-              fontSize: '16px',
-              color: '#333',
-              backgroundColor: '#f4f4f4',
-              borderRadius: '4px',
-            }}
-            onClick={() => {
-              handleClose()
-              navigate('/login')
-            }}>
-            Login
-          </MenuItem>
-          <MenuItem
-            style={{
-              marginBottom: '8px',
-              padding: '8px 16px',
-              fontSize: '16px',
-              color: '#333',
-              backgroundColor: '#f4f4f4',
-              borderRadius: '4px',
-            }}
-            onClick={() => {
-              handleClose()
-              navigate('/register')
-            }}>
-            Registro
-          </MenuItem>
-          <MenuItem
-            style={{
-              marginBottom: '8px',
-              padding: '8px 16px',
-              fontSize: '16px',
-              color: '#333',
-              backgroundColor: '#f4f4f4',
-              borderRadius: '4px',
-            }}
-            onClick={() => {
-              handleClose()
-              navigate('/profile')
-            }}>
-            Perfil
-          </MenuItem>
-          <MenuItem
-            style={{
-              marginBottom: '8px',
-              padding: '8px 16px',
-              fontSize: '16px',
-              color: '#333',
-              backgroundColor: '#f4f4f4',
-              borderRadius: '4px',
-            }}
-            onClick={() => {
-              handleClose()
-              navigate('/profileOrg')
-            }}>
-            Perfil
-          </MenuItem>
-          <MenuItem
-            style={{
-              marginBottom: '8px',
-              padding: '8px 16px',
-              fontSize: '16px',
-              color: '#333',
-              backgroundColor: '#f4f4f4',
-              borderRadius: '4px',
-            }}
-            onClick={() => {
-              handleClose()
-              navigate('/projects/organismos')
-            }}>
-            Tus proyectos
-          </MenuItem>
-          <MenuItem
-            style={{
-              marginBottom: '8px',
-              padding: '8px 16px',
-              fontSize: '16px',
-              color: '#333',
-              backgroundColor: '#f4f4f4',
-              borderRadius: '4px',
-            }}
-            onClick={() => {
-              handleClose()
-              navigate('/projects/solicitantes')
-            }}>
-            Tus proyectos
-          </MenuItem>
-          <MenuItem
-            style={{
-              marginBottom: '8px',
-              padding: '8px 16px',
-              fontSize: '16px',
-              color: '#333',
-              backgroundColor: '#f4f4f4',
-              borderRadius: '4px',
-            }}
-            onClick={() => {
-              handleClose()
-              navigate('/retos')
-            }}>
-            Retos
-          </MenuItem>
-          <MenuItem
-            style={{
-              marginBottom: '8px',
-              padding: '8px 16px',
-              fontSize: '16px',
-              color: '#333',
-              backgroundColor: '#f4f4f4',
-              borderRadius: '4px',
-            }}
-            onClick={() => {
-              handleClose()
-              navigate('/acercade')
-            }}>
-            Conócenos
-          </MenuItem>
-          {alumno ? (
+          {alumToken === null && orgToken === null && (
+            <div>
+              <MenuItem
+                style={{
+                  marginBottom: '8px',
+                  padding: '8px 16px',
+                  fontSize: '16px',
+                  color: '#333',
+                  backgroundColor: '#f4f4f4',
+                  borderRadius: '4px',
+                }}
+                onClick={() => {
+                  handleClose()
+                  navigate('/login')
+                }}>
+                Login
+              </MenuItem>
+              <MenuItem
+                style={{
+                  marginBottom: '8px',
+                  padding: '8px 16px',
+                  fontSize: '16px',
+                  color: '#333',
+                  backgroundColor: '#f4f4f4',
+                  borderRadius: '4px',
+                }}
+                onClick={() => {
+                  handleClose()
+                  navigate('/register')
+                }}>
+                Registro
+              </MenuItem>
+            </div>
+          )}
+          {alumToken !== null && (
+            <div>
+              <MenuItem
+                style={{
+                  marginBottom: '8px',
+                  padding: '8px 16px',
+                  fontSize: '16px',
+                  color: '#333',
+                  backgroundColor: '#f4f4f4',
+                  borderRadius: '4px',
+                }}
+                onClick={() => {
+                  handleClose()
+                  navigate('/profile')
+                }}>
+                Perfil
+              </MenuItem>
+              <MenuItem
+                style={{
+                  marginBottom: '8px',
+                  padding: '8px 16px',
+                  fontSize: '16px',
+                  color: '#333',
+                  backgroundColor: '#f4f4f4',
+                  borderRadius: '4px',
+                }}
+                onClick={() => {
+                  handleClose()
+                  navigate('/Inicio')
+                }}>
+                Proyectos
+              </MenuItem>
+              <MenuItem
+                style={{
+                  marginBottom: '8px',
+                  padding: '8px 16px',
+                  fontSize: '16px',
+                  color: '#333',
+                  backgroundColor: '#f4f4f4',
+                  borderRadius: '4px',
+                }}
+                onClick={() => {
+                  handleClose()
+                  navigate('/projects/solicitantes')
+                }}>
+                Tus proyectos
+              </MenuItem>
+              <MenuItem
+                style={{
+                  marginBottom: '8px',
+                  padding: '8px 16px',
+                  fontSize: '16px',
+                  color: '#333',
+                  backgroundColor: '#f4f4f4',
+                  borderRadius: '4px',
+                }}
+                onClick={() => {
+                  handleClose()
+                  navigate('/retos')
+                }}>
+                Retos
+              </MenuItem>
+            </div>
+          )}
+          {orgToken !== null && (
+            <div>
+              <MenuItem
+                style={{
+                  marginBottom: '8px',
+                  padding: '8px 16px',
+                  fontSize: '16px',
+                  color: '#333',
+                  backgroundColor: '#f4f4f4',
+                  borderRadius: '4px',
+                }}
+                onClick={() => {
+                  handleClose()
+                  navigate('/profileOrg')
+                }}>
+                Perfil
+              </MenuItem>
+              <MenuItem
+                style={{
+                  marginBottom: '8px',
+                  padding: '8px 16px',
+                  fontSize: '16px',
+                  color: '#333',
+                  backgroundColor: '#f4f4f4',
+                  borderRadius: '4px',
+                }}
+                onClick={() => {
+                  handleClose()
+                  navigate('/projects/organismos')
+                }}>
+                Tus proyectos
+              </MenuItem>
+            </div>
+          )}
+          {alumno && (
             <MenuItem
               style={{
                 marginBottom: '8px',
@@ -217,8 +234,8 @@ const TheHeader = () => {
               onClick={onLogoutAlumno}>
               Cerrar sesión
             </MenuItem>
-          ) : null}
-          {org ? (
+          )}
+          {org && (
             <MenuItem
               style={{
                 marginBottom: '8px',
@@ -231,7 +248,22 @@ const TheHeader = () => {
               onClick={onLogoutOrg}>
               Cerrar sesión
             </MenuItem>
-          ) : null}
+          )}
+          <MenuItem
+            style={{
+              marginBottom: '8px',
+              padding: '8px 16px',
+              fontSize: '16px',
+              color: '#333',
+              backgroundColor: '#f4f4f4',
+              borderRadius: '4px',
+            }}
+            onClick={() => {
+              handleClose()
+              navigate('/FAQ')
+            }}>
+            FAQ
+          </MenuItem>
         </Menu>
       </div>
     </header>

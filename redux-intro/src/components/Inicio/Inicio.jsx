@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getProyects } from '../../redux/alumnos/alumnosSlice'
+// import { getProyects } from '../../redux/alumnos/alumnosSlice'
 import alumnosService from '../../redux/alumnos/alumnosService'
 import { addSolicitud, getEmpresas } from '../../redux/alumnos/alumnosSlice'
 
-import {
-  reset,
-  updateProyect,
-  getTutores,
-  addTutor,
-  cancelProyecto,
-  addProyecto,
-  confirmAlumno,
-} from '../../redux/organismos/organismosSlice'
+// import {
+//   reset,
+//   updateProyect,
+//   getTutores,
+//   addTutor,
+//   cancelProyecto,
+//   addProyecto,
+//   confirmAlumno,
+// } from '../../redux/organismos/organismosSlice'
 
 import { styled } from '@mui/material/styles'
 import Card from '@mui/material/Card'

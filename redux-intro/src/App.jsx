@@ -12,7 +12,7 @@ import LandingPage from './components/LandingPage/LandingPage'
 import ProfileOrg from './components/ProfileOrg/ProfileOrg'
 import Retos from './components/Retos/Retos'
 import ProyectListAlumnos from './components/ProyectList/ProyectListAlumnos/ProyectListAlumnos'
-import Conocenos from './components/Conocenos/Conocenos'
+import FAQ from './components/FAQ/FAQ'
 
 function App() {
   return (
@@ -33,7 +33,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/profileOrg" element={<ProfileOrg />} />
         <Route path="/retos" element={<Retos />} />
-        <Route path="/acercade" element={<Conocenos />} />
+        <Route path="/FAQ" element={<FAQ />} />
       </Routes>
     </BrowserRouter>
   )

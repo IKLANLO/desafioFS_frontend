@@ -1,19 +1,19 @@
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .logo-container {
-    margin-right: auto; 
-   
-  }
-  .logo{
-    width: 50%;
-  }
-  .menu-container {
-    margin-left: auto; 
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-container {
+  margin-right: auto;
+  width: 50%;
+}
+.logo {
+  width: 100%;
+}
+.menu-container {
+  margin-left: auto;
+}
 
 .menu-item {
   margin-bottom: 8px; /* Ajusta el margen inferior entre elementos del menú */
