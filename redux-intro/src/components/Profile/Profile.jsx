@@ -10,13 +10,14 @@ import Image2 from '../../assets/images/perfil_2.png'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import './Profile.style.scss'
+import Imageh2 from '../../assets/images/oportunidades_h2_Mesa de trabajo 1.png'
 
 const Profile = () => {
   var settings = {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 2,
     slidesToScroll: 1,
   }
   const dispatch = useDispatch()
@@ -94,7 +95,7 @@ const Profile = () => {
             <Button
               className="orange-button first-row-button"
               onClick={() => setIsEditing(true)}>
-              {user && user.Edad}
+              {user && user.CP}
             </Button>
             <Button
               className="orange-button first-row-button"
@@ -129,16 +130,13 @@ const Profile = () => {
           <Col xs={24} sm={24} md={24}>
             <div className="avatar-container">
               <div className="image-slider-container">
-                <h2 className="title">
-                  Las oportunidades<br></br>
-                  <span>Haz el Match Perfecto</span>
-                </h2>
+                <img src={Imageh2} alt='imgh2' className='imgh2' />
                 <Slider {...settings}>
                   <div>
-                    <img src={Image1} alt="Logo" className="logo" />
+                    <img src={Image1} alt="Logo" className="slider" />
                   </div>
                   <div>
-                    <img src={Image2} alt="Logo" className="logo" />
+                    <img src={Image2} alt="Logo" className="slider" />
                   </div>
                 </Slider>
               </div>
