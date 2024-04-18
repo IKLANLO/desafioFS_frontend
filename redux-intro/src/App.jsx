@@ -12,8 +12,7 @@ import LandingPage from './components/LandingPage/LandingPage'
 import ProfileOrg from './components/ProfileOrg/ProfileOrg'
 import Retos from './components/Retos/Retos'
 import ProyectListAlumnos from './components/ProyectList/ProyectListAlumnos/ProyectListAlumnos'
-
-// import 'bootstrap/dist/css/bootstrap.min.css'
+import Conocenos from './components/Conocenos/Conocenos'
 
 function App() {
   return (
@@ -33,7 +32,8 @@ function App() {
         <Route path="/projects/solicitantes" element={<ProyectListAlumnos />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/profileOrg" element={<ProfileOrg />} />
-        <Route path="retos" element={<Retos />} />
+        <Route path="/retos" element={<Retos />} />
+        <Route path="/acercade" element={<Conocenos />} />
       </Routes>
     </BrowserRouter>
   )

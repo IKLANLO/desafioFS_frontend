@@ -5,11 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background: linear-gradient(
-    3deg,
-    #E99C5D 0%,
-    #75A5C5 100%
-  );
+  background: linear-gradient(3deg, #e99c5d 0%, #75a5c5 100%);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -38,8 +34,9 @@ h1 {
   font-size: 2em;
   line-height: 1.1;
   font-family: Arial, Helvetica, sans-serif;
-  font-weight: 100;
-  color: #191919;
+  font-weight: 200;
+  // color: #191919;
+  color: #fff;
 }
 
 .input,
