@@ -4,6 +4,10 @@ import "./LandingPage.css"
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
+import Image1 from "../../assets/iconos/"
+import Image1 from "../../assets/iconos/simbolo_lnlb.png"
+
 const LandingPage = () => {
     var settings = {
         dots: false,
@@ -17,15 +21,19 @@ const LandingPage = () => {
     <>
     <h2>La fórmula perfecta para unir <span> talentos +</span><span> empresas</span> en Bizkaia</h2>
     <p>4 científicos tech para crear la fórmula perfecta: unir talentos y empresas de la mano de BBK Fundazioa. Regístrate y comienza  a sumar tu talento, multiplicar tu experiencia e igualar tus oportunidades:</p>
-    {/* <div className="tres">
-      <img>Sumatu talento</img>
-      <img>Multiplica tu experiencia</img>
-      <img>Iguala tus oportunidades</img>
+    <div className="tres">
+    <img src={Image1} alt="Logo" className="logo" />
+    <img src={Image1} alt="Logo" className="logo" />
+    <img src={Image1} alt="Logo" className="logo" />
+
+      {/* <img src={Image1}>Sumatu talento</img>
+      <img src={Image1}>Multiplica tu experiencia</img>
+      <img src={Image1}>Iguala tus oportunidades</img> */}
     </div>
     <div className=" button-container">
-    <button type="button" className="registrarme"></button>
-    <button type="button" className="mas-info"></button>
-    </div> */}
+    <button type="button" className="registrarme">Registrarme ahora</button>
+    <button type="button" className="mas-info">Mas Info</button>
+    </div>
     <div className="image-slider-container">
     <Slider {...settings}>
     <div>
