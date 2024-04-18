@@ -87,36 +87,46 @@ const TheLogin = () => {
   }
 
   return (
-    <form className="login-form" onSubmit={onSubmit}>
-      <h2 className="login-header">Iniciar Sesión</h2>
+    <>
+      <form className="login-form" onSubmit={onSubmit}>
+        <h2 className="login-header">Iniciar Sesión</h2>
 
-      <input
-        className="login-input"
-        type="email"
-        name="Email"
-        value={Email}
-        onChange={onChange}
-        placeholder="Correo electrónico"
-      />
-      <input
-        className="login-input"
-        type="password"
-        name="Password"
-        value={Password}
-        onChange={onChange}
-        placeholder="Contraseña"
-      />
+        <input
+          className="login-input"
+          type="email"
+          name="Email"
+          value={Email}
+          onChange={onChange}
+          placeholder="Correo electrónico"
+        />
+        <input
+          className="login-input"
+          type="password"
+          name="Password"
+          value={Password}
+          onChange={onChange}
+          placeholder="Contraseña"
+        />
 
-      <ToggleSwitch
-        label="Eres empresa?"
-        onChange={handleUserTypeChange}
-        checked={userType === 'organizacion'}
-      />
-      <button className="login-button" type="submit">
-        Login
-      </button>
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-    </form>
+        <ToggleSwitch
+          label="Eres empresa?"
+          onChange={handleUserTypeChange}
+          checked={userType === 'organizacion'}
+        />
+        <button className="login-button" type="submit">
+          Login
+        </button>
+        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+      </form>
+      <Slider {...settings}>
+        <div>
+          <img src={Image1} alt="Image1" className="logo" />
+        </div>
+        <div>
+          <img src={Image2} alt="Image2" className="logo" />
+        </div>
+      </Slider>
+    </>
   )
 }
 
