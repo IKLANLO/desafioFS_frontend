@@ -101,7 +101,7 @@ const Inicio = () => {
 
   return (
     <div>
-      <h1 style={{ textAlign: 'center' }}>Proyectos</h1>
+      <h1>Proyectos</h1>
       <ul>
         {proyectos &&
           proyectos.map((proyecto) => (
@@ -204,7 +204,7 @@ const Inicio = () => {
                       paragraph
                       variant="body2"
                       color="text.secondary">
-                      Sector: {proyecto.Sector}
+                    {proyecto.Sector}
                     </Typography>
                     <Typography
                       paragraph

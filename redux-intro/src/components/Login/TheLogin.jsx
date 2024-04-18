@@ -109,7 +109,7 @@ const TheLogin = () => {
         />
 
         <ToggleSwitch
-          label="Eres empresa?"
+          label="¿Eres empresa?"
           onChange={handleUserTypeChange}
           checked={userType === 'organizacion'}
         />

@@ -62,9 +62,10 @@ const ProyectListAlumnos = () => {
 
   return (
     <>
+      <h1>Tus Proyectos</h1>
       {proyectosAlum.map((proyecto) => (
         <div key={proyecto._id}>
-          <Card sx={{ maxWidth: 345, margin: "auto" }}>
+          <Card sx={{ maxWidth: 345, margin:"auto" }}>
             <CardContent style={{ backgroundColor: '#E99C5D', color: '#fff', textAlign: 'center' }}>
               <Typography variant="h6" style={{ margin: 'auto' }}>{proyecto.Titulo}</Typography>
             </CardContent>
@@ -110,10 +111,10 @@ const ProyectListAlumnos = () => {
                 </Typography>
 
                 <Grid container spacing={2} >
-                  <Grid item xs={12} sm={6}>
-                    <Typography paragraph variant="body2" color="text.secondary" >
-                      Solicitudes:
-                    </Typography>
+                <Grid item xs={6}>
+                <Typography paragraph variant="body2" color="text.secondary" >
+                  Solicitudes:
+                </Typography>
                     {proyecto?.Solicitudes.map((solicitud, index) => (
                       <ul key={index}>
                         <Typography variant="body2" color="text.secondary">
@@ -129,7 +130,7 @@ const ProyectListAlumnos = () => {
                       </ul>
                     ))}
                   </Grid>
-                  <Grid item xs={12} sm={6}>
+                  <Grid item xs={6}>
                     <Typography paragraph variant="body2" color="text.secondary">
                       Admitidos:
                     </Typography>
