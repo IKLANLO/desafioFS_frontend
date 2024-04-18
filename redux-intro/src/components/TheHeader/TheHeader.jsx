@@ -1,54 +1,51 @@
-// import Nav from 'react-bootstrap/Nav'
-import React from 'react'
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-import IconButton from '@mui/material/IconButton'
-import Menu from '@mui/material/Menu'
-import MenuItem from '@mui/material/MenuItem'
-import MenuIcon from '@mui/icons-material/Menu'
+import React from 'react';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import MenuIcon from '@mui/icons-material/Menu';
 import {
   logout as LogoutAlumno,
   reset as resetAlumno,
-} from '../../redux/alumnos/alumnosSlice'
-import { logout as LogoutOrg } from '../../redux/organismos/organismosSlice'
+} from '../../redux/alumnos/alumnosSlice';
+import { logout as LogoutOrg } from '../../redux/organismos/organismosSlice';
 
-import Logo from '../../assets/Logo/LOGO_LANLAB_ng (1).svg'
-import './TheHeader.css'
+import Logo from '../../assets/Logo/LOGO_LANLAB_ng (1).svg';
+import './TheHeader.css';
 
 const TheHeader = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null)
-  const open = Boolean(anchorEl)
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const alumno = useSelector((state) => state.alum.alumno)
-  const org = useSelector((state) => state.organ.organismo)
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const alumno = useSelector((state) => state.alum.alumno);
+  const org = useSelector((state) => state.organ.organismo);
 
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget)
-  }
+    setAnchorEl(event.currentTarget);
+  };
 
   const handleClose = () => {
-    setAnchorEl(null)
-  }
-
-  // const profileRoute = '/profile'
+    setAnchorEl(null);
+  };
 
   const onLogoutAlumno = (e) => {
-    e.preventDefault()
-    dispatch(LogoutAlumno(alumno.Token))
-    dispatch(resetAlumno())
-    navigate('/')
-  }
+    e.preventDefault();
+    dispatch(LogoutAlumno(alumno.Token));
+    dispatch(resetAlumno());
+    navigate('/');
+  };
 
   const onLogoutOrg = (e) => {
-    e.preventDefault()
-    dispatch(LogoutOrg(org.Token))
-    navigate('/')
-  }
+    e.preventDefault();
+    dispatch(LogoutOrg(org.Token));
+    navigate('/');
+  };
 
-  const alumToken = JSON.parse(localStorage.getItem('tokenAlumno'))
-  const orgToken = JSON.parse(localStorage.getItem('tokenOrg'))
+  const alumToken = JSON.parse(localStorage.getItem('tokenAlumno'));
+  const orgToken = JSON.parse(localStorage.getItem('tokenOrg'));
 
   return (
     <header className="header">
@@ -62,7 +59,8 @@ const TheHeader = () => {
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
           className="menu-container"
-          onClick={handleClick}>
+          onClick={handleClick}
+        >
           <MenuIcon />
         </IconButton>
         <Menu
@@ -73,52 +71,35 @@ const TheHeader = () => {
           style={{ marginLeft: '-60px' }}
           MenuListProps={{
             'aria-labelledby': 'basic-button',
-          }}>
+          }}
+        >
           <MenuItem
-            style={{
-              marginBottom: '8px',
-              padding: '8px 16px',
-              fontSize: '16px',
-              color: '#333',
-              backgroundColor: '#f4f4f4',
-              borderRadius: '4px',
-            }}
+            className="menu-item"
             onClick={() => {
-              handleClose()
-              navigate('/')
-            }}>
+              handleClose();
+              navigate('/');
+            }}
+          >
             Inicio
           </MenuItem>
           {alumToken === null && orgToken === null && (
             <div>
               <MenuItem
-                style={{
-                  marginBottom: '8px',
-                  padding: '8px 16px',
-                  fontSize: '16px',
-                  color: '#333',
-                  backgroundColor: '#f4f4f4',
-                  borderRadius: '4px',
-                }}
+                className="menu-item"
                 onClick={() => {
-                  handleClose()
-                  navigate('/login')
-                }}>
+                  handleClose();
+                  navigate('/login');
+                }}
+              >
                 Login
               </MenuItem>
               <MenuItem
-                style={{
-                  marginBottom: '8px',
-                  padding: '8px 16px',
-                  fontSize: '16px',
-                  color: '#333',
-                  backgroundColor: '#f4f4f4',
-                  borderRadius: '4px',
-                }}
+                className="menu-item"
                 onClick={() => {
-                  handleClose()
-                  navigate('/register')
-                }}>
+                  handleClose();
+                  navigate('/register');
+                }}
+              >
                 Registro
               </MenuItem>
             </div>
@@ -126,63 +107,39 @@ const TheHeader = () => {
           {alumToken !== null && (
             <div>
               <MenuItem
-                style={{
-                  marginBottom: '8px',
-                  padding: '8px 16px',
-                  fontSize: '16px',
-                  color: '#333',
-                  backgroundColor: '#f4f4f4',
-                  borderRadius: '4px',
-                }}
+                className="menu-item"
                 onClick={() => {
-                  handleClose()
-                  navigate('/profile')
-                }}>
+                  handleClose();
+                  navigate('/profile');
+                }}
+              >
                 Perfil
               </MenuItem>
               <MenuItem
-                style={{
-                  marginBottom: '8px',
-                  padding: '8px 16px',
-                  fontSize: '16px',
-                  color: '#333',
-                  backgroundColor: '#f4f4f4',
-                  borderRadius: '4px',
-                }}
+                className="menu-item"
                 onClick={() => {
-                  handleClose()
-                  navigate('/Inicio')
-                }}>
+                  handleClose();
+                  navigate('/Inicio');
+                }}
+              >
                 Proyectos
               </MenuItem>
               <MenuItem
-                style={{
-                  marginBottom: '8px',
-                  padding: '8px 16px',
-                  fontSize: '16px',
-                  color: '#333',
-                  backgroundColor: '#f4f4f4',
-                  borderRadius: '4px',
-                }}
+                className="menu-item"
                 onClick={() => {
-                  handleClose()
-                  navigate('/projects/solicitantes')
-                }}>
+                  handleClose();
+                  navigate('/projects/solicitantes');
+                }}
+              >
                 Tus proyectos
               </MenuItem>
               <MenuItem
-                style={{
-                  marginBottom: '8px',
-                  padding: '8px 16px',
-                  fontSize: '16px',
-                  color: '#333',
-                  backgroundColor: '#f4f4f4',
-                  borderRadius: '4px',
-                }}
+                className="menu-item"
                 onClick={() => {
-                  handleClose()
-                  navigate('/retos')
-                }}>
+                  handleClose();
+                  navigate('/retos');
+                }}
+              >
                 Retos
               </MenuItem>
             </div>
@@ -190,84 +147,54 @@ const TheHeader = () => {
           {orgToken !== null && (
             <div>
               <MenuItem
-                style={{
-                  marginBottom: '8px',
-                  padding: '8px 16px',
-                  fontSize: '16px',
-                  color: '#333',
-                  backgroundColor: '#f4f4f4',
-                  borderRadius: '4px',
-                }}
+                className="menu-item"
                 onClick={() => {
-                  handleClose()
-                  navigate('/profileOrg')
-                }}>
+                  handleClose();
+                  navigate('/profileOrg');
+                }}
+              >
                 Perfil
               </MenuItem>
               <MenuItem
-                style={{
-                  marginBottom: '8px',
-                  padding: '8px 16px',
-                  fontSize: '16px',
-                  color: '#333',
-                  backgroundColor: '#f4f4f4',
-                  borderRadius: '4px',
-                }}
+                className="menu-item"
                 onClick={() => {
-                  handleClose()
-                  navigate('/projects/organismos')
-                }}>
+                  handleClose();
+                  navigate('/projects/organismos');
+                }}
+              >
                 Tus proyectos
               </MenuItem>
             </div>
           )}
           {alumno && (
             <MenuItem
-              style={{
-                marginBottom: '8px',
-                padding: '8px 16px',
-                fontSize: '16px',
-                color: '#333',
-                backgroundColor: '#f4f4f4',
-                borderRadius: '4px',
-              }}
-              onClick={onLogoutAlumno}>
+              className="menu-item"
+              onClick={onLogoutAlumno}
+            >
               Cerrar sesión
             </MenuItem>
           )}
           {org && (
             <MenuItem
-              style={{
-                marginBottom: '8px',
-                padding: '8px 16px',
-                fontSize: '16px',
-                color: '#333',
-                backgroundColor: '#f4f4f4',
-                borderRadius: '4px',
-              }}
-              onClick={onLogoutOrg}>
+              className="menu-item"
+              onClick={onLogoutOrg}
+            >
               Cerrar sesión
             </MenuItem>
           )}
           <MenuItem
-            style={{
-              marginBottom: '8px',
-              padding: '8px 16px',
-              fontSize: '16px',
-              color: '#333',
-              backgroundColor: '#f4f4f4',
-              borderRadius: '4px',
-            }}
+            className="menu-item"
             onClick={() => {
-              handleClose()
-              navigate('/FAQ')
-            }}>
+              handleClose();
+              navigate('/FAQ');
+            }}
+          >
             FAQ
           </MenuItem>
         </Menu>
       </div>
     </header>
-  )
+  );
 }
 
-export default TheHeader
+export default TheHeader;
