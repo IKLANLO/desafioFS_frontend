@@ -1,0 +1,29 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo-container {
+    margin-right: auto; 
+   
+  }
+  .logo{
+    width: 50%;
+  }
+  .menu-container {
+    margin-left: auto; 
+  }
+
+.menu-item {
+  margin-bottom: 8px; /* Ajusta el margen inferior entre elementos del menú */
+  padding: 8px 16px; /* Ajusta el espacio dentro de cada elemento del menú */
+  font-size: 16px; /* Ajusta el tamaño de la fuente */
+  color: #333; /* Cambia el color del texto */
+  background-color: #f4f4f4; /* Cambia el color de fondo */
+  border-radius: 4px; /* Agrega esquinas redondeadas */
+}
+
+.menu-item:hover {
+  background-color: #ddd; /* Cambia el color de fondo al pasar el cursor sobre los elementos del menú */
+}

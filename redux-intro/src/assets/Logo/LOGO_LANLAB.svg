@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 958 242.82">
+  <defs>
+    <style>
+      .cls-1 {
+        letter-spacing: .14em;
+      }
+
+      .cls-2 {
+        letter-spacing: .15em;
+      }
+
+      .cls-3 {
+        letter-spacing: .12em;
+      }
+
+      .cls-4 {
+        letter-spacing: .11em;
+      }
+
+      .cls-5 {
+        letter-spacing: .15em;
+      }
+
+      .cls-6 {
+        font-family: Outfit-ExtraLight, Outfit;
+        font-size: 45.06px;
+        font-variation-settings: 'wght' 200;
+        font-weight: 200;
+      }
+
+      .cls-6, .cls-7 {
+        fill: #fff;
+      }
+
+      .cls-8 {
+        letter-spacing: .12em;
+      }
+
+      .cls-9 {
+        letter-spacing: .11em;
+      }
+
+      .cls-7 {
+        stroke-width: 0px;
+      }
+    </style>
+  </defs>
+  <text class="cls-6" transform="translate(490.24 231.38)"><tspan class="cls-2" x="0" y="0">P</tspan><tspan class="cls-9" x="34.2" y="0">O</tspan><tspan class="cls-2" x="75.07" y="0">WE</tspan><tspan class="cls-1" x="159.2" y="0">R</tspan><tspan class="cls-2" x="193.94" y="0">ED </tspan><tspan class="cls-4" x="284.07" y="0">B</tspan><tspan class="cls-8" x="317.28" y="0">Y</tspan><tspan class="cls-5" x="352.15" y="0" xml:space="preserve"> BB</tspan><tspan class="cls-3" x="438.85" y="0">K</tspan></text>
+  <g>
+    <path class="cls-7" d="M0,186.03V0h52.25v186.03H0ZM42.59,186.03v-44.42h94.36l-7.35,44.42H42.59Z"/>
+    <path class="cls-7" d="M117.61,186.03L188.43,0h53.3l70.03,186.03h-54.35L205.41,27.95h18.81l-53.31,158.08h-53.31Z"/>
+    <path class="cls-7" d="M312.12,186.03V0h36.57l15.68,39.18v146.85h-52.25ZM440.15,186.03l-107.92-135.61L348.69,0l107.92,135.59-16.46,50.43ZM440.15,186.03l-13.07-41.29V0h52.26v186.03h-39.19Z"/>
+    <path class="cls-7" d="M494.55,186.03V0h52.25v186.03h-52.25ZM537.14,186.03v-44.42h96.46l-9.45,44.42h-87.01Z"/>
+    <path class="cls-7" d="M613.24,186.03L684.06,0h53.3l70.03,186.03h-54.35l-51.99-158.08h18.81l-53.31,158.08h-53.31Z"/>
+    <path class="cls-7" d="M807.76,186.03V0h51.21v186.03h-51.21ZM850.08,186.03v-37.63h34.23c6.61,0,11.93-1.79,15.94-5.36,4.01-3.55,6-8.48,6-14.76,0-4.16-.91-7.78-2.74-10.83-1.83-3.05-4.35-5.36-7.57-6.92-3.23-1.58-7.1-2.36-11.63-2.36h-34.23v-36.07h31.87c5.57,0,10.19-1.39,13.85-4.16,3.66-2.8,5.49-7.15,5.49-13.08s-1.83-10.26-5.49-13.06c-3.66-2.78-8.28-4.16-13.85-4.16h-31.87V0h46.51c11.32,0,21.2,2.12,29.66,6.39,8.44,4.27,15.03,10.1,19.73,17.5,4.7,7.4,7.06,15.9,7.06,25.49,0,13.23-4.71,24.04-14.11,32.39-9.4,8.37-23.17,13.17-41.29,14.36l-.52-18.02c19.68,1.22,34.75,6.63,45.2,16.19,10.45,9.59,15.68,21.87,15.68,36.85,0,10.81-2.7,20.34-8.1,28.6-5.41,8.29-12.93,14.72-22.61,19.35-9.66,4.61-20.95,6.92-33.83,6.92h-43.38Z"/>
+  </g>
+</svg>
