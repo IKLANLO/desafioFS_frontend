@@ -1,0 +1,47 @@
+/* ProfileOrg.css */
+.profile-container {
+    padding: 16px;
+}
+
+.image {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.orange-button {
+  background-color: #547c99; /* Azul */
+  color: #fff;
+  border: none;
+  border-radius: 25px; /* Redondeado */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px; /* Espacio entre botones */
+  min-height: 50px; /* Establecemos una altura mínima */
+}
+
+.orange-button:hover {
+  background-color: #d78a4a; /* Azul más oscuro al pasar el ratón */
+}
+
+.first-row-button {
+  background-color: #d78a4a; /* Azul */
+}
+
+.first-row-button:hover {
+  background-color: #d78a4a; /* Azul más oscuro al pasar el ratón */
+}
+
+.avatar-container {
+    display: flex;
+    justify-content: center; /* Centramos horizontalmente */
+    align-items: center; /* Centramos verticalmente */
+    height: 100%; /* Hacemos que el contenedor ocupe toda la altura del padre */
+  }
+  
+  .round-image {
+    border-radius: 50%; /* Hacemos la imagen completamente redonda */
+    max-width: 60%; /* Ajustamos el ancho máximo para que la imagen sea completamente visible */
+  }
