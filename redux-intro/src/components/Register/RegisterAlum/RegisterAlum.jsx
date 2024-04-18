@@ -278,7 +278,6 @@ const RegisterAlum = () => {
           <button className="button-container__button" type="submit">
             Guardar
           </button>
-          <button className="button-container__button">Editar</button>
         </div>
       </form>
     </>

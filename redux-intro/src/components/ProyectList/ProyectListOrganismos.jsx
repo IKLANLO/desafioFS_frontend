@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   getProyects,
   reset,
@@ -10,8 +10,8 @@ import {
   addProyecto,
   confirmAlumno,
   createTutor,
-} from '../../redux/organismos/organismosSlice'
-import { sectorData } from '../Register/RegisterOrg/RegisterOrg'
+} from '../../redux/organismos/organismosSlice';
+import { sectorData } from '../Register/RegisterOrg/RegisterOrg';
 import {
   notification,
   Modal,
@@ -20,43 +20,43 @@ import {
   List,
   DatePicker,
   Select,
-} from 'antd'
-import { styled } from '@mui/material/styles'
-import Card from '@mui/material/Card'
-import CardHeader from '@mui/material/CardHeader'
-import CardContent from '@mui/material/CardContent'
-import CardActions from '@mui/material/CardActions'
-import Collapse from '@mui/material/Collapse'
-import Avatar from '@mui/material/Avatar'
-import IconButton from '@mui/material/IconButton'
-import Typography from '@mui/material/Typography'
-import { red } from '@mui/material/colors'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+} from 'antd';
+import { styled } from '@mui/material/styles';
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
+import Collapse from '@mui/material/Collapse';
+import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import { red } from '@mui/material/colors';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-const { Option } = Select
+const { Option } = Select;
 
 const ExpandMore = styled((props) => {
-  const { expand, ...other } = props
-  return <IconButton {...other} />
+  const { expand, ...other } = props;
+  return <IconButton {...other} />;
 })(({ theme, expand }) => ({
   transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
   marginLeft: 'auto',
   transition: theme.transitions.create('transform', {
     duration: theme.transitions.duration.shortest,
   }),
-}))
+}));
 
-const tutorData = ['Público', 'Concertado', 'Privado']
+const tutorData = ['Público', 'Concertado', 'Privado'];
 
 const ProyectListOrganismos = () => {
-  const [expandedIds, setExpandedIds] = useState([])
-  const [selectedProyecto, setSelectedProyecto] = useState(null)
-  const [modalVisible, setModalVisible] = useState(false)
-  const [selectedTutor, setSelectedTutor] = useState(null)
-  const [modalAddProyectoVisible, setModalAddProyectoVisible] = useState(false)
-  const [modalSolicitud, setModalSolicitud] = useState(false)
-  const [selectedSolicitud, setSelectedSolicitud] = useState(null)
-  const [modalNuevoTutor, setModalNuevoTutor] = useState(false)
+  const [expandedIds, setExpandedIds] = useState([]);
+  const [selectedProyecto, setSelectedProyecto] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedTutor, setSelectedTutor] = useState(null);
+  const [modalAddProyectoVisible, setModalAddProyectoVisible] = useState(false);
+  const [modalSolicitud, setModalSolicitud] = useState(false);
+  const [selectedSolicitud, setSelectedSolicitud] = useState(null);
+  const [modalNuevoTutor, setModalNuevoTutor] = useState(false);
   const [nuevoTutor, setNuevoTutor] = useState({
     Nombre: '',
     Telefono: '',
@@ -65,7 +65,7 @@ const ProyectListOrganismos = () => {
     Centro_estudios: '',
     Tipo_centro: '',
     IdEmpresa: '',
-  })
+  });
   const [nuevoProyecto, setNuevoProyecto] = useState({
     Titulo: '',
     Descripcion: '',
@@ -73,91 +73,91 @@ const ProyectListOrganismos = () => {
     Meses_estimados: '',
     Sector: '',
     Tipo_contrato: '',
-  })
+  });
   const disabledButtonsStyle = {
     backgroundColor: 'lightgray',
     color: 'gray',
     borderStyle: 'none',
     cursor: 'not-allowed',
-  }
+  };
 
   const handleExpandClick = (projectId) => {
     setExpandedIds((prevExpandedIds) =>
       prevExpandedIds.includes(projectId)
         ? prevExpandedIds.filter((id) => id !== projectId)
         : [...prevExpandedIds, projectId]
-    )
-  }
+    );
+  };
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { isSuccess, isError, message, organismo, proyectos, tutores } =
-    useSelector((state) => state.organ)
+    useSelector((state) => state.organ);
 
   useEffect(() => {
     if (isError) {
       notification.error({
         description: message,
-      })
+      });
     }
-    dispatch(reset())
-  }, [isSuccess, isError, message])
+    dispatch(reset());
+  }, [isSuccess, isError, message]);
 
   useEffect(() => {
     try {
-      dispatch(getProyects(organismo._id))
-      dispatch(getTutores(organismo._id))
+      dispatch(getProyects(organismo._id));
+      dispatch(getTutores(organismo._id));
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }, [dispatch])
+  }, [dispatch]);
 
   const handleDate = (fecha) => {
-    const fechaProyecto = new Date(fecha)
-    const dia = fechaProyecto.getDate()
-    const mes = fechaProyecto.getMonth() + 1
-    const año = fechaProyecto.getFullYear()
-    const fechaNumerica = `${dia}/${mes}/${año}`
-    return fechaNumerica
-  }
+    const fechaProyecto = new Date(fecha);
+    const dia = fechaProyecto.getDate();
+    const mes = fechaProyecto.getMonth() + 1;
+    const año = fechaProyecto.getFullYear();
+    const fechaNumerica = `${dia}/${mes}/${año}`;
+    return fechaNumerica;
+  };
 
   const handleCancel = async (IdProyecto) => {
-    dispatch(cancelProyecto(IdProyecto))
-    dispatch(getProyects(organismo._id))
-  }
+    dispatch(cancelProyecto(IdProyecto));
+    dispatch(getProyects(organismo._id));
+  };
 
   const handleAddTutorClick = async (proyecto) => {
-    setSelectedProyecto(proyecto)
-    setModalVisible(true)
-  }
+    setSelectedProyecto(proyecto);
+    setModalVisible(true);
+  };
 
   const handleTutorSelect = (IdProyecto, tutorId) => {
-    setSelectedTutor(tutorId)
-    setModalVisible(false)
+    setSelectedTutor(tutorId);
+    setModalVisible(false);
     if (selectedProyecto) {
       dispatch(
         updateProyect({
           IdProyecto,
           IdTutor: tutorId,
         })
-      )
-      dispatch(addTutor({ IdProyecto, IdTutor: tutorId }))
+      );
+      dispatch(addTutor({ IdProyecto, IdTutor: tutorId }));
     }
-  }
+  };
 
   const getTutorName = (tutorId) => {
     const tutorData = tutores.find((tutor) => {
-      return tutor._id === tutorId
-    })
-    return tutorData ? tutorData.Nombre : 'No hay tutores asignados'
-  }
+      return tutor._id === tutorId;
+    });
+    return tutorData ? tutorData.Nombre : 'No hay tutores asignados';
+  };
 
   const handleDisabledButtons = (estado) => {
-    return estado === 'Cancelado'
-  }
+    return estado === 'Cancelado';
+  };
 
   const handleAddProyecto = (data) => {
-    dispatch(addProyecto(data))
-    setModalAddProyectoVisible(false)
+    dispatch(addProyecto(data));
+    setModalAddProyectoVisible(false);
     setNuevoProyecto({
       Titulo: '',
       Descripcion: '',
@@ -165,15 +165,15 @@ const ProyectListOrganismos = () => {
       Meses_estimados: '',
       Sector: '',
       Tipo_contrato: '',
-    })
-    dispatch(getProyects(organismo._id))
-  }
+    });
+    dispatch(getProyects(organismo._id));
+  };
 
   const handleSelectedSolicitud = (solicitud, proyecto) => {
-    setSelectedSolicitud(solicitud)
-    setSelectedProyecto(proyecto)
-    setModalSolicitud(true)
-  }
+    setSelectedSolicitud(solicitud);
+    setSelectedProyecto(proyecto);
+    setModalSolicitud(true);
+  };
 
   const handleConfirm = async () => {
     await new Promise((resolve) => {
@@ -183,29 +183,26 @@ const ProyectListOrganismos = () => {
           IdProyecto: selectedProyecto._id,
         })
       ).then(() => {
-        resolve()
-      })
-    })
-    dispatch(getProyects(organismo._id))
-    setModalSolicitud(false)
-  }
-
-  // const handleReject = () => {
-  //   setModalSolicitud(false)
-  // }
+        resolve();
+      });
+    });
+    dispatch(getProyects(organismo._id));
+    setModalSolicitud(false);
+  };
 
   const handleAtras = () => {
-    setModalSolicitud(false)
-  }
+    setModalSolicitud(false);
+  };
 
   const handleNuevoTutor = (data) => {
-    dispatch(createTutor(data))
-    setModalNuevoTutor(false)
-  }
+    dispatch(createTutor(data));
+    setModalNuevoTutor(false);
+  };
 
   return (
     <>
-      <div style={{ marginBottom: '0.3125rem' }}>
+    <div className='titulo'><h1>Todos tus proyectos</h1></div>
+      <div style={{ marginBottom: '3rem',marginTop:'3rem',textAlign: "center" }}>
         <button onClick={() => setModalAddProyectoVisible(true)}>
           Nuevo proyecto
         </button>
@@ -217,7 +214,7 @@ const ProyectListOrganismos = () => {
         visible={modalNuevoTutor}
         onCancel={() => setModalNuevoTutor(false)}
         onOk={() => {
-          handleNuevoTutor({ ...nuevoTutor, IdEmpresa: organismo._id })
+          handleNuevoTutor({ ...nuevoTutor, IdEmpresa: organismo._id });
         }}>
         <Form>
           <Form.Item label="Nombre">
@@ -288,9 +285,6 @@ const ProyectListOrganismos = () => {
           <button key="back" onClick={handleAtras}>
             Atrás
           </button>,
-          // <button key="reject" onClick={handleReject}>
-          //   Rechazar
-          // </button>,
           <button key="confirm" type="primary" onClick={handleConfirm}>
             Aceptar
           </button>,
@@ -343,7 +337,7 @@ const ProyectListOrganismos = () => {
             IdEmpresa: organismo._id,
             Token: organismo.Token,
             proyecto: nuevoProyecto,
-          })
+          });
         }}>
         <Form>
           <Form.Item label="Título">
@@ -416,50 +410,55 @@ const ProyectListOrganismos = () => {
           </Form.Item>
         </Form>
       </Modal>
-      {proyectos.map((proyecto) => (
-        <div key={proyecto._id}>
-          <Card sx={{ maxWidth: 345 }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+        {proyectos.map((proyecto) => (
+          <Card
+            key={proyecto._id}
+            sx={{ width: 345, margin: '0.5rem', }}
+          >
             <CardHeader
-              avatar={
-                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                  R
-                </Avatar>
-              }
               title={proyecto.Titulo}
-              subheader={proyecto.Estado}
+              sx={{ backgroundColor: '#75A5C5', color: 'white', textAlign: 'center' }}
             />
             <CardContent>
+            <Typography variant="body2" color="text.secondary">
+                {proyecto.Estado}
+              </Typography>
               <Typography variant="body2" color="text.secondary">
                 {proyecto.Descripcion}
               </Typography>
             </CardContent>
             <CardActions disableSpacing>
-              <button
-                onClick={() => {
-                  handleAddTutorClick(proyecto)
-                }}
-                disabled={handleDisabledButtons(proyecto.Estado)}
-                style={
-                  proyecto.Estado === 'Cancelado' ? disabledButtonsStyle : null
-                }>
-                Añadir tutor
-              </button>
-              <button
-                disabled={handleDisabledButtons(proyecto.Estado)}
-                onClick={() => handleCancel(proyecto._id)}
-                style={
-                  proyecto.Estado === 'Cancelado' ? disabledButtonsStyle : null
-                }>
-                Cancelar
-              </button>
-              <ExpandMore
-                expand={expandedIds.includes(proyecto._id)}
-                onClick={() => handleExpandClick(proyecto._id)}
-                aria-expanded={expandedIds.includes(proyecto._id)}
-                aria-label="show more">
-                <ExpandMoreIcon />
-              </ExpandMore>
-            </CardActions>
+    <div style={{ width: '100%', textAlign: 'center' }}>
+      <button
+        onClick={() => {
+          handleAddTutorClick(proyecto);
+        }}
+        disabled={handleDisabledButtons(proyecto.Estado)}
+        style={
+          proyecto.Estado === 'Cancelado' ? disabledButtonsStyle : null
+        }>
+        Añadir tutor
+      </button>
+      <button
+        disabled={handleDisabledButtons(proyecto.Estado)}
+        onClick={() => handleCancel(proyecto._id)}
+        style={
+          proyecto.Estado === 'Cancelado' ? disabledButtonsStyle : null
+        }>
+        Cancelar
+      </button>
+    </div>
+    
+    <ExpandMore
+      expand={expandedIds.includes(proyecto._id)}
+      onClick={() => handleExpandClick(proyecto._id)}
+      aria-expanded={expandedIds.includes(proyecto._id)}
+      aria-label="show more"
+      style={{ margin: '0 auto' }}>
+      <ExpandMoreIcon />
+    </ExpandMore>
+      </CardActions>
             <Collapse
               in={expandedIds.includes(proyecto._id)}
               timeout="auto"
@@ -510,8 +509,8 @@ const ProyectListOrganismos = () => {
               </CardContent>
             </Collapse>
           </Card>
-        </div>
-      ))}
+        ))}
+      </div>
       <Modal
         title="Selecciona un tutor"
         visible={modalVisible}
@@ -530,7 +529,7 @@ const ProyectListOrganismos = () => {
         />
       </Modal>
     </>
-  )
-}
+  );
+};
 
-export default ProyectListOrganismos
+export default ProyectListOrganismos;
