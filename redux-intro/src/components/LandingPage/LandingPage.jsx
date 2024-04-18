@@ -7,6 +7,10 @@ import "slick-carousel/slick/slick-theme.css";
 
 import Image1 from "../../assets/iconos/simbolo_lnlb_tal.png"
 import Image2 from "../../assets/iconos/simbolo_lnlb.png"
+import Image3 from "../../assets/iconos/simbolo_lnlb_bbk.png"
+
+import ImageC1 from "../../assets/images/Servers.png"
+import ImageC2 from "../../assets/images/unnamed.jpg"
 
 const LandingPage = () => {
     var settings = {
@@ -18,45 +22,56 @@ const LandingPage = () => {
       };
 
   return (
-    <>
-    <h2>La fórmula perfecta para unir <span> talentos +</span><span> empresas</span> en Bizkaia</h2>
-    <p>4 científicos tech para crear la fórmula perfecta: unir talentos y empresas de la mano de BBK Fundazioa. Regístrate y comienza  a sumar tu talento, multiplicar tu experiencia e igualar tus oportunidades:</p>
-    <div className="tres">
-    <img src={Image1} alt="Logo" className="logo" />
-    <img src={Image2} alt="Logo" className="logo" />
-    <img src={Image1} alt="Logo" className="logo" />
-
-      {/* <img src={Image1}>Sumatu talento</img>
-      <img src={Image1}>Multiplica tu experiencia</img>
-      <img src={Image1}>Iguala tus oportunidades</img> */}
+    <div className="content-container">
+  <h2>La fórmula perfecta para unir <span> talentos +</span><span> empresas</span> en Bizkaia</h2>
+  <p className="text-center">4 científicos tech para crear la fórmula perfecta: unir talentos y empresas de la mano de BBK Fundazioa. Regístrate y comienza a sumar tu talento, multiplicar tu experiencia e igualar tus oportunidades:</p>
+  <div className="tres">
+    <div className="image-container">
+      <img src={Image1} alt="Imagen 1" className="icono" />
+      <span className="text">Suma tu talento</span>
     </div>
-    <div className=" button-container">
-    <button type="button" className="registrarme">Registrarme ahora</button>
-    <button type="button" className="mas-info">Mas Info</button>
+    <div className="image-container">
+      <img src={Image2} alt="Imagen 2" className="icono" />
+      <span className="text">Multiplica tu experiencia</span>
     </div>
-    <div className="image-slider-container">
-    <Slider {...settings}>
-    <div>
-      <h3>1</h3>
+    <div className="image-container">
+      <img src={Image3} alt="Imagen 3" className="icono" />
+      <span className="text">Iguala tus oportunidades</span>
     </div>
-    <div>
-      <h3>2</h3>
-    </div>
-    <div>
-      <h3>3</h3>
-    </div>
-    <div>
-      <h3>4</h3>
-    </div>
-    <div>
-      <h3>5</h3>
-    </div>
-    <div>
-      <h3>6</h3>
-    </div>
-  </Slider>
   </div>
-  </>
+  <div className="button-container">
+    <button type="button" className="registrarme">Registrarme ahora</button>
+    <button type="button" className="mas-info">Descubre mas</button>
+  </div>
+  <div className="image-slider-container">
+    <h2>Las oportunidades<br></br><span>Haz el Match Perfecto</span></h2>
+    <Slider {...settings}>
+      <div>
+        <img src={ImageC1} alt="Logo" className="logo" />
+      </div>
+      <div>
+        <img src={ImageC2} alt="Logo" className="logo" />
+      </div>
+      <div>
+        <img src={Image3} alt="Logo" className="logo" />
+      </div>
+      <div>
+        <img src={Image2} alt="Logo" className="logo" />
+      </div>
+      <div>
+        <img src={Image1} alt="Logo" className="logo" />
+      </div>
+      <div>
+        <img src={Image1} alt="Logo" className="logo" />
+      </div>
+    </Slider>
+  </div>
+  <div className="image-slider-container">
+  <h2>LOS RETOS:<br></br><span>DEMUESTRA TU TALENTO</span></h2>
+  <img src={Image2} alt="Logo" className="logo" />
+
+  </div>
+</div>
   )
 }
 
