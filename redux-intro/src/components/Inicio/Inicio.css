@@ -1,0 +1,24 @@
+/* styles.css */
+ul {
+    list-style-type: none;
+  }
+  
+  li {
+    margin-bottom: 50px;
+  }
+  
+  /* Estilos para el título de la fila */
+  .title-row {
+    background-color: #e18c47; /* Naranja */
+    color: #fff;
+    padding: 8px 16px;
+    border-bottom: 2px solid #ddd; /* Borde inferior más grueso */
+   
+    /* Borde negro alrededor de toda la fila */
+  }
+  
+  
+  .solicitud-button:hover {
+    background-color: #d18242; /* Naranja más oscuro al pasar el ratón */
+  }
+ 
