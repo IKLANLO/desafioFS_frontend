@@ -6,8 +6,8 @@
       opacity: 1;
     }
   }
-  
-  h2 {
+
+  .h2-login {
     color: #e99c5d; /* Color naranja */
     font-size: 32px; /* Tamaño de fuente */
     font-weight: bold; /* Negrita */

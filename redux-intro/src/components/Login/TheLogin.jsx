@@ -82,7 +82,7 @@ const TheLogin = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <h2>Iniciar Sesión</h2>
+      <h2 className='h2-login'>Iniciar Sesión</h2>
 
       <input
         type="email"
