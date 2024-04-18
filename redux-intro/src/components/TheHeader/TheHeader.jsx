@@ -154,9 +154,24 @@ const TheHeader = () => {
             }}
             onClick={() => {
               handleClose()
-              navigate('/proyects/organismos')
+              navigate('/projects/organismos')
             }}>
             Proyectos empresas
+          </MenuItem>
+          <MenuItem
+            style={{
+              marginBottom: '8px',
+              padding: '8px 16px',
+              fontSize: '16px',
+              color: '#333',
+              backgroundColor: '#f4f4f4',
+              borderRadius: '4px',
+            }}
+            onClick={() => {
+              handleClose()
+              navigate('/projects/solicitantes')
+            }}>
+            Proyectos
           </MenuItem>
           <MenuItem
             style={{

@@ -11,6 +11,7 @@ const initialState = {
   isError: false,
   isSuccess: false,
   proyectos: [],
+  proyectosAlum: [],
   empresas: [],
 }
 
@@ -69,10 +70,8 @@ export const logout = createAsyncThunk('alum/logout', async (token) => {
 export const updateUser = createAsyncThunk(
   'alum/updateUser',
   async ({ userId, userData }, thunkAPI) => {
-    console.log(userId, userData)
     try {
       const response = await alumnosService.updateUser(userId, userData)
-      console.log(response)
       return response
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data)
@@ -87,6 +86,17 @@ export const getEmpresas = createAsyncThunk('alum/getEmpresas', async () => {
     console.error(error)
   }
 })
+
+export const getProyectsByEmail = createAsyncThunk(
+  'alum/getProyectsByEmail',
+  async (data) => {
+    try {
+      return await alumnosService.getProyectsByEmail(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+)
 
 export const alumnosSlice = createSlice({
   name: 'alum',
@@ -160,7 +170,9 @@ export const alumnosSlice = createSlice({
       })
       .addCase(getEmpresas.fulfilled, (state, action) => {
         state.empresas = action.payload
-        console.log('state', state.empresas)
+      })
+      .addCase(getProyectsByEmail.fulfilled, (state, action) => {
+        state.proyectosAlum = action.payload
       })
   },
 })

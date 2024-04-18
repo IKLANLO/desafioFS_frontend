@@ -11,6 +11,7 @@ import Inicio from './components/Inicio/Inicio'
 import LandingPage from './components/LandingPage/LandingPage'
 import ProfileOrg from './components/ProfileOrg/ProfileOrg'
 import Retos from './components/Retos/Retos'
+import ProyectListAlumnos from './components/ProyectList/ProyectListAlumnos/ProyectListAlumnos'
 
 // import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -26,9 +27,10 @@ function App() {
         <Route path="/register/alumnos" element={<RegisterAlum />} />
         <Route path="/register/organismos" element={<RegisterOrg />} />
         <Route
-          path="/proyects/organismos"
+          path="/projects/organismos"
           element={<ProyectListOrganismos />}
         />
+        <Route path="/projects/solicitantes" element={<ProyectListAlumnos />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/profileOrg" element={<ProfileOrg />} />
         <Route path="retos" element={<Retos />} />

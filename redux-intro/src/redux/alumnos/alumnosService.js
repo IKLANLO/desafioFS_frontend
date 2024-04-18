@@ -29,7 +29,6 @@ const logout = async (token) => {
   )
 
   if (res.data) {
-    console.log(res.data)
     localStorage.clear()
   }
   return res.data
@@ -49,17 +48,33 @@ const addSolicitud = async (data) => {
         _id: data._id,
       }
     )
-    console.log(res.data)
     return res.data
   } catch (error) {
     console.error('Error en la solicitud:', error)
     throw error
   }
 }
+
+const getProyectsByEmail = async (data) => {
+  try {
+    const res = await axios.get(
+      `http://localhost:8080/proyectos/getByEmailAlumno`,
+      {
+        params: {
+          Email: data,
+        },
+      }
+    )
+    return res.data
+  } catch (error) {
+    console.error('Error en la solicitud:', error)
+    throw error
+  }
+}
+
 const updateUser = async (userId, userData) => {
   try {
     const res = await axios.put(`${API_URL}/update/${userId}`, userData)
-    console.log(res.data)
     return res.data
   } catch (error) {
     console.error('Error al actualizar usuario:', error)
@@ -80,6 +95,7 @@ const alumnosService = {
   addSolicitud,
   updateUser,
   getEmpresas,
+  getProyectsByEmail,
 }
 
 export default alumnosService
