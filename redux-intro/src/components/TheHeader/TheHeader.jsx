@@ -68,7 +68,6 @@ const TheHeader = () => {
           style={{ marginLeft: '-60px' }}
           MenuListProps={{
             'aria-labelledby': 'basic-button',
-            
           }}>
           <MenuItem
             style={{
@@ -158,7 +157,7 @@ const TheHeader = () => {
               handleClose()
               navigate('/projects/organismos')
             }}>
-            Proyectos empresas
+            Tus proyectos
           </MenuItem>
           <MenuItem
             style={{
@@ -173,7 +172,7 @@ const TheHeader = () => {
               handleClose()
               navigate('/projects/solicitantes')
             }}>
-            Proyectos
+            Tus proyectos
           </MenuItem>
           <MenuItem
             style={{
@@ -190,7 +189,21 @@ const TheHeader = () => {
             }}>
             Retos
           </MenuItem>
-
+          <MenuItem
+            style={{
+              marginBottom: '8px',
+              padding: '8px 16px',
+              fontSize: '16px',
+              color: '#333',
+              backgroundColor: '#f4f4f4',
+              borderRadius: '4px',
+            }}
+            onClick={() => {
+              handleClose()
+              navigate('/acercade')
+            }}>
+            Conócenos
+          </MenuItem>
           {alumno ? (
             <MenuItem
               style={{
