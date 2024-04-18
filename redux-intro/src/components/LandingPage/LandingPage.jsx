@@ -7,7 +7,7 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
 import Image1 from '../../assets/iconos/simbolo_lnlb_tal.png'
-import Image2 from '../../assets/iconos/simbolo_lnlb.png'
+import Image2 from '../../assets/Logo/match_lnlb_igual.png'
 import Image3 from '../../assets/iconos/simbolo_lnlb_bbk.png'
 
 import ImageC1 from '../../assets/images/Servers.png'
@@ -25,10 +25,11 @@ const LandingPage = () => {
 
   return (
     <div className="content-container">
-      <h2>
-        La fórmula perfecta para unir <span> talentos +</span>
-        <span> empresas</span> en Bizkaia
-      </h2>
+      <h1>
+        La fórmula perfecta para unir{' '}
+        <span className="orange-text">talentos +</span>
+        <span className="blue-text"> empresas</span> en Bizkaia
+      </h1>
       <p className="text-center">
         4 científicos tech para crear la fórmula perfecta: unir talentos y
         empresas de la mano de BBK Fundazioa. Regístrate y comienza a sumar tu
@@ -88,13 +89,13 @@ const LandingPage = () => {
           </div>
         </Slider>
       </div>
-      <div className="image-slider-container">
+      {/* <div className="image-slider-container">
         <h2>
           LOS RETOS:<br></br>
           <span>DEMUESTRA TU TALENTO</span>
         </h2>
         <img src={Image2} alt="Logo" className="logo" />
-      </div>
+      </div> */}
     </div>
   )
 }

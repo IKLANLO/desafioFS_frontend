@@ -88,3 +88,10 @@
     justify-content: left; /* Centrar los botones en dispositivos móviles */
   }
 }
+.orange-text {
+  color: #E99C5D;
+}
+
+.blue-text {
+  color: #75A5C5;
+}
