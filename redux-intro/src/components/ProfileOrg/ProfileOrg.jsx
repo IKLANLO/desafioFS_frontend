@@ -4,7 +4,7 @@ import Slider from 'react-slick'
 import { Button, Modal, Form, Input, message, Row, Col } from 'antd'
 import { updateOrgan } from '../../redux/organismos/organismosSlice'
 import './ProfileOrg.css' // Importamos el archivo de estilos
-import AvatarPerfil from '../../assets/images/unnamed.jpg'
+import AvatarPerfil from '../../assets/images/6991880.jpg'
 import Image1 from '../../assets/images/oferta_2_ll_Mesa de trabajo 1.png'
 import Image2 from '../../assets/images/Sin título-2_Mesa de trabajo 1.png'
 import Image3 from '../../assets/images/oferta_1_ll_Mesa de trabajo 1_Mesa de trabajo 1.png'

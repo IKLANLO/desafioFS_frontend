@@ -4,7 +4,7 @@ import Slider from 'react-slick'
 import { Button, Modal, Form, Input, message, Row, Col } from 'antd'
 import { updateUser } from '../../redux/alumnos/alumnosSlice'
 import './Profile.css' // Importamos el archivo de estilos
-import AvatarPerfil from '../../assets/images/unnamed.jpg'
+import AvatarPerfil from '../../assets/images/avatar-de-perfil.png'
 import Image1 from '../../assets/images/perfil_1_vII.png'
 import Image2 from '../../assets/images/perfil_2.png'
 import 'slick-carousel/slick/slick.css'
