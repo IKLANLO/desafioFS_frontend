@@ -1,0 +1,21 @@
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .faq-question {
+    font-size: 35px; /* Tamaño de letra más grande */
+    color: #fff; /* Color de letra blanco para contrastar con el fondo */
+    margin-bottom: 10px;
+  }
+  
+  .faq-answer {
+    font-size: 18px; /* Tamaño de letra más grande */
+    color: #f0f0f0; /* Color de letra ligeramente más claro que el fondo */
+    margin-bottom: 20px;
+  }
+  
+  .faq-answer b {
+    color: #002f62; /* Color de letra azul para el enlace */
+  }
+  

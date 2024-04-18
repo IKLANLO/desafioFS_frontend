@@ -31,7 +31,11 @@
   height: 30px; /* Ajusta el tamaño de las imágenes según tus necesidades */
   margin-right: 10px; /* Espacio entre el icono y el texto */
 }
-
+.icono2 {
+  width: 20px; /* Ajusta el tamaño de las imágenes según tus necesidades */
+  height: 20px; /* Ajusta el tamaño de las imágenes según tus necesidades */
+  margin-right: 10px; /* Espacio entre el icono y el texto */
+}
 .text {
   text-align: left; /* Alinear el texto a la izquierda */
   font-size: smaller;

@@ -10,8 +10,8 @@ import Image1 from '../../assets/iconos/simbolo_lnlb_tal.png'
 import Image2 from '../../assets/Logo/match_lnlb_igual.png'
 import Image3 from '../../assets/iconos/simbolo_lnlb_bbk.png'
 
-import ImageC1 from '../../assets/images/Servers.png'
-import ImageC2 from '../../assets/images/unnamed.jpg'
+import ImageC1 from '../../assets/images/perfil_1_vII.png'
+import ImageC2 from '../../assets/images/perfil_2.png'
 
 const LandingPage = () => {
   const navigate = useNavigate()
@@ -41,7 +41,7 @@ const LandingPage = () => {
           <span className="text">Suma tu talento</span>
         </div>
         <div className="image-container">
-          <img src={Image2} alt="Imagen 2" className="icono" />
+          <img src={Image2} alt="Imagen 2" className="icono2" />
           <span className="text">Multiplica tu experiencia</span>
         </div>
         <div className="image-container">
@@ -60,7 +60,7 @@ const LandingPage = () => {
           type="button"
           className="mas-info"
           onClick={() => navigate('/FAQ')}>
-          Descubre mas
+          Descubre más
         </button>
       </div>
       <div className="image-slider-container">
@@ -76,26 +76,19 @@ const LandingPage = () => {
             <img src={ImageC2} alt="Logo" className="logo" />
           </div>
           <div>
-            <img src={Image3} alt="Logo" className="logo" />
+            <img src={ImageC1} alt="Logo" className="logo" />
           </div>
           <div>
-            <img src={Image2} alt="Logo" className="logo" />
+            <img src={ImageC2} alt="Logo" className="logo" />
           </div>
           <div>
-            <img src={Image1} alt="Logo" className="logo" />
+            <img src={ImageC1} alt="Logo" className="logo" />
           </div>
           <div>
-            <img src={Image1} alt="Logo" className="logo" />
+            <img src={ImageC2} alt="Logo" className="logo" />
           </div>
         </Slider>
       </div>
-      {/* <div className="image-slider-container">
-        <h2>
-          LOS RETOS:<br></br>
-          <span>DEMUESTRA TU TALENTO</span>
-        </h2>
-        <img src={Image2} alt="Logo" className="logo" />
-      </div> */}
     </div>
   )
 }

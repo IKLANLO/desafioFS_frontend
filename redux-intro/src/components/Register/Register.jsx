@@ -26,14 +26,14 @@ const Register = () => {
           type="text"
           value="Alumnos"
           onClick={handleClick}>
-          Alumnos
+          Talentos
         </button>
         <button
           className="main__container__button"
           type="text"
           value="Organismos"
           onClick={handleClick}>
-          Organismos
+          Empresas
         </button>
       </div>
     </div>
