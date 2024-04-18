@@ -81,10 +81,11 @@ const TheLogin = () => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <h2 className='h2-login'>Iniciar Sesión</h2>
+    <form className='login-form' onSubmit={onSubmit}>
+      <h2 className='login-header'>Iniciar Sesión</h2>
 
       <input
+        className='login-input'
         type="email"
         name="Email"
         value={Email}
@@ -92,6 +93,7 @@ const TheLogin = () => {
         placeholder="Correo electrónico"
       />
       <input
+        className='login-input'
         type="password"
         name="Password"
         value={Password}
@@ -100,11 +102,11 @@ const TheLogin = () => {
       />
 
       <ToggleSwitch
-        label="Eres empresa?"
+        label="¿Eres empresa? "
         onChange={handleUserTypeChange}
         checked={userType === 'organizacion'}
       />
-      <button type="submit">Login</button>
+      <button className='login-button' type="submit">Login</button>
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
     </form>
   );

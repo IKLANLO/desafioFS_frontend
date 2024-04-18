@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button, Modal, Form, Input, message } from 'antd';
+import { Button, Modal, Form, Input, message, Row, Col } from 'antd';
 import { updateUser } from '../../redux/alumnos/alumnosSlice';
 
 const Profile = () => {
@@ -49,26 +49,45 @@ const Profile = () => {
         dispatch(updateUser({ userId: user._id, userData: updatedData }));
         setIsEditing(false);
       };
-      
-      
 
     const onValuesChange = (changedValues) => {
         setEditedUser({ ...editedUser, ...changedValues });
     };
-console.log(user)
+
     return (
         <>
-            <h1>Perfil de {user && user.Nombre}</h1>
-            <p>Genero: {user && user.Genero}</p>
-            <p>Email: {user && user.Email}</p>
-            <p>Teléfono: {user && user.Telefono}</p>
-            <p>Cp: {user && user.CP}</p>
-            <p>Área de Estudios: {user && user.AreaEstudios}</p>
-            <p>Educacion: {user && user.Educacion}</p>
-            <p>Experiencia: {user && user.Experiencia}</p>
-            <p>Habilidades: {user && user.Habilidades}</p>
-            <p>Logros: {user && user.Logros}</p>
-            <p>Sector: {user && user.Sector}</p>
+            <Row gutter={[16, 16]}>
+                <Col span={8}>
+                    <h1>Mi Perfil</h1>
+                    <p>Nombre: {user && user.Nombre}</p>
+                    <p>Edad: {user && user.Edad}</p>
+                    <p>Sector: {user && user.Sector}</p>
+                </Col>
+                <Col span={8} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <img src="tu-imagen.jpg" alt="Mi Imagen" style={{ maxWidth: '100%', maxHeight: '100%' }} />
+                </Col>
+                <Col span={8}>
+                    <p>Email: {user && user.Email}</p>
+                    <p>Teléfono: {user && user.Telefono}</p>
+                    <p>Experiencia: {user && user.Experiencia}</p>
+                </Col>
+            </Row>
+
+            <Row gutter={[16, 16]}>
+                <Col span={8}>
+                    <h2>Otros Detalles</h2>
+                    <p>Campo1: {user && user.Campo1}</p>
+                    <p>Campo2: {user && user.Campo2}</p>
+                </Col>
+                <Col span={8}>
+                    <p>Campo3: {user && user.Campo3}</p>
+                    <p>Campo4: {user && user.Campo4}</p>
+                </Col>
+                <Col span={8}>
+                    <p>Campo5: {user && user.Campo5}</p>
+                    <p>Campo6: {user && user.Campo6}</p>
+                </Col>
+            </Row>
 
             <Button onClick={() => setIsEditing(true)}>Editar Perfil</Button>
 
