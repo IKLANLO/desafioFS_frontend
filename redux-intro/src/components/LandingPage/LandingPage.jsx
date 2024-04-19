@@ -6,12 +6,14 @@ import './LandingPage.css'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
-import Image1 from '../../assets/iconos/simbolo_lnlb_tal.png'
+import Image1 from '../../assets/Logo/suma_ll.png'
 import Image2 from '../../assets/Logo/match_lnlb_igual.png'
 import Image3 from '../../assets/iconos/simbolo_lnlb_bbk.png'
 
-import ImageC1 from '../../assets/images/perfil_1_vII.png'
-import ImageC2 from '../../assets/images/perfil_2.png'
+import ImageC1 from '../../assets/images/oferta_1_ll_Mesa de trabajo 1_Mesa de trabajo 1.png'
+import ImageC2 from '../../assets/images/oferta_2_ll_Mesa de trabajo 1.png'
+import ImageC3 from '../../assets/images/Sin título-2_Mesa de trabajo 1.png'
+
 
 const LandingPage = () => {
   const navigate = useNavigate()
@@ -76,7 +78,7 @@ const LandingPage = () => {
             <img src={ImageC2} alt="Logo" className="slider" />
           </div>
           <div>
-            <img src={ImageC1} alt="Logo" className="slider" />
+            <img src={ImageC3} alt="Logo" className="slider" />
           </div>
           <div>
             <img src={ImageC2} alt="Logo" className="slider" />
@@ -85,7 +87,7 @@ const LandingPage = () => {
             <img src={ImageC1} alt="Logo" className="slider" />
           </div>
           <div>
-            <img src={ImageC2} alt="Logo" className="slider" />
+            <img src={ImageC3} alt="Logo" className="slider" />
           </div>
         </Slider>
       </div>

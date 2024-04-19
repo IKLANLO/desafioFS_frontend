@@ -14,7 +14,9 @@
 .text-center {
   text-align: left; /* Ajustar el texto a la izquierda */
 }
-
+.title{
+  font-weight: 500;
+}
 .tres {
   display: flex;
   justify-content: space-between; /* Distribuir los contenedores de manera uniforme */
@@ -98,4 +100,8 @@
 
 .blue-text {
   color: #75A5C5;
+}
+.content-container h1{
+  font-family: "Outfit", sans-serif;
+  font-weight: 700;
 }
